@@ -1,0 +1,1175 @@
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 1
+
+
+   1               		.file	"app.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.text
+   9               	.global	init_uart
+  10               		.type	init_uart, @function
+  11               	init_uart:
+  12               	/* prologue: function */
+  13               	/* frame size = 0 */
+  14 0000 1BB8      		out 43-32,__zero_reg__
+  15 0002 88E0      		ldi r24,lo8(8)
+  16 0004 8AB9      		out 42-32,r24
+  17 0006 86E0      		ldi r24,lo8(6)
+  18 0008 8093 9500 		sts 149,r24
+  19 000c 1092 9000 		sts 144,__zero_reg__
+  20 0010 87E6      		ldi r24,lo8(103)
+  21 0012 89B9      		out 41-32,r24
+  22               	/* epilogue start */
+  23 0014 0895      		ret
+  24               		.size	init_uart, .-init_uart
+  25               	.global	PutChar
+  26               		.type	PutChar, @function
+  27               	PutChar:
+  28               	/* prologue: function */
+  29               	/* frame size = 0 */
+  30               	.L4:
+  31 0016 5D9B      		sbis 43-32,5
+  32 0018 00C0      		rjmp .L4
+  33 001a 8CB9      		out 44-32,r24
+  34               	/* epilogue start */
+  35 001c 0895      		ret
+  36               		.size	PutChar, .-PutChar
+  37               	.global	Getch
+  38               		.type	Getch, @function
+  39               	Getch:
+  40               	/* prologue: function */
+  41               	/* frame size = 0 */
+  42               	.L9:
+  43 001e 5F9B      		sbis 43-32,7
+  44 0020 00C0      		rjmp .L9
+  45 0022 8CB1      		in r24,44-32
+  46               	/* epilogue start */
+  47 0024 0895      		ret
+  48               		.size	Getch, .-Getch
+  49               	.global	PutString
+  50               		.type	PutString, @function
+  51               	PutString:
+  52               	/* prologue: function */
+  53               	/* frame size = 0 */
+  54 0026 FC01      		movw r30,r24
+  55 0028 8081      		ld r24,Z
+  56 002a 8823      		tst r24
+  57 002c 01F0      		breq .L16
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 2
+
+
+  58               	.L17:
+  59 002e 3196      		adiw r30,1
+  60               	.L14:
+  61 0030 5D9B      		sbis 43-32,5
+  62 0032 00C0      		rjmp .L14
+  63 0034 8CB9      		out 44-32,r24
+  64 0036 8081      		ld r24,Z
+  65 0038 8823      		tst r24
+  66 003a 01F4      		brne .L17
+  67               	.L16:
+  68 003c 0895      		ret
+  69               		.size	PutString, .-PutString
+  70               	.global	PutString2
+  71               		.type	PutString2, @function
+  72               	PutString2:
+  73               	/* prologue: function */
+  74               	/* frame size = 0 */
+  75 003e DC01      		movw r26,r24
+  76 0040 70E0      		ldi r23,lo8(0)
+  77 0042 6115      		cp r22,__zero_reg__
+  78 0044 7105      		cpc r23,__zero_reg__
+  79 0046 01F0      		breq .L24
+  80 0048 EC91      		ld r30,X
+  81 004a EE23      		tst r30
+  82 004c 01F0      		breq .L24
+  83 004e 80E0      		ldi r24,lo8(0)
+  84 0050 90E0      		ldi r25,hi8(0)
+  85               	.L27:
+  86 0052 5D9B      		sbis 43-32,5
+  87 0054 00C0      		rjmp .L27
+  88 0056 ECB9      		out 44-32,r30
+  89 0058 0196      		adiw r24,1
+  90 005a 8617      		cp r24,r22
+  91 005c 9707      		cpc r25,r23
+  92 005e 04F4      		brge .L24
+  93 0060 FD01      		movw r30,r26
+  94 0062 E80F      		add r30,r24
+  95 0064 F91F      		adc r31,r25
+  96 0066 E081      		ld r30,Z
+  97 0068 EE23      		tst r30
+  98 006a 01F4      		brne .L27
+  99               	.L24:
+ 100 006c 0895      		ret
+ 101               		.size	PutString2, .-PutString2
+ 102               	.global	PutDec
+ 103               		.type	PutDec, @function
+ 104               	PutDec:
+ 105               	/* prologue: function */
+ 106               	/* frame size = 0 */
+ 107 006e 482F      		mov r20,r24
+ 108 0070 6AE0      		ldi r22,lo8(10)
+ 109 0072 0E94 0000 		call __udivmodqi4
+ 110 0076 282F      		mov r18,r24
+ 111 0078 0E94 0000 		call __udivmodqi4
+ 112 007c 392F      		mov r19,r25
+ 113 007e 822F      		mov r24,r18
+ 114 0080 0E94 0000 		call __udivmodqi4
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 3
+
+
+ 115 0084 8823      		tst r24
+ 116 0086 01F4      		brne .L36
+ 117               	.L29:
+ 118 0088 3323      		tst r19
+ 119 008a 01F4      		brne .L35
+ 120 008c 8823      		tst r24
+ 121 008e 01F0      		breq .L34
+ 122               	.L35:
+ 123 0090 5D9B      		sbis 43-32,5
+ 124 0092 00C0      		rjmp .L35
+ 125 0094 305D      		subi r19,lo8(-(48))
+ 126 0096 3CB9      		out 44-32,r19
+ 127               	.L34:
+ 128 0098 5D9B      		sbis 43-32,5
+ 129 009a 00C0      		rjmp .L34
+ 130 009c 842F      		mov r24,r20
+ 131 009e 6AE0      		ldi r22,lo8(10)
+ 132 00a0 0E94 0000 		call __udivmodqi4
+ 133 00a4 905D      		subi r25,lo8(-(48))
+ 134 00a6 9CB9      		out 44-32,r25
+ 135               	/* epilogue start */
+ 136 00a8 0895      		ret
+ 137               	.L36:
+ 138 00aa 5D9B      		sbis 43-32,5
+ 139 00ac 00C0      		rjmp .L36
+ 140 00ae 805D      		subi r24,lo8(-(48))
+ 141 00b0 8CB9      		out 44-32,r24
+ 142 00b2 8053      		subi r24,lo8(-(-48))
+ 143 00b4 00C0      		rjmp .L29
+ 144               		.size	PutDec, .-PutDec
+ 145               	.global	init_ext_int
+ 146               		.type	init_ext_int, @function
+ 147               	init_ext_int:
+ 148               	/* prologue: function */
+ 149               	/* frame size = 0 */
+ 150 00b6 80E3      		ldi r24,lo8(48)
+ 151 00b8 89BF      		out 89-32,r24
+ 152 00ba 8FE0      		ldi r24,lo8(15)
+ 153 00bc 8ABF      		out 90-32,r24
+ 154               	/* epilogue start */
+ 155 00be 0895      		ret
+ 156               		.size	init_ext_int, .-init_ext_int
+ 157               	.global	init_tick
+ 158               		.type	init_tick, @function
+ 159               	init_tick:
+ 160               	/* prologue: function */
+ 161               	/* frame size = 0 */
+ 162               	/* #APP */
+ 163               	 ;  317 "app.c" 1
+ 164 00c0 F894      		cli
+ 165               	 ;  0 "" 2
+ 166               	/* #NOAPP */
+ 167 00c2 84E0      		ldi r24,lo8(4)
+ 168 00c4 83BF      		out 83-32,r24
+ 169 00c6 80E3      		ldi r24,lo8(48)
+ 170 00c8 82BF      		out 82-32,r24
+ 171 00ca 81E0      		ldi r24,lo8(1)
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 4
+
+
+ 172 00cc 87BF      		out 87-32,r24
+ 173               	/* #APP */
+ 174               	 ;  326 "app.c" 1
+ 175 00ce 7894      		sei
+ 176               	 ;  0 "" 2
+ 177               	/* epilogue start */
+ 178               	/* #NOAPP */
+ 179 00d0 0895      		ret
+ 180               		.size	init_tick, .-init_tick
+ 181               	.global	port_init
+ 182               		.type	port_init, @function
+ 183               	port_init:
+ 184               	/* prologue: function */
+ 185               	/* frame size = 0 */
+ 186 00d2 1ABA      		out 58-32,__zero_reg__
+ 187 00d4 1BBA      		out 59-32,__zero_reg__
+ 188 00d6 18BA      		out 56-32,__zero_reg__
+ 189 00d8 17BA      		out 55-32,__zero_reg__
+ 190 00da 15BA      		out 53-32,__zero_reg__
+ 191 00dc 8FEF      		ldi r24,lo8(-1)
+ 192 00de 84BB      		out 52-32,r24
+ 193 00e0 12BA      		out 50-32,__zero_reg__
+ 194 00e2 81BB      		out 49-32,r24
+ 195 00e4 13B8      		out 35-32,__zero_reg__
+ 196 00e6 12B8      		out 34-32,__zero_reg__
+ 197 00e8 1092 6100 		sts 97,__zero_reg__
+ 198 00ec 1092 6200 		sts 98,__zero_reg__
+ 199 00f0 1092 6500 		sts 101,__zero_reg__
+ 200 00f4 83E0      		ldi r24,lo8(3)
+ 201 00f6 8093 6400 		sts 100,r24
+ 202               	/* epilogue start */
+ 203 00fa 0895      		ret
+ 204               		.size	port_init, .-port_init
+ 205               	.global	delay
+ 206               		.type	delay, @function
+ 207               	delay:
+ 208               	/* prologue: function */
+ 209               	/* frame size = 0 */
+ 210               	/* epilogue start */
+ 211 00fc 0895      		ret
+ 212               		.size	delay, .-delay
+ 213               	.global	delay_us
+ 214               		.type	delay_us, @function
+ 215               	delay_us:
+ 216               	/* prologue: function */
+ 217               	/* frame size = 0 */
+ 218 00fe 8823      		tst r24
+ 219 0100 01F0      		breq .L51
+ 220 0102 90E0      		ldi r25,lo8(0)
+ 221               	.L50:
+ 222               	/* #APP */
+ 223               	 ;  444 "app.c" 1
+ 224 0104 0F92      		PUSH R0
+ 225               	 ;  0 "" 2
+ 226               	 ;  445 "app.c" 1
+ 227 0106 0F90      		POP R0
+ 228               	 ;  0 "" 2
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 5
+
+
+ 229               	 ;  446 "app.c" 1
+ 230 0108 0F92      		PUSH R0
+ 231               	 ;  0 "" 2
+ 232               	 ;  447 "app.c" 1
+ 233 010a 0F90      		POP R0
+ 234               	 ;  0 "" 2
+ 235               	 ;  448 "app.c" 1
+ 236 010c 0F92      		PUSH R0
+ 237               	 ;  0 "" 2
+ 238               	 ;  449 "app.c" 1
+ 239 010e 0F90      		POP R0
+ 240               	 ;  0 "" 2
+ 241               	/* #NOAPP */
+ 242 0110 9F5F      		subi r25,lo8(-(1))
+ 243 0112 9817      		cp r25,r24
+ 244 0114 00F0      		brlo .L50
+ 245               	.L51:
+ 246 0116 0895      		ret
+ 247               		.size	delay_us, .-delay_us
+ 248               	.global	delay_ms
+ 249               		.type	delay_ms, @function
+ 250               	delay_ms:
+ 251 0118 0F93      		push r16
+ 252 011a 1F93      		push r17
+ 253               	/* prologue: function */
+ 254               	/* frame size = 0 */
+ 255 011c 082F      		mov r16,r24
+ 256 011e 8823      		tst r24
+ 257 0120 01F0      		breq .L56
+ 258 0122 10E0      		ldi r17,lo8(0)
+ 259               	.L55:
+ 260 0124 8AEF      		ldi r24,lo8(-6)
+ 261 0126 0E94 0000 		call delay_us
+ 262 012a 8AEF      		ldi r24,lo8(-6)
+ 263 012c 0E94 0000 		call delay_us
+ 264 0130 8AEF      		ldi r24,lo8(-6)
+ 265 0132 0E94 0000 		call delay_us
+ 266 0136 8AEF      		ldi r24,lo8(-6)
+ 267 0138 0E94 0000 		call delay_us
+ 268 013c 1F5F      		subi r17,lo8(-(1))
+ 269 013e 1017      		cp r17,r16
+ 270 0140 00F0      		brlo .L55
+ 271               	.L56:
+ 272               	/* epilogue start */
+ 273 0142 1F91      		pop r17
+ 274 0144 0F91      		pop r16
+ 275 0146 0895      		ret
+ 276               		.size	delay_ms, .-delay_ms
+ 277               	.global	Busy
+ 278               		.type	Busy, @function
+ 279               	Busy:
+ 280               	/* prologue: function */
+ 281               	/* frame size = 0 */
+ 282 0148 82E0      		ldi r24,lo8(2)
+ 283 014a 0E94 0000 		call delay_ms
+ 284               	/* epilogue start */
+ 285 014e 0895      		ret
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 6
+
+
+ 286               		.size	Busy, .-Busy
+ 287               	.global	Data
+ 288               		.type	Data, @function
+ 289               	Data:
+ 290 0150 0F93      		push r16
+ 291 0152 1F93      		push r17
+ 292               	/* prologue: function */
+ 293               	/* frame size = 0 */
+ 294 0154 082F      		mov r16,r24
+ 295 0156 0E94 0000 		call Busy
+ 296 015a 802F      		mov r24,r16
+ 297 015c 807F      		andi r24,lo8(-16)
+ 298 015e 82BB      		out 50-32,r24
+ 299 0160 909A      		sbi 50-32,0
+ 300 0162 9198      		cbi 50-32,1
+ 301 0164 81E0      		ldi r24,lo8(1)
+ 302 0166 0E94 0000 		call delay_us
+ 303 016a 929A      		sbi 50-32,2
+ 304 016c 81E0      		ldi r24,lo8(1)
+ 305 016e 0E94 0000 		call delay_us
+ 306 0172 9298      		cbi 50-32,2
+ 307 0174 10E0      		ldi r17,lo8(0)
+ 308 0176 0295      		swap r16
+ 309 0178 1295      		swap r17
+ 310 017a 107F      		andi r17,0xf0
+ 311 017c 1027      		eor r17,r16
+ 312 017e 007F      		andi r16,0xf0
+ 313 0180 1027      		eor r17,r16
+ 314 0182 02BB      		out 50-32,r16
+ 315 0184 909A      		sbi 50-32,0
+ 316 0186 9198      		cbi 50-32,1
+ 317 0188 81E0      		ldi r24,lo8(1)
+ 318 018a 0E94 0000 		call delay_us
+ 319 018e 929A      		sbi 50-32,2
+ 320 0190 81E0      		ldi r24,lo8(1)
+ 321 0192 0E94 0000 		call delay_us
+ 322 0196 9298      		cbi 50-32,2
+ 323               	/* epilogue start */
+ 324 0198 1F91      		pop r17
+ 325 019a 0F91      		pop r16
+ 326 019c 0895      		ret
+ 327               		.size	Data, .-Data
+ 328               	.global	LCD_String
+ 329               		.type	LCD_String, @function
+ 330               	LCD_String:
+ 331 019e CF93      		push r28
+ 332 01a0 DF93      		push r29
+ 333               	/* prologue: function */
+ 334               	/* frame size = 0 */
+ 335 01a2 FC01      		movw r30,r24
+ 336 01a4 8081      		ld r24,Z
+ 337 01a6 8823      		tst r24
+ 338 01a8 01F0      		breq .L65
+ 339 01aa EF01      		movw r28,r30
+ 340               	.L64:
+ 341 01ac 2196      		adiw r28,1
+ 342 01ae 0E94 0000 		call Data
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 7
+
+
+ 343 01b2 8881      		ld r24,Y
+ 344 01b4 8823      		tst r24
+ 345 01b6 01F4      		brne .L64
+ 346               	.L65:
+ 347               	/* epilogue start */
+ 348 01b8 DF91      		pop r29
+ 349 01ba CF91      		pop r28
+ 350 01bc 0895      		ret
+ 351               		.size	LCD_String, .-LCD_String
+ 352               	.global	Command
+ 353               		.type	Command, @function
+ 354               	Command:
+ 355 01be 0F93      		push r16
+ 356 01c0 1F93      		push r17
+ 357               	/* prologue: function */
+ 358               	/* frame size = 0 */
+ 359 01c2 082F      		mov r16,r24
+ 360 01c4 0E94 0000 		call Busy
+ 361 01c8 802F      		mov r24,r16
+ 362 01ca 807F      		andi r24,lo8(-16)
+ 363 01cc 82BB      		out 50-32,r24
+ 364 01ce 9098      		cbi 50-32,0
+ 365 01d0 9198      		cbi 50-32,1
+ 366 01d2 81E0      		ldi r24,lo8(1)
+ 367 01d4 0E94 0000 		call delay_us
+ 368 01d8 929A      		sbi 50-32,2
+ 369 01da 81E0      		ldi r24,lo8(1)
+ 370 01dc 0E94 0000 		call delay_us
+ 371 01e0 9298      		cbi 50-32,2
+ 372 01e2 10E0      		ldi r17,lo8(0)
+ 373 01e4 0295      		swap r16
+ 374 01e6 1295      		swap r17
+ 375 01e8 107F      		andi r17,0xf0
+ 376 01ea 1027      		eor r17,r16
+ 377 01ec 007F      		andi r16,0xf0
+ 378 01ee 1027      		eor r17,r16
+ 379 01f0 02BB      		out 50-32,r16
+ 380 01f2 9098      		cbi 50-32,0
+ 381 01f4 9198      		cbi 50-32,1
+ 382 01f6 81E0      		ldi r24,lo8(1)
+ 383 01f8 0E94 0000 		call delay_us
+ 384 01fc 929A      		sbi 50-32,2
+ 385 01fe 81E0      		ldi r24,lo8(1)
+ 386 0200 0E94 0000 		call delay_us
+ 387 0204 9298      		cbi 50-32,2
+ 388               	/* epilogue start */
+ 389 0206 1F91      		pop r17
+ 390 0208 0F91      		pop r16
+ 391 020a 0895      		ret
+ 392               		.size	Command, .-Command
+ 393               	.global	LCD_init
+ 394               		.type	LCD_init, @function
+ 395               	LCD_init:
+ 396               	/* prologue: function */
+ 397               	/* frame size = 0 */
+ 398 020c 8FEF      		ldi r24,lo8(-1)
+ 399 020e 81BB      		out 49-32,r24
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 8
+
+
+ 400 0210 9298      		cbi 50-32,2
+ 401 0212 8FE0      		ldi r24,lo8(15)
+ 402 0214 0E94 0000 		call delay_ms
+ 403 0218 80E2      		ldi r24,lo8(32)
+ 404 021a 0E94 0000 		call Command
+ 405 021e 85E0      		ldi r24,lo8(5)
+ 406 0220 0E94 0000 		call delay_ms
+ 407 0224 80E2      		ldi r24,lo8(32)
+ 408 0226 0E94 0000 		call Command
+ 409 022a 84E6      		ldi r24,lo8(100)
+ 410 022c 0E94 0000 		call delay_us
+ 411 0230 80E2      		ldi r24,lo8(32)
+ 412 0232 0E94 0000 		call Command
+ 413 0236 88E2      		ldi r24,lo8(40)
+ 414 0238 0E94 0000 		call Command
+ 415 023c 8CE0      		ldi r24,lo8(12)
+ 416 023e 0E94 0000 		call Command
+ 417 0242 81E0      		ldi r24,lo8(1)
+ 418 0244 0E94 0000 		call Command
+ 419 0248 86E0      		ldi r24,lo8(6)
+ 420 024a 0E94 0000 		call Command
+ 421               	/* epilogue start */
+ 422 024e 0895      		ret
+ 423               		.size	LCD_init, .-LCD_init
+ 424               	.global	TaskPrio5
+ 425               		.type	TaskPrio5, @function
+ 426               	TaskPrio5:
+ 427               	/* prologue: function */
+ 428               	/* frame size = 0 */
+ 429 0250 8FEF      		ldi r24,lo8(-1)
+ 430 0252 0E94 0000 		call OSTaskSuspend
+ 431               	/* epilogue start */
+ 432 0256 0895      		ret
+ 433               		.size	TaskPrio5, .-TaskPrio5
+ 434               	.global	TaskPrio4
+ 435               		.type	TaskPrio4, @function
+ 436               	TaskPrio4:
+ 437 0258 1F93      		push r17
+ 438 025a DF93      		push r29
+ 439 025c CF93      		push r28
+ 440 025e 0F92      		push __tmp_reg__
+ 441 0260 CDB7      		in r28,__SP_L__
+ 442 0262 DEB7      		in r29,__SP_H__
+ 443               	/* prologue: function */
+ 444               	/* frame size = 1 */
+ 445 0264 8FEF      		ldi r24,lo8(-1)
+ 446 0266 0E94 0000 		call OSTaskSuspend
+ 447 026a 8091 0000 		lds r24,mutex
+ 448 026e 9091 0000 		lds r25,(mutex)+1
+ 449 0272 60E0      		ldi r22,lo8(0)
+ 450 0274 70E0      		ldi r23,hi8(0)
+ 451 0276 AE01      		movw r20,r28
+ 452 0278 4F5F      		subi r20,lo8(-(1))
+ 453 027a 5F4F      		sbci r21,hi8(-(1))
+ 454 027c 0E94 0000 		call OSMutexPend
+ 455 0280 1092 0000 		sts T4,__zero_reg__
+ 456 0284 1092 0000 		sts T3,__zero_reg__
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 9
+
+
+ 457 0288 1092 0000 		sts resourceMutex,__zero_reg__
+ 458 028c 80E0      		ldi r24,lo8(0)
+ 459 028e 11E0      		ldi r17,lo8(1)
+ 460 0290 00C0      		rjmp .L77
+ 461               	.L76:
+ 462 0292 8091 0000 		lds r24,resourceMutex
+ 463 0296 8F5F      		subi r24,lo8(-(1))
+ 464 0298 8093 0000 		sts resourceMutex,r24
+ 465 029c 8D33      		cpi r24,lo8(61)
+ 466 029e 00F4      		brsh .L82
+ 467               	.L77:
+ 468 02a0 8093 0000 		sts T5,r24
+ 469 02a4 84E6      		ldi r24,lo8(100)
+ 470 02a6 0E94 0000 		call delay_ms
+ 471 02aa 8091 0000 		lds r24,resourceMutex
+ 472 02ae 8C33      		cpi r24,lo8(60)
+ 473 02b0 01F0      		breq .L81
+ 474 02b2 8091 0000 		lds r24,T4
+ 475               	.L74:
+ 476 02b6 8330      		cpi r24,lo8(3)
+ 477 02b8 01F0      		breq .L83
+ 478               	.L75:
+ 479 02ba 8091 0000 		lds r24,T3
+ 480 02be 8D30      		cpi r24,lo8(13)
+ 481 02c0 01F4      		brne .L76
+ 482 02c2 1093 0000 		sts T3,r17
+ 483 02c6 8091 0000 		lds r24,resourceMutex
+ 484 02ca 8F5F      		subi r24,lo8(-(1))
+ 485 02cc 8093 0000 		sts resourceMutex,r24
+ 486 02d0 8D33      		cpi r24,lo8(61)
+ 487 02d2 00F0      		brlo .L77
+ 488               	.L82:
+ 489               	/* epilogue start */
+ 490 02d4 0F90      		pop __tmp_reg__
+ 491 02d6 CF91      		pop r28
+ 492 02d8 DF91      		pop r29
+ 493 02da 1F91      		pop r17
+ 494 02dc 0895      		ret
+ 495               	.L83:
+ 496 02de 1092 0000 		sts T4,__zero_reg__
+ 497 02e2 85E0      		ldi r24,lo8(5)
+ 498 02e4 0E94 0000 		call OSTaskSuspend
+ 499 02e8 88EC      		ldi r24,lo8(-56)
+ 500 02ea 0E94 0000 		call delay_ms
+ 501 02ee 8091 0000 		lds r24,mutex
+ 502 02f2 9091 0000 		lds r25,(mutex)+1
+ 503 02f6 0E94 0000 		call OSMutexPost
+ 504 02fa 88EC      		ldi r24,lo8(-56)
+ 505 02fc 0E94 0000 		call delay_ms
+ 506 0300 84E0      		ldi r24,lo8(4)
+ 507 0302 0E94 0000 		call OSTaskSuspend
+ 508 0306 88EC      		ldi r24,lo8(-56)
+ 509 0308 0E94 0000 		call delay_ms
+ 510 030c 00C0      		rjmp .L75
+ 511               	.L81:
+ 512 030e 1092 0000 		sts resourceMutex,__zero_reg__
+ 513 0312 84E6      		ldi r24,lo8(100)
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 10
+
+
+ 514 0314 0E94 0000 		call delay_ms
+ 515 0318 8091 0000 		lds r24,T4
+ 516 031c 8F5F      		subi r24,lo8(-(1))
+ 517 031e 8093 0000 		sts T4,r24
+ 518 0322 00C0      		rjmp .L74
+ 519               		.size	TaskPrio4, .-TaskPrio4
+ 520               	.global	TaskPrio3
+ 521               		.type	TaskPrio3, @function
+ 522               	TaskPrio3:
+ 523 0324 0F93      		push r16
+ 524 0326 1F93      		push r17
+ 525 0328 DF93      		push r29
+ 526 032a CF93      		push r28
+ 527 032c 0F92      		push __tmp_reg__
+ 528 032e CDB7      		in r28,__SP_L__
+ 529 0330 DEB7      		in r29,__SP_H__
+ 530               	/* prologue: function */
+ 531               	/* frame size = 1 */
+ 532 0332 8FEF      		ldi r24,lo8(-1)
+ 533 0334 0E94 0000 		call OSTaskSuspend
+ 534 0338 8091 0000 		lds r24,sem
+ 535 033c 9091 0000 		lds r25,(sem)+1
+ 536 0340 60E0      		ldi r22,lo8(0)
+ 537 0342 70E0      		ldi r23,hi8(0)
+ 538 0344 8E01      		movw r16,r28
+ 539 0346 0F5F      		subi r16,lo8(-(1))
+ 540 0348 1F4F      		sbci r17,hi8(-(1))
+ 541 034a A801      		movw r20,r16
+ 542 034c 0E94 0000 		call OSSemPend
+ 543 0350 84E6      		ldi r24,lo8(100)
+ 544 0352 0E94 0000 		call delay_ms
+ 545 0356 8091 0000 		lds r24,mutex
+ 546 035a 9091 0000 		lds r25,(mutex)+1
+ 547 035e 60E0      		ldi r22,lo8(0)
+ 548 0360 70E0      		ldi r23,hi8(0)
+ 549 0362 A801      		movw r20,r16
+ 550 0364 0E94 0000 		call OSMutexPend
+ 551 0368 84E6      		ldi r24,lo8(100)
+ 552 036a 0E94 0000 		call delay_ms
+ 553 036e 1092 0000 		sts T5,__zero_reg__
+ 554 0372 1092 0000 		sts T4,__zero_reg__
+ 555 0376 1092 0000 		sts T3,__zero_reg__
+ 556 037a 01E0      		ldi r16,lo8(1)
+ 557 037c 00C0      		rjmp .L95
+ 558               	.L101:
+ 559 037e 8091 0000 		lds r24,T4
+ 560 0382 8330      		cpi r24,lo8(3)
+ 561 0384 01F0      		breq .L98
+ 562               	.L86:
+ 563 0386 8C33      		cpi r24,lo8(60)
+ 564 0388 01F0      		breq .L97
+ 565               	.L102:
+ 566 038a 9091 0000 		lds r25,T3
+ 567 038e 9D30      		cpi r25,lo8(13)
+ 568 0390 01F0      		breq .L99
+ 569               	.L88:
+ 570 0392 8330      		cpi r24,lo8(3)
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 11
+
+
+ 571 0394 01F0      		breq .L100
+ 572               	.L95:
+ 573 0396 8091 0000 		lds r24,T5
+ 574 039a 8F5F      		subi r24,lo8(-(1))
+ 575 039c 8093 0000 		sts T5,r24
+ 576 03a0 84E6      		ldi r24,lo8(100)
+ 577 03a2 0E94 0000 		call delay_ms
+ 578 03a6 8091 0000 		lds r24,T5
+ 579 03aa 8C33      		cpi r24,lo8(60)
+ 580 03ac 01F4      		brne .L101
+ 581 03ae 1092 0000 		sts T5,__zero_reg__
+ 582 03b2 8091 0000 		lds r24,T4
+ 583 03b6 8F5F      		subi r24,lo8(-(1))
+ 584 03b8 8093 0000 		sts T4,r24
+ 585 03bc 8330      		cpi r24,lo8(3)
+ 586 03be 01F4      		brne .L86
+ 587               	.L98:
+ 588 03c0 8091 0000 		lds r24,mutex
+ 589 03c4 9091 0000 		lds r25,(mutex)+1
+ 590 03c8 0E94 0000 		call OSMutexPost
+ 591 03cc 84E6      		ldi r24,lo8(100)
+ 592 03ce 0E94 0000 		call delay_ms
+ 593 03d2 8091 0000 		lds r24,T4
+ 594 03d6 8C33      		cpi r24,lo8(60)
+ 595 03d8 01F4      		brne .L102
+ 596               	.L97:
+ 597 03da 1092 0000 		sts T4,__zero_reg__
+ 598 03de 9091 0000 		lds r25,T3
+ 599 03e2 9F5F      		subi r25,lo8(-(1))
+ 600 03e4 9093 0000 		sts T3,r25
+ 601 03e8 80E0      		ldi r24,lo8(0)
+ 602 03ea 9D30      		cpi r25,lo8(13)
+ 603 03ec 01F4      		brne .L88
+ 604               	.L99:
+ 605 03ee 0093 0000 		sts T3,r16
+ 606 03f2 8330      		cpi r24,lo8(3)
+ 607 03f4 01F4      		brne .L95
+ 608               	.L100:
+ 609 03f6 8091 0000 		lds r24,sem
+ 610 03fa 9091 0000 		lds r25,(sem)+1
+ 611 03fe 0E94 0000 		call OSSemPost
+ 612 0402 00C0      		rjmp .L95
+ 613               		.size	TaskPrio3, .-TaskPrio3
+ 614               		.data
+ 615               	.LC0:
+ 616 0000 2020 2564 		.string	"  %d  %d  %d"
+ 616      2020 2564 
+ 616      2020 2564 
+ 616      00
+ 617               		.text
+ 618               	.global	TaskStart
+ 619               		.type	TaskStart, @function
+ 620               	TaskStart:
+ 621 0404 EF92      		push r14
+ 622 0406 FF92      		push r15
+ 623 0408 0F93      		push r16
+ 624 040a 1F93      		push r17
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 12
+
+
+ 625 040c DF93      		push r29
+ 626 040e CF93      		push r28
+ 627 0410 CDB7      		in r28,__SP_L__
+ 628 0412 DEB7      		in r29,__SP_H__
+ 629 0414 6097      		sbiw r28,16
+ 630 0416 0FB6      		in __tmp_reg__,__SREG__
+ 631 0418 F894      		cli
+ 632 041a DEBF      		out __SP_H__,r29
+ 633 041c 0FBE      		out __SREG__,__tmp_reg__
+ 634 041e CDBF      		out __SP_L__,r28
+ 635               	/* prologue: function */
+ 636               	/* frame size = 16 */
+ 637               	/* #APP */
+ 638               	 ;  193 "app.c" 1
+ 639 0420 F894      		cli
+ 640               	 ;  0 "" 2
+ 641               	/* #NOAPP */
+ 642 0422 87E0      		ldi r24,lo8(7)
+ 643 0424 83BF      		out 83-32,r24
+ 644 0426 11E0      		ldi r17,lo8(1)
+ 645 0428 17BF      		out 87-32,r17
+ 646 042a 83E8      		ldi r24,lo8(-125)
+ 647 042c 82BF      		out 82-32,r24
+ 648               	/* #APP */
+ 649               	 ;  198 "app.c" 1
+ 650 042e 7894      		sei
+ 651               	 ;  0 "" 2
+ 652               	/* #NOAPP */
+ 653 0430 0E94 0000 		call OSStatInit
+ 654               	/* #APP */
+ 655               	 ;  317 "app.c" 1
+ 656 0434 F894      		cli
+ 657               	 ;  0 "" 2
+ 658               	/* #NOAPP */
+ 659 0436 84E0      		ldi r24,lo8(4)
+ 660 0438 83BF      		out 83-32,r24
+ 661 043a 80E3      		ldi r24,lo8(48)
+ 662 043c 82BF      		out 82-32,r24
+ 663 043e 17BF      		out 87-32,r17
+ 664               	/* #APP */
+ 665               	 ;  326 "app.c" 1
+ 666 0440 7894      		sei
+ 667               	 ;  0 "" 2
+ 668               	/* #NOAPP */
+ 669 0442 80E0      		ldi r24,lo8(gs(TaskPrio3))
+ 670 0444 90E0      		ldi r25,hi8(gs(TaskPrio3))
+ 671 0446 60E0      		ldi r22,lo8(TaskData)
+ 672 0448 70E0      		ldi r23,hi8(TaskData)
+ 673 044a 40E0      		ldi r20,lo8(TaskStk+127)
+ 674 044c 50E0      		ldi r21,hi8(TaskStk+127)
+ 675 044e 25E0      		ldi r18,lo8(5)
+ 676 0450 0E94 0000 		call OSTaskCreate
+ 677 0454 80E0      		ldi r24,lo8(gs(TaskPrio4))
+ 678 0456 90E0      		ldi r25,hi8(gs(TaskPrio4))
+ 679 0458 60E0      		ldi r22,lo8(TaskData+1)
+ 680 045a 70E0      		ldi r23,hi8(TaskData+1)
+ 681 045c 40E0      		ldi r20,lo8(TaskStk+255)
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 13
+
+
+ 682 045e 50E0      		ldi r21,hi8(TaskStk+255)
+ 683 0460 24E0      		ldi r18,lo8(4)
+ 684 0462 0E94 0000 		call OSTaskCreate
+ 685 0466 80E0      		ldi r24,lo8(gs(TaskPrio5))
+ 686 0468 90E0      		ldi r25,hi8(gs(TaskPrio5))
+ 687 046a 60E0      		ldi r22,lo8(TaskData+2)
+ 688 046c 70E0      		ldi r23,hi8(TaskData+2)
+ 689 046e 40E0      		ldi r20,lo8(TaskStk+383)
+ 690 0470 50E0      		ldi r21,hi8(TaskStk+383)
+ 691 0472 23E0      		ldi r18,lo8(3)
+ 692 0474 0E94 0000 		call OSTaskCreate
+ 693 0478 8E01      		movw r16,r28
+ 694 047a 0F5F      		subi r16,lo8(-(1))
+ 695 047c 1F4F      		sbci r17,hi8(-(1))
+ 696 047e 20E0      		ldi r18,lo8(.LC0)
+ 697 0480 E22E      		mov r14,r18
+ 698 0482 20E0      		ldi r18,hi8(.LC0)
+ 699 0484 F22E      		mov r15,r18
+ 700               	.L104:
+ 701 0486 1092 0000 		sts OSCtxSwCtr,__zero_reg__
+ 702 048a 1092 0000 		sts (OSCtxSwCtr)+1,__zero_reg__
+ 703 048e 1092 0000 		sts (OSCtxSwCtr)+2,__zero_reg__
+ 704 0492 1092 0000 		sts (OSCtxSwCtr)+3,__zero_reg__
+ 705 0496 80E0      		ldi r24,lo8(0)
+ 706 0498 60E0      		ldi r22,lo8(0)
+ 707 049a 41E0      		ldi r20,lo8(1)
+ 708 049c 20E0      		ldi r18,lo8(0)
+ 709 049e 30E0      		ldi r19,hi8(0)
+ 710 04a0 0E94 0000 		call OSTimeDlyHMSM
+ 711 04a4 8DB7      		in r24,__SP_L__
+ 712 04a6 9EB7      		in r25,__SP_H__
+ 713 04a8 0A97      		sbiw r24,10
+ 714 04aa 0FB6      		in __tmp_reg__,__SREG__
+ 715 04ac F894      		cli
+ 716 04ae 9EBF      		out __SP_H__,r25
+ 717 04b0 0FBE      		out __SREG__,__tmp_reg__
+ 718 04b2 8DBF      		out __SP_L__,r24
+ 719 04b4 EDB7      		in r30,__SP_L__
+ 720 04b6 FEB7      		in r31,__SP_H__
+ 721 04b8 3196      		adiw r30,1
+ 722 04ba ADB7      		in r26,__SP_L__
+ 723 04bc BEB7      		in r27,__SP_H__
+ 724 04be 1296      		adiw r26,1+1
+ 725 04c0 1C93      		st X,r17
+ 726 04c2 0E93      		st -X,r16
+ 727 04c4 1197      		sbiw r26,1
+ 728 04c6 F382      		std Z+3,r15
+ 729 04c8 E282      		std Z+2,r14
+ 730 04ca 8091 0000 		lds r24,T3
+ 731 04ce 8483      		std Z+4,r24
+ 732 04d0 1582      		std Z+5,__zero_reg__
+ 733 04d2 8091 0000 		lds r24,T4
+ 734 04d6 8683      		std Z+6,r24
+ 735 04d8 1782      		std Z+7,__zero_reg__
+ 736 04da 8091 0000 		lds r24,T5
+ 737 04de 8087      		std Z+8,r24
+ 738 04e0 1186      		std Z+9,__zero_reg__
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 14
+
+
+ 739 04e2 0E94 0000 		call sprintf
+ 740 04e6 8DB7      		in r24,__SP_L__
+ 741 04e8 9EB7      		in r25,__SP_H__
+ 742 04ea 0A96      		adiw r24,10
+ 743 04ec 0FB6      		in __tmp_reg__,__SREG__
+ 744 04ee F894      		cli
+ 745 04f0 9EBF      		out __SP_H__,r25
+ 746 04f2 0FBE      		out __SREG__,__tmp_reg__
+ 747 04f4 8DBF      		out __SP_L__,r24
+ 748 04f6 80EC      		ldi r24,lo8(-64)
+ 749 04f8 0E94 0000 		call Command
+ 750 04fc C801      		movw r24,r16
+ 751 04fe 0E94 0000 		call LCD_String
+ 752 0502 00C0      		rjmp .L104
+ 753               		.size	TaskStart, .-TaskStart
+ 754               		.data
+ 755               	.LC1:
+ 756 000d 5449 4D45 		.string	"TIME"
+ 756      00
+ 757               		.text
+ 758               	.global	main
+ 759               		.type	main, @function
+ 760               	main:
+ 761 0504 DF93      		push r29
+ 762 0506 CF93      		push r28
+ 763 0508 0F92      		push __tmp_reg__
+ 764 050a CDB7      		in r28,__SP_L__
+ 765 050c DEB7      		in r29,__SP_H__
+ 766               	/* prologue: function */
+ 767               	/* frame size = 1 */
+ 768 050e 0E94 0000 		call port_init
+ 769 0512 0E94 0000 		call LCD_init
+ 770 0516 80E3      		ldi r24,lo8(48)
+ 771 0518 89BF      		out 89-32,r24
+ 772 051a 8FE0      		ldi r24,lo8(15)
+ 773 051c 8ABF      		out 90-32,r24
+ 774 051e 0E94 0000 		call OSInit
+ 775 0522 80E8      		ldi r24,lo8(-128)
+ 776 0524 0E94 0000 		call Command
+ 777 0528 80E0      		ldi r24,lo8(.LC1)
+ 778 052a 90E0      		ldi r25,hi8(.LC1)
+ 779 052c 0E94 0000 		call LCD_String
+ 780 0530 81E0      		ldi r24,lo8(1)
+ 781 0532 90E0      		ldi r25,hi8(1)
+ 782 0534 0E94 0000 		call OSSemCreate
+ 783 0538 9093 0000 		sts (sem)+1,r25
+ 784 053c 8093 0000 		sts sem,r24
+ 785 0540 82E0      		ldi r24,lo8(2)
+ 786 0542 BE01      		movw r22,r28
+ 787 0544 6F5F      		subi r22,lo8(-(1))
+ 788 0546 7F4F      		sbci r23,hi8(-(1))
+ 789 0548 0E94 0000 		call OSMutexCreate
+ 790 054c 9093 0000 		sts (mutex)+1,r25
+ 791 0550 8093 0000 		sts mutex,r24
+ 792 0554 81E0      		ldi r24,lo8(1)
+ 793 0556 90E0      		ldi r25,hi8(1)
+ 794 0558 0E94 0000 		call OSSemCreate
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 15
+
+
+ 795 055c 9093 0000 		sts (DispStrSem)+1,r25
+ 796 0560 8093 0000 		sts DispStrSem,r24
+ 797 0564 80E0      		ldi r24,lo8(256)
+ 798 0566 91E0      		ldi r25,hi8(256)
+ 799 0568 0E94 0000 		call OSSemCreate
+ 800 056c 9093 0000 		sts (UartTxSem)+1,r25
+ 801 0570 8093 0000 		sts UartTxSem,r24
+ 802 0574 80E0      		ldi r24,lo8(gs(TaskStart))
+ 803 0576 90E0      		ldi r25,hi8(gs(TaskStart))
+ 804 0578 60E0      		ldi r22,lo8(0)
+ 805 057a 70E0      		ldi r23,hi8(0)
+ 806 057c 40E0      		ldi r20,lo8(TaskStartStk+127)
+ 807 057e 50E0      		ldi r21,hi8(TaskStartStk+127)
+ 808 0580 20E0      		ldi r18,lo8(0)
+ 809 0582 0E94 0000 		call OSTaskCreate
+ 810 0586 81E0      		ldi r24,lo8(1)
+ 811 0588 90E0      		ldi r25,hi8(1)
+ 812 058a A0E0      		ldi r26,hlo8(1)
+ 813 058c B0E0      		ldi r27,hhi8(1)
+ 814 058e 8093 0000 		sts RndNext,r24
+ 815 0592 9093 0000 		sts (RndNext)+1,r25
+ 816 0596 A093 0000 		sts (RndNext)+2,r26
+ 817 059a B093 0000 		sts (RndNext)+3,r27
+ 818 059e 0E94 0000 		call OSStart
+ 819 05a2 80E0      		ldi r24,lo8(0)
+ 820 05a4 90E0      		ldi r25,hi8(0)
+ 821               	/* epilogue start */
+ 822 05a6 0F90      		pop __tmp_reg__
+ 823 05a8 CF91      		pop r28
+ 824 05aa DF91      		pop r29
+ 825 05ac 0895      		ret
+ 826               		.size	main, .-main
+ 827               	.global	__vector_6
+ 828               		.type	__vector_6, @function
+ 829               	__vector_6:
+ 830 05ae 1F92      		push __zero_reg__
+ 831 05b0 0F92      		push r0
+ 832 05b2 0FB6      		in r0,__SREG__
+ 833 05b4 0F92      		push r0
+ 834 05b6 0BB6      		in r0,91-32
+ 835 05b8 0F92      		push r0
+ 836 05ba 1124      		clr __zero_reg__
+ 837 05bc 2F93      		push r18
+ 838 05be 3F93      		push r19
+ 839 05c0 4F93      		push r20
+ 840 05c2 5F93      		push r21
+ 841 05c4 6F93      		push r22
+ 842 05c6 7F93      		push r23
+ 843 05c8 8F93      		push r24
+ 844 05ca 9F93      		push r25
+ 845 05cc AF93      		push r26
+ 846 05ce BF93      		push r27
+ 847 05d0 EF93      		push r30
+ 848 05d2 FF93      		push r31
+ 849               	/* prologue: Signal */
+ 850               	/* frame size = 0 */
+ 851 05d4 8091 0000 		lds r24,set
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 16
+
+
+ 852 05d8 90E0      		ldi r25,lo8(0)
+ 853 05da 0196      		adiw r24,1
+ 854 05dc 63E0      		ldi r22,lo8(3)
+ 855 05de 70E0      		ldi r23,hi8(3)
+ 856 05e0 0E94 0000 		call __divmodhi4
+ 857 05e4 8093 0000 		sts set,r24
+ 858 05e8 8130      		cpi r24,lo8(1)
+ 859 05ea 01F0      		breq .L112
+ 860 05ec 8230      		cpi r24,lo8(2)
+ 861 05ee 01F0      		breq .L113
+ 862               	.L111:
+ 863               	/* epilogue start */
+ 864 05f0 FF91      		pop r31
+ 865 05f2 EF91      		pop r30
+ 866 05f4 BF91      		pop r27
+ 867 05f6 AF91      		pop r26
+ 868 05f8 9F91      		pop r25
+ 869 05fa 8F91      		pop r24
+ 870 05fc 7F91      		pop r23
+ 871 05fe 6F91      		pop r22
+ 872 0600 5F91      		pop r21
+ 873 0602 4F91      		pop r20
+ 874 0604 3F91      		pop r19
+ 875 0606 2F91      		pop r18
+ 876 0608 0F90      		pop r0
+ 877 060a 0BBE      		out 91-32,r0
+ 878 060c 0F90      		pop r0
+ 879 060e 0FBE      		out __SREG__,r0
+ 880 0610 0F90      		pop r0
+ 881 0612 1F90      		pop __zero_reg__
+ 882 0614 1895      		reti
+ 883               	.L113:
+ 884 0616 85E0      		ldi r24,lo8(5)
+ 885 0618 0E94 0000 		call OSTaskResume
+ 886 061c 00C0      		rjmp .L111
+ 887               	.L112:
+ 888 061e 85E0      		ldi r24,lo8(5)
+ 889 0620 0E94 0000 		call OSTaskSuspend
+ 890 0624 00C0      		rjmp .L111
+ 891               		.size	__vector_6, .-__vector_6
+ 892               	.global	__vector_5
+ 893               		.type	__vector_5, @function
+ 894               	__vector_5:
+ 895 0626 1F92      		push __zero_reg__
+ 896 0628 0F92      		push r0
+ 897 062a 0FB6      		in r0,__SREG__
+ 898 062c 0F92      		push r0
+ 899 062e 0BB6      		in r0,91-32
+ 900 0630 0F92      		push r0
+ 901 0632 1124      		clr __zero_reg__
+ 902 0634 2F93      		push r18
+ 903 0636 3F93      		push r19
+ 904 0638 4F93      		push r20
+ 905 063a 5F93      		push r21
+ 906 063c 6F93      		push r22
+ 907 063e 7F93      		push r23
+ 908 0640 8F93      		push r24
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 17
+
+
+ 909 0642 9F93      		push r25
+ 910 0644 AF93      		push r26
+ 911 0646 BF93      		push r27
+ 912 0648 EF93      		push r30
+ 913 064a FF93      		push r31
+ 914               	/* prologue: Signal */
+ 915               	/* frame size = 0 */
+ 916 064c 8091 0000 		lds r24,set1
+ 917 0650 90E0      		ldi r25,lo8(0)
+ 918 0652 0196      		adiw r24,1
+ 919 0654 63E0      		ldi r22,lo8(3)
+ 920 0656 70E0      		ldi r23,hi8(3)
+ 921 0658 0E94 0000 		call __divmodhi4
+ 922 065c 8093 0000 		sts set1,r24
+ 923 0660 8130      		cpi r24,lo8(1)
+ 924 0662 01F0      		breq .L118
+ 925 0664 8230      		cpi r24,lo8(2)
+ 926 0666 01F0      		breq .L119
+ 927               	.L117:
+ 928               	/* epilogue start */
+ 929 0668 FF91      		pop r31
+ 930 066a EF91      		pop r30
+ 931 066c BF91      		pop r27
+ 932 066e AF91      		pop r26
+ 933 0670 9F91      		pop r25
+ 934 0672 8F91      		pop r24
+ 935 0674 7F91      		pop r23
+ 936 0676 6F91      		pop r22
+ 937 0678 5F91      		pop r21
+ 938 067a 4F91      		pop r20
+ 939 067c 3F91      		pop r19
+ 940 067e 2F91      		pop r18
+ 941 0680 0F90      		pop r0
+ 942 0682 0BBE      		out 91-32,r0
+ 943 0684 0F90      		pop r0
+ 944 0686 0FBE      		out __SREG__,r0
+ 945 0688 0F90      		pop r0
+ 946 068a 1F90      		pop __zero_reg__
+ 947 068c 1895      		reti
+ 948               	.L119:
+ 949 068e 84E0      		ldi r24,lo8(4)
+ 950 0690 0E94 0000 		call OSTaskResume
+ 951 0694 00C0      		rjmp .L117
+ 952               	.L118:
+ 953 0696 85E0      		ldi r24,lo8(5)
+ 954 0698 0E94 0000 		call OSTaskResume
+ 955 069c 00C0      		rjmp .L117
+ 956               		.size	__vector_5, .-__vector_5
+ 957               	.global	T3
+ 958               	.global	T3
+ 959               		.section .bss
+ 960               		.type	T3, @object
+ 961               		.size	T3, 1
+ 962               	T3:
+ 963 0000 00        		.skip 1,0
+ 964               	.global	T4
+ 965               	.global	T4
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 18
+
+
+ 966               		.type	T4, @object
+ 967               		.size	T4, 1
+ 968               	T4:
+ 969 0001 00        		.skip 1,0
+ 970               	.global	T5
+ 971               	.global	T5
+ 972               		.type	T5, @object
+ 973               		.size	T5, 1
+ 974               	T5:
+ 975 0002 00        		.skip 1,0
+ 976               	.global	T6
+ 977               	.global	T6
+ 978               		.type	T6, @object
+ 979               		.size	T6, 1
+ 980               	T6:
+ 981 0003 00        		.skip 1,0
+ 982               	.global	T7
+ 983               	.global	T7
+ 984               		.type	T7, @object
+ 985               		.size	T7, 1
+ 986               	T7:
+ 987 0004 00        		.skip 1,0
+ 988               	.global	T8
+ 989               	.global	T8
+ 990               		.type	T8, @object
+ 991               		.size	T8, 1
+ 992               	T8:
+ 993 0005 00        		.skip 1,0
+ 994               	.global	n1
+ 995               	.global	n1
+ 996               		.type	n1, @object
+ 997               		.size	n1, 1
+ 998               	n1:
+ 999 0006 00        		.skip 1,0
+ 1000               	.global	n2
+ 1001               	.global	n2
+ 1002               		.type	n2, @object
+ 1003               		.size	n2, 1
+ 1004               	n2:
+ 1005 0007 00        		.skip 1,0
+ 1006               	.global	set
+ 1007               	.global	set
+ 1008               		.type	set, @object
+ 1009               		.size	set, 1
+ 1010               	set:
+ 1011 0008 00        		.skip 1,0
+ 1012               	.global	set1
+ 1013               	.global	set1
+ 1014               		.type	set1, @object
+ 1015               		.size	set1, 1
+ 1016               	set1:
+ 1017 0009 00        		.skip 1,0
+ 1018               		.comm TaskStk,384,1
+ 1019               		.comm TaskStartStk,128,1
+ 1020               		.comm TaskData,3,1
+ 1021               		.comm sem,2,1
+ 1022               		.comm mutex,2,1
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 19
+
+
+ 1023               		.comm resourceMutex,1,1
+ 1024               		.comm DispStrSem,2,1
+ 1025               		.comm RndNext,4,1
+ 1026               		.comm UartTxBuf,256,1
+ 1027               		.comm UartTxRdPtr,2,1
+ 1028               		.comm UartTxWrPtr,2,1
+ 1029               		.comm UartTxCount,2,1
+ 1030               		.comm UartTxSem,2,1
+ 1031               	.global __do_copy_data
+ 1032               	.global __do_clear_bss
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 app.c
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:2      *ABS*:0000003f __SREG__
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:5      *ABS*:00000034 __CCP__
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:11     .text:00000000 init_uart
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:27     .text:00000016 PutChar
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:39     .text:0000001e Getch
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:51     .text:00000026 PutString
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:72     .text:0000003e PutString2
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:104    .text:0000006e PutDec
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:147    .text:000000b6 init_ext_int
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:159    .text:000000c0 init_tick
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:183    .text:000000d2 port_init
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:207    .text:000000fc delay
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:215    .text:000000fe delay_us
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:250    .text:00000118 delay_ms
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:279    .text:00000148 Busy
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:289    .text:00000150 Data
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:330    .text:0000019e LCD_String
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:354    .text:000001be Command
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:395    .text:0000020c LCD_init
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:426    .text:00000250 TaskPrio5
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:436    .text:00000258 TaskPrio4
+                            *COM*:00000002 mutex
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:968    .bss:00000001 T4
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:962    .bss:00000000 T3
+                            *COM*:00000001 resourceMutex
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:974    .bss:00000002 T5
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:522    .text:00000324 TaskPrio3
+                            *COM*:00000002 sem
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:620    .text:00000404 TaskStart
+                            *COM*:00000003 TaskData
+                            *COM*:00000180 TaskStk
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:760    .text:00000504 main
+                            *COM*:00000002 DispStrSem
+                            *COM*:00000002 UartTxSem
+                            *COM*:00000080 TaskStartStk
+                            *COM*:00000004 RndNext
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:829    .text:000005ae __vector_6
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:1010   .bss:00000008 set
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:894    .text:00000626 __vector_5
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:1016   .bss:00000009 set1
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:980    .bss:00000003 T6
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:986    .bss:00000004 T7
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:992    .bss:00000005 T8
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:998    .bss:00000006 n1
+C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s:1004   .bss:00000007 n2
+                            *COM*:00000100 UartTxBuf
+                            *COM*:00000002 UartTxRdPtr
+                            *COM*:00000002 UartTxWrPtr
+                            *COM*:00000002 UartTxCount
+
+UNDEFINED SYMBOLS
+GAS LISTING C:\Users\Kermit\AppData\Local\Temp/ccpJZexc.s 			page 21
+
+
+__udivmodqi4
+OSTaskSuspend
+OSMutexPend
+OSMutexPost
+OSSemPend
+OSSemPost
+OSStatInit
+OSTaskCreate
+OSCtxSwCtr
+OSTimeDlyHMSM
+sprintf
+OSInit
+OSSemCreate
+OSMutexCreate
+OSStart
+__divmodhi4
+OSTaskResume
+__do_copy_data
+__do_clear_bss

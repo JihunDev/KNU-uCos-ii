@@ -1,0 +1,235 @@
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s 			page 1
+
+
+   1               		.file	"os_cpu_c.c"
+   2               		.arch atmega128
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  10               	.global	USE_OSTimeTickHook
+  11               	.global	USE_OSTimeTickHook
+  12               		.section .bss
+  13               		.type	USE_OSTimeTickHook, @object
+  14               		.size	USE_OSTimeTickHook, 4
+  15               	USE_OSTimeTickHook:
+  16 0000 0000 0000 		.skip 4,0
+  17               		.text
+  18               	.global	OSTaskStkInit
+  19               		.type	OSTaskStkInit, @function
+  20               	OSTaskStkInit:
+  21               	/* prologue: frame size=0 */
+  22               	/* prologue end (size=0) */
+  23 0000 FA01      		movw r30,r20
+  24 0002 8083      		st Z,r24
+  25 0004 3197      		sbiw r30,1
+  26 0006 892F      		mov r24,r25
+  27 0008 9927      		clr r25
+  28 000a 8083      		st Z,r24
+  29 000c 1292      		st -Z,__zero_reg__
+  30 000e 1292      		st -Z,__zero_reg__
+  31 0010 1292      		st -Z,__zero_reg__
+  32 0012 1292      		st -Z,__zero_reg__
+  33 0014 1292      		st -Z,__zero_reg__
+  34 0016 1292      		st -Z,__zero_reg__
+  35 0018 1292      		st -Z,__zero_reg__
+  36 001a 1292      		st -Z,__zero_reg__
+  37 001c 1292      		st -Z,__zero_reg__
+  38 001e 1292      		st -Z,__zero_reg__
+  39 0020 1292      		st -Z,__zero_reg__
+  40 0022 1292      		st -Z,__zero_reg__
+  41 0024 1292      		st -Z,__zero_reg__
+  42 0026 1292      		st -Z,__zero_reg__
+  43 0028 1292      		st -Z,__zero_reg__
+  44 002a 1292      		st -Z,__zero_reg__
+  45 002c 1292      		st -Z,__zero_reg__
+  46 002e 1292      		st -Z,__zero_reg__
+  47 0030 1292      		st -Z,__zero_reg__
+  48 0032 1292      		st -Z,__zero_reg__
+  49 0034 1292      		st -Z,__zero_reg__
+  50 0036 1292      		st -Z,__zero_reg__
+  51 0038 1292      		st -Z,__zero_reg__
+  52 003a 1292      		st -Z,__zero_reg__
+  53 003c 6293      		st -Z,r22
+  54 003e 872F      		mov r24,r23
+  55 0040 9927      		clr r25
+  56 0042 8293      		st -Z,r24
+  57 0044 1292      		st -Z,__zero_reg__
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s 			page 2
+
+
+  58 0046 1292      		st -Z,__zero_reg__
+  59 0048 1292      		st -Z,__zero_reg__
+  60 004a 1292      		st -Z,__zero_reg__
+  61 004c 1292      		st -Z,__zero_reg__
+  62 004e 1292      		st -Z,__zero_reg__
+  63 0050 1292      		st -Z,__zero_reg__
+  64 0052 80E8      		ldi r24,lo8(-128)
+  65 0054 8293      		st -Z,r24
+  66 0056 3197      		sbiw r30,1
+  67 0058 CF01      		movw r24,r30
+  68               	/* epilogue: frame size=0 */
+  69 005a 0895      		ret
+  70               	/* epilogue end (size=1) */
+  71               	/* function OSTaskStkInit size 46 (45) */
+  72               		.size	OSTaskStkInit, .-OSTaskStkInit
+  73               	.global	OSTaskCreateHook
+  74               		.type	OSTaskCreateHook, @function
+  75               	OSTaskCreateHook:
+  76               	/* prologue: frame size=0 */
+  77               	/* prologue end (size=0) */
+  78               	/* epilogue: frame size=0 */
+  79 005c 0895      		ret
+  80               	/* epilogue end (size=1) */
+  81               	/* function OSTaskCreateHook size 1 (0) */
+  82               		.size	OSTaskCreateHook, .-OSTaskCreateHook
+  83               	.global	OSTaskDelHook
+  84               		.type	OSTaskDelHook, @function
+  85               	OSTaskDelHook:
+  86               	/* prologue: frame size=0 */
+  87               	/* prologue end (size=0) */
+  88               	/* epilogue: frame size=0 */
+  89 005e 0895      		ret
+  90               	/* epilogue end (size=1) */
+  91               	/* function OSTaskDelHook size 1 (0) */
+  92               		.size	OSTaskDelHook, .-OSTaskDelHook
+  93               	.global	OSTaskSwHook
+  94               		.type	OSTaskSwHook, @function
+  95               	OSTaskSwHook:
+  96               	/* prologue: frame size=0 */
+  97               	/* prologue end (size=0) */
+  98               	/* epilogue: frame size=0 */
+  99 0060 0895      		ret
+ 100               	/* epilogue end (size=1) */
+ 101               	/* function OSTaskSwHook size 1 (0) */
+ 102               		.size	OSTaskSwHook, .-OSTaskSwHook
+ 103               	.global	OSTaskStatHook
+ 104               		.type	OSTaskStatHook, @function
+ 105               	OSTaskStatHook:
+ 106               	/* prologue: frame size=0 */
+ 107               	/* prologue end (size=0) */
+ 108               	/* epilogue: frame size=0 */
+ 109 0062 0895      		ret
+ 110               	/* epilogue end (size=1) */
+ 111               	/* function OSTaskStatHook size 1 (0) */
+ 112               		.size	OSTaskStatHook, .-OSTaskStatHook
+ 113               	.global	OSTimeTickHook
+ 114               		.type	OSTimeTickHook, @function
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s 			page 3
+
+
+ 115               	OSTimeTickHook:
+ 116               	/* prologue: frame size=0 */
+ 117               	/* prologue end (size=0) */
+ 118 0064 8091 0000 		lds r24,USE_OSTimeTickHook
+ 119 0068 9091 0000 		lds r25,(USE_OSTimeTickHook)+1
+ 120 006c A091 0000 		lds r26,(USE_OSTimeTickHook)+2
+ 121 0070 B091 0000 		lds r27,(USE_OSTimeTickHook)+3
+ 122 0074 0097      		sbiw r24,0
+ 123 0076 A105      		cpc r26,__zero_reg__
+ 124 0078 B105      		cpc r27,__zero_reg__
+ 125 007a B1F0      		breq .L6
+ 126 007c 8091 0000 		lds r24,OSTime
+ 127 0080 9091 0000 		lds r25,(OSTime)+1
+ 128 0084 A091 0000 		lds r26,(OSTime)+2
+ 129 0088 B091 0000 		lds r27,(OSTime)+3
+ 130 008c BC01      		movw r22,r24
+ 131 008e CD01      		movw r24,r26
+ 132 0090 2DE7      		ldi r18,lo8(125)
+ 133 0092 30E0      		ldi r19,hi8(125)
+ 134 0094 40E0      		ldi r20,hlo8(125)
+ 135 0096 50E0      		ldi r21,hhi8(125)
+ 136 0098 0E94 0000 		call __udivmodsi4
+ 137 009c DC01      		movw r26,r24
+ 138 009e CB01      		movw r24,r22
+ 139 00a0 0097      		sbiw r24,0
+ 140 00a2 A105      		cpc r26,__zero_reg__
+ 141 00a4 B105      		cpc r27,__zero_reg__
+ 142 00a6 09F0      		breq .L9
+ 143               	.L6:
+ 144 00a8 0895      		ret
+ 145               	.L9:
+ 146 00aa 8EE2      		ldi r24,lo8(46)
+ 147 00ac 90E0      		ldi r25,hi8(46)
+ 148 00ae 0E94 0000 		call PutChar
+ 149 00b2 FACF      		rjmp .L6
+ 150               	/* epilogue: frame size=0 */
+ 151               	/* epilogue: noreturn */
+ 152               	/* epilogue end (size=0) */
+ 153               	/* function OSTimeTickHook size 40 (40) */
+ 154               		.size	OSTimeTickHook, .-OSTimeTickHook
+ 155               	.global	OSInitHookBegin
+ 156               		.type	OSInitHookBegin, @function
+ 157               	OSInitHookBegin:
+ 158               	/* prologue: frame size=0 */
+ 159               	/* prologue end (size=0) */
+ 160               	/* epilogue: frame size=0 */
+ 161 00b4 0895      		ret
+ 162               	/* epilogue end (size=1) */
+ 163               	/* function OSInitHookBegin size 1 (0) */
+ 164               		.size	OSInitHookBegin, .-OSInitHookBegin
+ 165               	.global	OSInitHookEnd
+ 166               		.type	OSInitHookEnd, @function
+ 167               	OSInitHookEnd:
+ 168               	/* prologue: frame size=0 */
+ 169               	/* prologue end (size=0) */
+ 170               	/* epilogue: frame size=0 */
+ 171 00b6 0895      		ret
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s 			page 4
+
+
+ 172               	/* epilogue end (size=1) */
+ 173               	/* function OSInitHookEnd size 1 (0) */
+ 174               		.size	OSInitHookEnd, .-OSInitHookEnd
+ 175               	.global	OSTaskIdleHook
+ 176               		.type	OSTaskIdleHook, @function
+ 177               	OSTaskIdleHook:
+ 178               	/* prologue: frame size=0 */
+ 179               	/* prologue end (size=0) */
+ 180               	/* epilogue: frame size=0 */
+ 181 00b8 0895      		ret
+ 182               	/* epilogue end (size=1) */
+ 183               	/* function OSTaskIdleHook size 1 (0) */
+ 184               		.size	OSTaskIdleHook, .-OSTaskIdleHook
+ 185               	.global	OSTCBInitHook
+ 186               		.type	OSTCBInitHook, @function
+ 187               	OSTCBInitHook:
+ 188               	/* prologue: frame size=0 */
+ 189               	/* prologue end (size=0) */
+ 190               	/* epilogue: frame size=0 */
+ 191 00ba 0895      		ret
+ 192               	/* epilogue end (size=1) */
+ 193               	/* function OSTCBInitHook size 1 (0) */
+ 194               		.size	OSTCBInitHook, .-OSTCBInitHook
+ 195               	/* File "C:/Software/uCOS-II/Ports/AVR/ATmega128/GNU/jlu/os_cpu_c.c": code   94 = 0x005e (  85), pr
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 os_cpu_c.c
+                            *ABS*:0000003f __SREG__
+                            *ABS*:0000003e __SP_H__
+                            *ABS*:0000003d __SP_L__
+                            *ABS*:00000000 __tmp_reg__
+                            *ABS*:00000001 __zero_reg__
+C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s:15     .bss:00000000 USE_OSTimeTickHook
+C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s:20     .text:00000000 OSTaskStkInit
+C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s:75     .text:0000005c OSTaskCreateHook
+C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s:85     .text:0000005e OSTaskDelHook
+C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s:95     .text:00000060 OSTaskSwHook
+C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s:105    .text:00000062 OSTaskStatHook
+C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s:115    .text:00000064 OSTimeTickHook
+C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s:157    .text:000000b4 OSInitHookBegin
+C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s:167    .text:000000b6 OSInitHookEnd
+C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s:177    .text:000000b8 OSTaskIdleHook
+C:\Users\Kwon\AppData\Local\Temp/ccCMaaaa.s:187    .text:000000ba OSTCBInitHook
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+OSTime
+__udivmodsi4
+PutChar

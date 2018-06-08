@@ -1,0 +1,3869 @@
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 1
+
+
+   1               		.file	"ucos_ii.c"
+   2               		.arch atmega128
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  10               	.global	OSMapTbl
+  11               		.data
+  12               		.type	OSMapTbl, @object
+  13               		.size	OSMapTbl, 8
+  14               	OSMapTbl:
+  15 0000 01        		.byte	1
+  16 0001 02        		.byte	2
+  17 0002 04        		.byte	4
+  18 0003 08        		.byte	8
+  19 0004 10        		.byte	16
+  20 0005 20        		.byte	32
+  21 0006 40        		.byte	64
+  22 0007 80        		.byte	-128
+  23               	.global	OSUnMapTbl
+  24               		.type	OSUnMapTbl, @object
+  25               		.size	OSUnMapTbl, 256
+  26               	OSUnMapTbl:
+  27 0008 00        		.byte	0
+  28 0009 00        		.byte	0
+  29 000a 01        		.byte	1
+  30 000b 00        		.byte	0
+  31 000c 02        		.byte	2
+  32 000d 00        		.byte	0
+  33 000e 01        		.byte	1
+  34 000f 00        		.byte	0
+  35 0010 03        		.byte	3
+  36 0011 00        		.byte	0
+  37 0012 01        		.byte	1
+  38 0013 00        		.byte	0
+  39 0014 02        		.byte	2
+  40 0015 00        		.byte	0
+  41 0016 01        		.byte	1
+  42 0017 00        		.byte	0
+  43 0018 04        		.byte	4
+  44 0019 00        		.byte	0
+  45 001a 01        		.byte	1
+  46 001b 00        		.byte	0
+  47 001c 02        		.byte	2
+  48 001d 00        		.byte	0
+  49 001e 01        		.byte	1
+  50 001f 00        		.byte	0
+  51 0020 03        		.byte	3
+  52 0021 00        		.byte	0
+  53 0022 01        		.byte	1
+  54 0023 00        		.byte	0
+  55 0024 02        		.byte	2
+  56 0025 00        		.byte	0
+  57 0026 01        		.byte	1
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 2
+
+
+  58 0027 00        		.byte	0
+  59 0028 05        		.byte	5
+  60 0029 00        		.byte	0
+  61 002a 01        		.byte	1
+  62 002b 00        		.byte	0
+  63 002c 02        		.byte	2
+  64 002d 00        		.byte	0
+  65 002e 01        		.byte	1
+  66 002f 00        		.byte	0
+  67 0030 03        		.byte	3
+  68 0031 00        		.byte	0
+  69 0032 01        		.byte	1
+  70 0033 00        		.byte	0
+  71 0034 02        		.byte	2
+  72 0035 00        		.byte	0
+  73 0036 01        		.byte	1
+  74 0037 00        		.byte	0
+  75 0038 04        		.byte	4
+  76 0039 00        		.byte	0
+  77 003a 01        		.byte	1
+  78 003b 00        		.byte	0
+  79 003c 02        		.byte	2
+  80 003d 00        		.byte	0
+  81 003e 01        		.byte	1
+  82 003f 00        		.byte	0
+  83 0040 03        		.byte	3
+  84 0041 00        		.byte	0
+  85 0042 01        		.byte	1
+  86 0043 00        		.byte	0
+  87 0044 02        		.byte	2
+  88 0045 00        		.byte	0
+  89 0046 01        		.byte	1
+  90 0047 00        		.byte	0
+  91 0048 06        		.byte	6
+  92 0049 00        		.byte	0
+  93 004a 01        		.byte	1
+  94 004b 00        		.byte	0
+  95 004c 02        		.byte	2
+  96 004d 00        		.byte	0
+  97 004e 01        		.byte	1
+  98 004f 00        		.byte	0
+  99 0050 03        		.byte	3
+ 100 0051 00        		.byte	0
+ 101 0052 01        		.byte	1
+ 102 0053 00        		.byte	0
+ 103 0054 02        		.byte	2
+ 104 0055 00        		.byte	0
+ 105 0056 01        		.byte	1
+ 106 0057 00        		.byte	0
+ 107 0058 04        		.byte	4
+ 108 0059 00        		.byte	0
+ 109 005a 01        		.byte	1
+ 110 005b 00        		.byte	0
+ 111 005c 02        		.byte	2
+ 112 005d 00        		.byte	0
+ 113 005e 01        		.byte	1
+ 114 005f 00        		.byte	0
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 3
+
+
+ 115 0060 03        		.byte	3
+ 116 0061 00        		.byte	0
+ 117 0062 01        		.byte	1
+ 118 0063 00        		.byte	0
+ 119 0064 02        		.byte	2
+ 120 0065 00        		.byte	0
+ 121 0066 01        		.byte	1
+ 122 0067 00        		.byte	0
+ 123 0068 05        		.byte	5
+ 124 0069 00        		.byte	0
+ 125 006a 01        		.byte	1
+ 126 006b 00        		.byte	0
+ 127 006c 02        		.byte	2
+ 128 006d 00        		.byte	0
+ 129 006e 01        		.byte	1
+ 130 006f 00        		.byte	0
+ 131 0070 03        		.byte	3
+ 132 0071 00        		.byte	0
+ 133 0072 01        		.byte	1
+ 134 0073 00        		.byte	0
+ 135 0074 02        		.byte	2
+ 136 0075 00        		.byte	0
+ 137 0076 01        		.byte	1
+ 138 0077 00        		.byte	0
+ 139 0078 04        		.byte	4
+ 140 0079 00        		.byte	0
+ 141 007a 01        		.byte	1
+ 142 007b 00        		.byte	0
+ 143 007c 02        		.byte	2
+ 144 007d 00        		.byte	0
+ 145 007e 01        		.byte	1
+ 146 007f 00        		.byte	0
+ 147 0080 03        		.byte	3
+ 148 0081 00        		.byte	0
+ 149 0082 01        		.byte	1
+ 150 0083 00        		.byte	0
+ 151 0084 02        		.byte	2
+ 152 0085 00        		.byte	0
+ 153 0086 01        		.byte	1
+ 154 0087 00        		.byte	0
+ 155 0088 07        		.byte	7
+ 156 0089 00        		.byte	0
+ 157 008a 01        		.byte	1
+ 158 008b 00        		.byte	0
+ 159 008c 02        		.byte	2
+ 160 008d 00        		.byte	0
+ 161 008e 01        		.byte	1
+ 162 008f 00        		.byte	0
+ 163 0090 03        		.byte	3
+ 164 0091 00        		.byte	0
+ 165 0092 01        		.byte	1
+ 166 0093 00        		.byte	0
+ 167 0094 02        		.byte	2
+ 168 0095 00        		.byte	0
+ 169 0096 01        		.byte	1
+ 170 0097 00        		.byte	0
+ 171 0098 04        		.byte	4
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 4
+
+
+ 172 0099 00        		.byte	0
+ 173 009a 01        		.byte	1
+ 174 009b 00        		.byte	0
+ 175 009c 02        		.byte	2
+ 176 009d 00        		.byte	0
+ 177 009e 01        		.byte	1
+ 178 009f 00        		.byte	0
+ 179 00a0 03        		.byte	3
+ 180 00a1 00        		.byte	0
+ 181 00a2 01        		.byte	1
+ 182 00a3 00        		.byte	0
+ 183 00a4 02        		.byte	2
+ 184 00a5 00        		.byte	0
+ 185 00a6 01        		.byte	1
+ 186 00a7 00        		.byte	0
+ 187 00a8 05        		.byte	5
+ 188 00a9 00        		.byte	0
+ 189 00aa 01        		.byte	1
+ 190 00ab 00        		.byte	0
+ 191 00ac 02        		.byte	2
+ 192 00ad 00        		.byte	0
+ 193 00ae 01        		.byte	1
+ 194 00af 00        		.byte	0
+ 195 00b0 03        		.byte	3
+ 196 00b1 00        		.byte	0
+ 197 00b2 01        		.byte	1
+ 198 00b3 00        		.byte	0
+ 199 00b4 02        		.byte	2
+ 200 00b5 00        		.byte	0
+ 201 00b6 01        		.byte	1
+ 202 00b7 00        		.byte	0
+ 203 00b8 04        		.byte	4
+ 204 00b9 00        		.byte	0
+ 205 00ba 01        		.byte	1
+ 206 00bb 00        		.byte	0
+ 207 00bc 02        		.byte	2
+ 208 00bd 00        		.byte	0
+ 209 00be 01        		.byte	1
+ 210 00bf 00        		.byte	0
+ 211 00c0 03        		.byte	3
+ 212 00c1 00        		.byte	0
+ 213 00c2 01        		.byte	1
+ 214 00c3 00        		.byte	0
+ 215 00c4 02        		.byte	2
+ 216 00c5 00        		.byte	0
+ 217 00c6 01        		.byte	1
+ 218 00c7 00        		.byte	0
+ 219 00c8 06        		.byte	6
+ 220 00c9 00        		.byte	0
+ 221 00ca 01        		.byte	1
+ 222 00cb 00        		.byte	0
+ 223 00cc 02        		.byte	2
+ 224 00cd 00        		.byte	0
+ 225 00ce 01        		.byte	1
+ 226 00cf 00        		.byte	0
+ 227 00d0 03        		.byte	3
+ 228 00d1 00        		.byte	0
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 5
+
+
+ 229 00d2 01        		.byte	1
+ 230 00d3 00        		.byte	0
+ 231 00d4 02        		.byte	2
+ 232 00d5 00        		.byte	0
+ 233 00d6 01        		.byte	1
+ 234 00d7 00        		.byte	0
+ 235 00d8 04        		.byte	4
+ 236 00d9 00        		.byte	0
+ 237 00da 01        		.byte	1
+ 238 00db 00        		.byte	0
+ 239 00dc 02        		.byte	2
+ 240 00dd 00        		.byte	0
+ 241 00de 01        		.byte	1
+ 242 00df 00        		.byte	0
+ 243 00e0 03        		.byte	3
+ 244 00e1 00        		.byte	0
+ 245 00e2 01        		.byte	1
+ 246 00e3 00        		.byte	0
+ 247 00e4 02        		.byte	2
+ 248 00e5 00        		.byte	0
+ 249 00e6 01        		.byte	1
+ 250 00e7 00        		.byte	0
+ 251 00e8 05        		.byte	5
+ 252 00e9 00        		.byte	0
+ 253 00ea 01        		.byte	1
+ 254 00eb 00        		.byte	0
+ 255 00ec 02        		.byte	2
+ 256 00ed 00        		.byte	0
+ 257 00ee 01        		.byte	1
+ 258 00ef 00        		.byte	0
+ 259 00f0 03        		.byte	3
+ 260 00f1 00        		.byte	0
+ 261 00f2 01        		.byte	1
+ 262 00f3 00        		.byte	0
+ 263 00f4 02        		.byte	2
+ 264 00f5 00        		.byte	0
+ 265 00f6 01        		.byte	1
+ 266 00f7 00        		.byte	0
+ 267 00f8 04        		.byte	4
+ 268 00f9 00        		.byte	0
+ 269 00fa 01        		.byte	1
+ 270 00fb 00        		.byte	0
+ 271 00fc 02        		.byte	2
+ 272 00fd 00        		.byte	0
+ 273 00fe 01        		.byte	1
+ 274 00ff 00        		.byte	0
+ 275 0100 03        		.byte	3
+ 276 0101 00        		.byte	0
+ 277 0102 01        		.byte	1
+ 278 0103 00        		.byte	0
+ 279 0104 02        		.byte	2
+ 280 0105 00        		.byte	0
+ 281 0106 01        		.byte	1
+ 282 0107 00        		.byte	0
+ 283               		.text
+ 284               	.global	OSInit
+ 285               		.type	OSInit, @function
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 6
+
+
+ 286               	OSInit:
+ 287               	/* prologue: frame size=0 */
+ 288               	/* prologue end (size=0) */
+ 289 0000 0E94 0000 		call OSInitHookBegin
+ 290 0004 0E94 0000 		call OS_InitMisc
+ 291 0008 0E94 0000 		call OS_InitRdyList
+ 292 000c 0E94 0000 		call OS_InitTCBList
+ 293 0010 0E94 0000 		call OS_InitEventList
+ 294 0014 0E94 0000 		call OS_QInit
+ 295 0018 0E94 0000 		call OS_InitTaskIdle
+ 296 001c 0E94 0000 		call OS_InitTaskStat
+ 297 0020 0E94 0000 		call OSInitHookEnd
+ 298               	/* epilogue: frame size=0 */
+ 299 0024 0895      		ret
+ 300               	/* epilogue end (size=1) */
+ 301               	/* function OSInit size 19 (18) */
+ 302               		.size	OSInit, .-OSInit
+ 303               	.global	OSIntEnter
+ 304               		.type	OSIntEnter, @function
+ 305               	OSIntEnter:
+ 306               	/* prologue: frame size=0 */
+ 307               	/* prologue end (size=0) */
+ 308 0026 8091 0000 		lds r24,OSRunning
+ 309 002a 8130      		cpi r24,lo8(1)
+ 310 002c 09F0      		breq .L5
+ 311               	.L2:
+ 312 002e 0895      		ret
+ 313               	.L5:
+ 314 0030 8091 0000 		lds r24,OSIntNesting
+ 315 0034 8F3F      		cpi r24,lo8(-1)
+ 316 0036 D9F3      		breq .L2
+ 317 0038 8F5F      		subi r24,lo8(-(1))
+ 318 003a 8093 0000 		sts OSIntNesting,r24
+ 319 003e F7CF      		rjmp .L2
+ 320               	/* epilogue: frame size=0 */
+ 321               	/* epilogue: noreturn */
+ 322               	/* epilogue end (size=0) */
+ 323               	/* function OSIntEnter size 13 (13) */
+ 324               		.size	OSIntEnter, .-OSIntEnter
+ 325               	.global	OSIntExit
+ 326               		.type	OSIntExit, @function
+ 327               	OSIntExit:
+ 328               	/* prologue: frame size=0 */
+ 329               	/* prologue end (size=0) */
+ 330 0040 8091 0000 		lds r24,OSRunning
+ 331 0044 8130      		cpi r24,lo8(1)
+ 332 0046 09F0      		breq .L11
+ 333               	.L6:
+ 334 0048 0895      		ret
+ 335               	.L11:
+ 336               	/* #APP */
+ 337 004a F894      		cli
+ 338               	/* #NOAPP */
+ 339 004c 8091 0000 		lds r24,OSIntNesting
+ 340 0050 8823      		tst r24
+ 341 0052 19F0      		breq .L8
+ 342 0054 8150      		subi r24,lo8(-(-1))
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 7
+
+
+ 343 0056 8093 0000 		sts OSIntNesting,r24
+ 344               	.L8:
+ 345 005a 8823      		tst r24
+ 346 005c 09F0      		breq .+2
+ 347 005e 45C0      		rjmp .L9
+ 348 0060 8091 0000 		lds r24,OSLockNesting
+ 349 0064 8823      		tst r24
+ 350 0066 09F0      		breq .+2
+ 351 0068 40C0      		rjmp .L9
+ 352 006a 8091 0000 		lds r24,OSRdyGrp
+ 353 006e E82F      		mov r30,r24
+ 354 0070 FF27      		clr r31
+ 355 0072 E050      		subi r30,lo8(-(OSUnMapTbl))
+ 356 0074 F040      		sbci r31,hi8(-(OSUnMapTbl))
+ 357 0076 8081      		ld r24,Z
+ 358 0078 8093 0000 		sts OSIntExitY,r24
+ 359 007c 9927      		clr r25
+ 360 007e FC01      		movw r30,r24
+ 361 0080 E050      		subi r30,lo8(-(OSRdyTbl))
+ 362 0082 F040      		sbci r31,hi8(-(OSRdyTbl))
+ 363 0084 2081      		ld r18,Z
+ 364 0086 E22F      		mov r30,r18
+ 365 0088 FF27      		clr r31
+ 366 008a E050      		subi r30,lo8(-(OSUnMapTbl))
+ 367 008c F040      		sbci r31,hi8(-(OSUnMapTbl))
+ 368 008e E081      		ld r30,Z
+ 369 0090 880F      		lsl r24
+ 370 0092 991F      		rol r25
+ 371 0094 880F      		lsl r24
+ 372 0096 991F      		rol r25
+ 373 0098 880F      		lsl r24
+ 374 009a 991F      		rol r25
+ 375 009c E80F      		add r30,r24
+ 376 009e E093 0000 		sts OSPrioHighRdy,r30
+ 377 00a2 8091 0000 		lds r24,OSPrioCur
+ 378 00a6 E817      		cp r30,r24
+ 379 00a8 01F1      		breq .L9
+ 380 00aa FF27      		clr r31
+ 381 00ac EE0F      		add r30,r30
+ 382 00ae FF1F      		adc r31,r31
+ 383 00b0 E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 384 00b2 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 385 00b4 8081      		ld r24,Z
+ 386 00b6 9181      		ldd r25,Z+1
+ 387 00b8 9093 0000 		sts (OSTCBHighRdy)+1,r25
+ 388 00bc 8093 0000 		sts OSTCBHighRdy,r24
+ 389 00c0 8091 0000 		lds r24,OSCtxSwCtr
+ 390 00c4 9091 0000 		lds r25,(OSCtxSwCtr)+1
+ 391 00c8 A091 0000 		lds r26,(OSCtxSwCtr)+2
+ 392 00cc B091 0000 		lds r27,(OSCtxSwCtr)+3
+ 393 00d0 0196      		adiw r24,1
+ 394 00d2 A11D      		adc r26,__zero_reg__
+ 395 00d4 B11D      		adc r27,__zero_reg__
+ 396 00d6 8093 0000 		sts OSCtxSwCtr,r24
+ 397 00da 9093 0000 		sts (OSCtxSwCtr)+1,r25
+ 398 00de A093 0000 		sts (OSCtxSwCtr)+2,r26
+ 399 00e2 B093 0000 		sts (OSCtxSwCtr)+3,r27
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 8
+
+
+ 400 00e6 0E94 0000 		call OSIntCtxSw
+ 401               	.L9:
+ 402               	/* #APP */
+ 403 00ea 7894      		sei
+ 404               	/* #NOAPP */
+ 405 00ec ADCF      		rjmp .L6
+ 406               	/* epilogue: frame size=0 */
+ 407               	/* epilogue: noreturn */
+ 408               	/* epilogue end (size=0) */
+ 409               	/* function OSIntExit size 89 (89) */
+ 410               		.size	OSIntExit, .-OSIntExit
+ 411               	.global	OSStart
+ 412               		.type	OSStart, @function
+ 413               	OSStart:
+ 414               	/* prologue: frame size=0 */
+ 415               	/* prologue end (size=0) */
+ 416 00ee 8091 0000 		lds r24,OSRunning
+ 417 00f2 8111      		cpse r24,__zero_reg__
+ 418               	.L12:
+ 419 00f4 0895      		ret
+ 420               	.L14:
+ 421 00f6 8091 0000 		lds r24,OSRdyGrp
+ 422 00fa E82F      		mov r30,r24
+ 423 00fc FF27      		clr r31
+ 424 00fe E050      		subi r30,lo8(-(OSUnMapTbl))
+ 425 0100 F040      		sbci r31,hi8(-(OSUnMapTbl))
+ 426 0102 8081      		ld r24,Z
+ 427 0104 9927      		clr r25
+ 428 0106 FC01      		movw r30,r24
+ 429 0108 E050      		subi r30,lo8(-(OSRdyTbl))
+ 430 010a F040      		sbci r31,hi8(-(OSRdyTbl))
+ 431 010c 2081      		ld r18,Z
+ 432 010e E22F      		mov r30,r18
+ 433 0110 FF27      		clr r31
+ 434 0112 E050      		subi r30,lo8(-(OSUnMapTbl))
+ 435 0114 F040      		sbci r31,hi8(-(OSUnMapTbl))
+ 436 0116 2081      		ld r18,Z
+ 437 0118 880F      		lsl r24
+ 438 011a 991F      		rol r25
+ 439 011c 880F      		lsl r24
+ 440 011e 991F      		rol r25
+ 441 0120 880F      		lsl r24
+ 442 0122 991F      		rol r25
+ 443 0124 280F      		add r18,r24
+ 444 0126 2093 0000 		sts OSPrioHighRdy,r18
+ 445 012a 2093 0000 		sts OSPrioCur,r18
+ 446 012e E22F      		mov r30,r18
+ 447 0130 FF27      		clr r31
+ 448 0132 EE0F      		add r30,r30
+ 449 0134 FF1F      		adc r31,r31
+ 450 0136 E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 451 0138 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 452 013a 8081      		ld r24,Z
+ 453 013c 9181      		ldd r25,Z+1
+ 454 013e 9093 0000 		sts (OSTCBHighRdy)+1,r25
+ 455 0142 8093 0000 		sts OSTCBHighRdy,r24
+ 456 0146 9093 0000 		sts (OSTCBCur)+1,r25
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 9
+
+
+ 457 014a 8093 0000 		sts OSTCBCur,r24
+ 458 014e 0E94 0000 		call OSStartHighRdy
+ 459 0152 D0CF      		rjmp .L12
+ 460               	/* epilogue: frame size=0 */
+ 461               	/* epilogue: noreturn */
+ 462               	/* epilogue end (size=0) */
+ 463               	/* function OSStart size 52 (52) */
+ 464               		.size	OSStart, .-OSStart
+ 465               	.global	OSStatInit
+ 466               		.type	OSStatInit, @function
+ 467               	OSStatInit:
+ 468               	/* prologue: frame size=0 */
+ 469               	/* prologue end (size=0) */
+ 470 0154 82E0      		ldi r24,lo8(2)
+ 471 0156 90E0      		ldi r25,hi8(2)
+ 472 0158 0E94 0000 		call OSTimeDly
+ 473               	/* #APP */
+ 474 015c F894      		cli
+ 475               	/* #NOAPP */
+ 476 015e 1092 0000 		sts OSIdleCtr,__zero_reg__
+ 477 0162 1092 0000 		sts (OSIdleCtr)+1,__zero_reg__
+ 478 0166 1092 0000 		sts (OSIdleCtr)+2,__zero_reg__
+ 479 016a 1092 0000 		sts (OSIdleCtr)+3,__zero_reg__
+ 480               	/* #APP */
+ 481 016e 7894      		sei
+ 482               	/* #NOAPP */
+ 483 0170 8DE7      		ldi r24,lo8(125)
+ 484 0172 90E0      		ldi r25,hi8(125)
+ 485 0174 0E94 0000 		call OSTimeDly
+ 486               	/* #APP */
+ 487 0178 F894      		cli
+ 488               	/* #NOAPP */
+ 489 017a 8091 0000 		lds r24,OSIdleCtr
+ 490 017e 9091 0000 		lds r25,(OSIdleCtr)+1
+ 491 0182 A091 0000 		lds r26,(OSIdleCtr)+2
+ 492 0186 B091 0000 		lds r27,(OSIdleCtr)+3
+ 493 018a 8093 0000 		sts OSIdleCtrMax,r24
+ 494 018e 9093 0000 		sts (OSIdleCtrMax)+1,r25
+ 495 0192 A093 0000 		sts (OSIdleCtrMax)+2,r26
+ 496 0196 B093 0000 		sts (OSIdleCtrMax)+3,r27
+ 497 019a 81E0      		ldi r24,lo8(1)
+ 498 019c 8093 0000 		sts OSStatRdy,r24
+ 499               	/* #APP */
+ 500 01a0 7894      		sei
+ 501               	/* #NOAPP */
+ 502               	/* epilogue: frame size=0 */
+ 503 01a2 0895      		ret
+ 504               	/* epilogue end (size=1) */
+ 505               	/* function OSStatInit size 44 (43) */
+ 506               		.size	OSStatInit, .-OSStatInit
+ 507               	.global	OSTimeTick
+ 508               		.type	OSTimeTick, @function
+ 509               	OSTimeTick:
+ 510               	/* prologue: frame size=0 */
+ 511 01a4 CF93      		push r28
+ 512 01a6 DF93      		push r29
+ 513               	/* prologue end (size=2) */
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 10
+
+
+ 514 01a8 0E94 0000 		call OSTimeTickHook
+ 515               	/* #APP */
+ 516 01ac F894      		cli
+ 517               	/* #NOAPP */
+ 518 01ae 8091 0000 		lds r24,OSTime
+ 519 01b2 9091 0000 		lds r25,(OSTime)+1
+ 520 01b6 A091 0000 		lds r26,(OSTime)+2
+ 521 01ba B091 0000 		lds r27,(OSTime)+3
+ 522 01be 0196      		adiw r24,1
+ 523 01c0 A11D      		adc r26,__zero_reg__
+ 524 01c2 B11D      		adc r27,__zero_reg__
+ 525 01c4 8093 0000 		sts OSTime,r24
+ 526 01c8 9093 0000 		sts (OSTime)+1,r25
+ 527 01cc A093 0000 		sts (OSTime)+2,r26
+ 528 01d0 B093 0000 		sts (OSTime)+3,r27
+ 529               	/* #APP */
+ 530 01d4 7894      		sei
+ 531               	/* #NOAPP */
+ 532 01d6 8091 0000 		lds r24,OSRunning
+ 533 01da 8130      		cpi r24,lo8(1)
+ 534 01dc 09F0      		breq .+2
+ 535 01de 43C0      		rjmp .L16
+ 536 01e0 A091 0000 		lds r26,OSTCBList
+ 537 01e4 B091 0000 		lds r27,(OSTCBList)+1
+ 538 01e8 1D96      		adiw r26,13
+ 539 01ea 8C91      		ld r24,X
+ 540 01ec 1D97      		sbiw r26,13
+ 541 01ee 8C30      		cpi r24,lo8(12)
+ 542 01f0 D1F1      		breq .L16
+ 543 01f2 21E0      		ldi r18,lo8(1)
+ 544 01f4 30E0      		ldi r19,hi8(1)
+ 545               	.L25:
+ 546               	/* #APP */
+ 547 01f6 F894      		cli
+ 548               	/* #NOAPP */
+ 549 01f8 1A96      		adiw r26,10
+ 550 01fa 8D91      		ld r24,X+
+ 551 01fc 9C91      		ld r25,X
+ 552 01fe 1B97      		sbiw r26,10+1
+ 553 0200 0097      		sbiw r24,0
+ 554 0202 09F1      		breq .L21
+ 555 0204 0197      		sbiw r24,1
+ 556 0206 1A96      		adiw r26,10
+ 557 0208 8D93      		st X+,r24
+ 558 020a 9C93      		st X,r25
+ 559 020c 1B97      		sbiw r26,10+1
+ 560 020e 892B      		or r24,r25
+ 561 0210 D1F4      		brne .L21
+ 562 0212 1C96      		adiw r26,12
+ 563 0214 8C91      		ld r24,X
+ 564 0216 1C97      		sbiw r26,12
+ 565 0218 83FD      		sbrc r24,3
+ 566 021a 20C0      		rjmp .L23
+ 567 021c 8091 0000 		lds r24,OSRdyGrp
+ 568 0220 5196      		adiw r26,17
+ 569 0222 9C91      		ld r25,X
+ 570 0224 5197      		sbiw r26,17
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 11
+
+
+ 571 0226 892B      		or r24,r25
+ 572 0228 8093 0000 		sts OSRdyGrp,r24
+ 573 022c 1F96      		adiw r26,15
+ 574 022e 8C91      		ld r24,X
+ 575 0230 1F97      		sbiw r26,15
+ 576 0232 E82F      		mov r30,r24
+ 577 0234 FF27      		clr r31
+ 578 0236 E050      		subi r30,lo8(-(OSRdyTbl))
+ 579 0238 F040      		sbci r31,hi8(-(OSRdyTbl))
+ 580 023a 8081      		ld r24,Z
+ 581 023c 5096      		adiw r26,16
+ 582 023e 9C91      		ld r25,X
+ 583 0240 5097      		sbiw r26,16
+ 584 0242 892B      		or r24,r25
+ 585 0244 8083      		st Z,r24
+ 586               	.L21:
+ 587 0246 1296      		adiw r26,2
+ 588 0248 0D90      		ld __tmp_reg__,X+
+ 589 024a BC91      		ld r27,X
+ 590 024c A02D      		mov r26,__tmp_reg__
+ 591               	/* #APP */
+ 592 024e 7894      		sei
+ 593               	/* #NOAPP */
+ 594 0250 1D96      		adiw r26,13
+ 595 0252 8C91      		ld r24,X
+ 596 0254 1D97      		sbiw r26,13
+ 597 0256 8C30      		cpi r24,lo8(12)
+ 598 0258 71F6      		brne .L25
+ 599 025a 05C0      		rjmp .L16
+ 600               	.L23:
+ 601 025c 1A96      		adiw r26,10
+ 602 025e 2D93      		st X+,r18
+ 603 0260 3C93      		st X,r19
+ 604 0262 1B97      		sbiw r26,10+1
+ 605 0264 F0CF      		rjmp .L21
+ 606               	.L16:
+ 607               	/* epilogue: frame size=0 */
+ 608 0266 DF91      		pop r29
+ 609 0268 CF91      		pop r28
+ 610 026a 0895      		ret
+ 611               	/* epilogue end (size=3) */
+ 612               	/* function OSTimeTick size 104 (99) */
+ 613               		.size	OSTimeTick, .-OSTimeTick
+ 614               	.global	OSVersion
+ 615               		.type	OSVersion, @function
+ 616               	OSVersion:
+ 617               	/* prologue: frame size=0 */
+ 618               	/* prologue end (size=0) */
+ 619 026c 8CEF      		ldi r24,lo8(252)
+ 620 026e 90E0      		ldi r25,hi8(252)
+ 621               	/* epilogue: frame size=0 */
+ 622 0270 0895      		ret
+ 623               	/* epilogue end (size=1) */
+ 624               	/* function OSVersion size 3 (2) */
+ 625               		.size	OSVersion, .-OSVersion
+ 626               	.global	OS_EventTaskRdy
+ 627               		.type	OS_EventTaskRdy, @function
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 12
+
+
+ 628               	OS_EventTaskRdy:
+ 629               	/* prologue: frame size=0 */
+ 630 0272 EF92      		push r14
+ 631 0274 FF92      		push r15
+ 632 0276 0F93      		push r16
+ 633 0278 1F93      		push r17
+ 634 027a CF93      		push r28
+ 635 027c DF93      		push r29
+ 636               	/* prologue end (size=6) */
+ 637 027e EC01      		movw r28,r24
+ 638 0280 8B01      		movw r16,r22
+ 639 0282 742F      		mov r23,r20
+ 640 0284 6981      		ldd r22,Y+1
+ 641 0286 E62F      		mov r30,r22
+ 642 0288 FF27      		clr r31
+ 643 028a E050      		subi r30,lo8(-(OSUnMapTbl))
+ 644 028c F040      		sbci r31,hi8(-(OSUnMapTbl))
+ 645 028e 8081      		ld r24,Z
+ 646 0290 482F      		mov r20,r24
+ 647 0292 5527      		clr r21
+ 648 0294 FA01      		movw r30,r20
+ 649 0296 E050      		subi r30,lo8(-(OSMapTbl))
+ 650 0298 F040      		sbci r31,hi8(-(OSMapTbl))
+ 651 029a E080      		ld r14,Z
+ 652 029c DE01      		movw r26,r28
+ 653 029e A40F      		add r26,r20
+ 654 02a0 B51F      		adc r27,r21
+ 655 02a2 1696      		adiw r26,6
+ 656 02a4 3C91      		ld r19,X
+ 657 02a6 1697      		sbiw r26,6
+ 658 02a8 E32F      		mov r30,r19
+ 659 02aa FF27      		clr r31
+ 660 02ac E050      		subi r30,lo8(-(OSUnMapTbl))
+ 661 02ae F040      		sbci r31,hi8(-(OSUnMapTbl))
+ 662 02b0 2081      		ld r18,Z
+ 663 02b2 E22F      		mov r30,r18
+ 664 02b4 FF27      		clr r31
+ 665 02b6 E050      		subi r30,lo8(-(OSMapTbl))
+ 666 02b8 F040      		sbci r31,hi8(-(OSMapTbl))
+ 667 02ba F080      		ld r15,Z
+ 668 02bc CA01      		movw r24,r20
+ 669 02be 880F      		lsl r24
+ 670 02c0 991F      		rol r25
+ 671 02c2 880F      		lsl r24
+ 672 02c4 991F      		rol r25
+ 673 02c6 880F      		lsl r24
+ 674 02c8 991F      		rol r25
+ 675 02ca 280F      		add r18,r24
+ 676 02cc 8F2D      		mov r24,r15
+ 677 02ce 8095      		com r24
+ 678 02d0 8323      		and r24,r19
+ 679 02d2 1696      		adiw r26,6
+ 680 02d4 8C93      		st X,r24
+ 681 02d6 8823      		tst r24
+ 682 02d8 21F4      		brne .L29
+ 683 02da 8E2D      		mov r24,r14
+ 684 02dc 8095      		com r24
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 13
+
+
+ 685 02de 6823      		and r22,r24
+ 686 02e0 6983      		std Y+1,r22
+ 687               	.L29:
+ 688 02e2 3327      		clr r19
+ 689 02e4 F901      		movw r30,r18
+ 690 02e6 E20F      		add r30,r18
+ 691 02e8 F31F      		adc r31,r19
+ 692 02ea E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 693 02ec F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 694 02ee 0190      		ld __tmp_reg__,Z+
+ 695 02f0 F081      		ld r31,Z
+ 696 02f2 E02D      		mov r30,__tmp_reg__
+ 697 02f4 1286      		std Z+10,__zero_reg__
+ 698 02f6 1386      		std Z+11,__zero_reg__
+ 699 02f8 1682      		std Z+6,__zero_reg__
+ 700 02fa 1782      		std Z+7,__zero_reg__
+ 701 02fc 0087      		std Z+8,r16
+ 702 02fe 1187      		std Z+9,r17
+ 703 0300 7095      		com r23
+ 704 0302 8485      		ldd r24,Z+12
+ 705 0304 8723      		and r24,r23
+ 706 0306 8487      		std Z+12,r24
+ 707 0308 8823      		tst r24
+ 708 030a 59F4      		brne .L30
+ 709 030c 8091 0000 		lds r24,OSRdyGrp
+ 710 0310 8E29      		or r24,r14
+ 711 0312 8093 0000 		sts OSRdyGrp,r24
+ 712 0316 FA01      		movw r30,r20
+ 713 0318 E050      		subi r30,lo8(-(OSRdyTbl))
+ 714 031a F040      		sbci r31,hi8(-(OSRdyTbl))
+ 715 031c 8081      		ld r24,Z
+ 716 031e 8F29      		or r24,r15
+ 717 0320 8083      		st Z,r24
+ 718               	.L30:
+ 719 0322 C901      		movw r24,r18
+ 720               	/* epilogue: frame size=0 */
+ 721 0324 DF91      		pop r29
+ 722 0326 CF91      		pop r28
+ 723 0328 1F91      		pop r17
+ 724 032a 0F91      		pop r16
+ 725 032c FF90      		pop r15
+ 726 032e EF90      		pop r14
+ 727 0330 0895      		ret
+ 728               	/* epilogue end (size=7) */
+ 729               	/* function OS_EventTaskRdy size 96 (83) */
+ 730               		.size	OS_EventTaskRdy, .-OS_EventTaskRdy
+ 731               	.global	OS_EventTaskWait
+ 732               		.type	OS_EventTaskWait, @function
+ 733               	OS_EventTaskWait:
+ 734               	/* prologue: frame size=0 */
+ 735 0332 CF93      		push r28
+ 736 0334 DF93      		push r29
+ 737               	/* prologue end (size=2) */
+ 738 0336 EC01      		movw r28,r24
+ 739 0338 A091 0000 		lds r26,OSTCBCur
+ 740 033c B091 0000 		lds r27,(OSTCBCur)+1
+ 741 0340 FD01      		movw r30,r26
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 14
+
+
+ 742 0342 8683      		std Z+6,r24
+ 743 0344 9783      		std Z+7,r25
+ 744 0346 1F96      		adiw r26,15
+ 745 0348 8C91      		ld r24,X
+ 746 034a 1F97      		sbiw r26,15
+ 747 034c 282F      		mov r18,r24
+ 748 034e 3327      		clr r19
+ 749 0350 2050      		subi r18,lo8(-(OSRdyTbl))
+ 750 0352 3040      		sbci r19,hi8(-(OSRdyTbl))
+ 751 0354 5096      		adiw r26,16
+ 752 0356 9C91      		ld r25,X
+ 753 0358 5097      		sbiw r26,16
+ 754 035a 9095      		com r25
+ 755 035c F901      		movw r30,r18
+ 756 035e 8081      		ld r24,Z
+ 757 0360 8923      		and r24,r25
+ 758 0362 8083      		st Z,r24
+ 759 0364 8823      		tst r24
+ 760 0366 49F4      		brne .L32
+ 761 0368 5196      		adiw r26,17
+ 762 036a 9C91      		ld r25,X
+ 763 036c 5197      		sbiw r26,17
+ 764 036e 9095      		com r25
+ 765 0370 8091 0000 		lds r24,OSRdyGrp
+ 766 0374 8923      		and r24,r25
+ 767 0376 8093 0000 		sts OSRdyGrp,r24
+ 768               	.L32:
+ 769 037a 1F96      		adiw r26,15
+ 770 037c 8C91      		ld r24,X
+ 771 037e 1F97      		sbiw r26,15
+ 772 0380 9E01      		movw r18,r28
+ 773 0382 280F      		add r18,r24
+ 774 0384 311D      		adc r19,__zero_reg__
+ 775 0386 F901      		movw r30,r18
+ 776 0388 8681      		ldd r24,Z+6
+ 777 038a 5096      		adiw r26,16
+ 778 038c 9C91      		ld r25,X
+ 779 038e 892B      		or r24,r25
+ 780 0390 F901      		movw r30,r18
+ 781 0392 8683      		std Z+6,r24
+ 782 0394 E091 0000 		lds r30,OSTCBCur
+ 783 0398 F091 0000 		lds r31,(OSTCBCur)+1
+ 784 039c 8981      		ldd r24,Y+1
+ 785 039e 9189      		ldd r25,Z+17
+ 786 03a0 892B      		or r24,r25
+ 787 03a2 8983      		std Y+1,r24
+ 788               	/* epilogue: frame size=0 */
+ 789 03a4 DF91      		pop r29
+ 790 03a6 CF91      		pop r28
+ 791 03a8 0895      		ret
+ 792               	/* epilogue end (size=3) */
+ 793               	/* function OS_EventTaskWait size 60 (55) */
+ 794               		.size	OS_EventTaskWait, .-OS_EventTaskWait
+ 795               	.global	OS_EventTO
+ 796               		.type	OS_EventTO, @function
+ 797               	OS_EventTO:
+ 798               	/* prologue: frame size=0 */
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 15
+
+
+ 799 03aa CF93      		push r28
+ 800 03ac DF93      		push r29
+ 801               	/* prologue end (size=2) */
+ 802 03ae EC01      		movw r28,r24
+ 803 03b0 E091 0000 		lds r30,OSTCBCur
+ 804 03b4 F091 0000 		lds r31,(OSTCBCur)+1
+ 805 03b8 8785      		ldd r24,Z+15
+ 806 03ba DE01      		movw r26,r28
+ 807 03bc A80F      		add r26,r24
+ 808 03be B11D      		adc r27,__zero_reg__
+ 809 03c0 9089      		ldd r25,Z+16
+ 810 03c2 9095      		com r25
+ 811 03c4 1696      		adiw r26,6
+ 812 03c6 8C91      		ld r24,X
+ 813 03c8 1697      		sbiw r26,6
+ 814 03ca 8923      		and r24,r25
+ 815 03cc 1696      		adiw r26,6
+ 816 03ce 8C93      		st X,r24
+ 817 03d0 8823      		tst r24
+ 818 03d2 49F4      		brne .L34
+ 819 03d4 E091 0000 		lds r30,OSTCBCur
+ 820 03d8 F091 0000 		lds r31,(OSTCBCur)+1
+ 821 03dc 9189      		ldd r25,Z+17
+ 822 03de 9095      		com r25
+ 823 03e0 8981      		ldd r24,Y+1
+ 824 03e2 8923      		and r24,r25
+ 825 03e4 8983      		std Y+1,r24
+ 826               	.L34:
+ 827 03e6 E091 0000 		lds r30,OSTCBCur
+ 828 03ea F091 0000 		lds r31,(OSTCBCur)+1
+ 829 03ee 1486      		std Z+12,__zero_reg__
+ 830 03f0 E091 0000 		lds r30,OSTCBCur
+ 831 03f4 F091 0000 		lds r31,(OSTCBCur)+1
+ 832 03f8 1682      		std Z+6,__zero_reg__
+ 833 03fa 1782      		std Z+7,__zero_reg__
+ 834               	/* epilogue: frame size=0 */
+ 835 03fc DF91      		pop r29
+ 836 03fe CF91      		pop r28
+ 837 0400 0895      		ret
+ 838               	/* epilogue end (size=3) */
+ 839               	/* function OS_EventTO size 44 (39) */
+ 840               		.size	OS_EventTO, .-OS_EventTO
+ 841               	.global	OS_EventWaitListInit
+ 842               		.type	OS_EventWaitListInit, @function
+ 843               	OS_EventWaitListInit:
+ 844               	/* prologue: frame size=0 */
+ 845               	/* prologue end (size=0) */
+ 846 0402 FC01      		movw r30,r24
+ 847 0404 1182      		std Z+1,__zero_reg__
+ 848 0406 1682      		std Z+6,__zero_reg__
+ 849 0408 1782      		std Z+7,__zero_reg__
+ 850               	/* epilogue: frame size=0 */
+ 851 040a 0895      		ret
+ 852               	/* epilogue end (size=1) */
+ 853               	/* function OS_EventWaitListInit size 5 (4) */
+ 854               		.size	OS_EventWaitListInit, .-OS_EventWaitListInit
+ 855               		.type	OS_InitEventList, @function
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 16
+
+
+ 856               	OS_InitEventList:
+ 857               	/* prologue: frame size=0 */
+ 858               	/* prologue end (size=0) */
+ 859 040c 80E0      		ldi r24,lo8(OSEventTbl+8)
+ 860 040e 90E0      		ldi r25,hi8(OSEventTbl+8)
+ 861 0410 1092 0000 		sts OSEventTbl,__zero_reg__
+ 862 0414 9093 0000 		sts (OSEventTbl+4)+1,r25
+ 863 0418 8093 0000 		sts OSEventTbl+4,r24
+ 864 041c 0897      		sbiw r24,8
+ 865 041e 4096      		adiw r24,16
+ 866 0420 1092 0000 		sts OSEventTbl+8,__zero_reg__
+ 867 0424 9093 0000 		sts (OSEventTbl+12)+1,r25
+ 868 0428 8093 0000 		sts OSEventTbl+12,r24
+ 869 042c 4097      		sbiw r24,16
+ 870 042e 1092 0000 		sts OSEventTbl+16,__zero_reg__
+ 871 0432 1092 0000 		sts (OSEventTbl+20)+1,__zero_reg__
+ 872 0436 1092 0000 		sts OSEventTbl+20,__zero_reg__
+ 873 043a 9093 0000 		sts (OSEventFreeList)+1,r25
+ 874 043e 8093 0000 		sts OSEventFreeList,r24
+ 875               	/* epilogue: frame size=0 */
+ 876 0442 0895      		ret
+ 877               	/* epilogue end (size=1) */
+ 878               	/* function OS_InitEventList size 28 (27) */
+ 879               		.size	OS_InitEventList, .-OS_InitEventList
+ 880               		.type	OS_InitMisc, @function
+ 881               	OS_InitMisc:
+ 882               	/* prologue: frame size=0 */
+ 883               	/* prologue end (size=0) */
+ 884 0444 1092 0000 		sts OSTime,__zero_reg__
+ 885 0448 1092 0000 		sts (OSTime)+1,__zero_reg__
+ 886 044c 1092 0000 		sts (OSTime)+2,__zero_reg__
+ 887 0450 1092 0000 		sts (OSTime)+3,__zero_reg__
+ 888 0454 1092 0000 		sts OSIntNesting,__zero_reg__
+ 889 0458 1092 0000 		sts OSLockNesting,__zero_reg__
+ 890 045c 1092 0000 		sts OSTaskCtr,__zero_reg__
+ 891 0460 1092 0000 		sts OSRunning,__zero_reg__
+ 892 0464 1092 0000 		sts OSCtxSwCtr,__zero_reg__
+ 893 0468 1092 0000 		sts (OSCtxSwCtr)+1,__zero_reg__
+ 894 046c 1092 0000 		sts (OSCtxSwCtr)+2,__zero_reg__
+ 895 0470 1092 0000 		sts (OSCtxSwCtr)+3,__zero_reg__
+ 896 0474 1092 0000 		sts OSIdleCtr,__zero_reg__
+ 897 0478 1092 0000 		sts (OSIdleCtr)+1,__zero_reg__
+ 898 047c 1092 0000 		sts (OSIdleCtr)+2,__zero_reg__
+ 899 0480 1092 0000 		sts (OSIdleCtr)+3,__zero_reg__
+ 900               	/* epilogue: frame size=0 */
+ 901 0484 0895      		ret
+ 902               	/* epilogue end (size=1) */
+ 903               	/* function OS_InitMisc size 33 (32) */
+ 904               		.size	OS_InitMisc, .-OS_InitMisc
+ 905               		.type	OS_InitRdyList, @function
+ 906               	OS_InitRdyList:
+ 907               	/* prologue: frame size=0 */
+ 908               	/* prologue end (size=0) */
+ 909 0486 1092 0000 		sts OSRdyGrp,__zero_reg__
+ 910 048a 1092 0000 		sts OSRdyTbl,__zero_reg__
+ 911 048e 1092 0000 		sts OSRdyTbl+1,__zero_reg__
+ 912 0492 1092 0000 		sts OSPrioCur,__zero_reg__
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 17
+
+
+ 913 0496 1092 0000 		sts OSPrioHighRdy,__zero_reg__
+ 914 049a 1092 0000 		sts (OSTCBHighRdy)+1,__zero_reg__
+ 915 049e 1092 0000 		sts OSTCBHighRdy,__zero_reg__
+ 916 04a2 1092 0000 		sts (OSTCBCur)+1,__zero_reg__
+ 917 04a6 1092 0000 		sts OSTCBCur,__zero_reg__
+ 918               	/* epilogue: frame size=0 */
+ 919 04aa 0895      		ret
+ 920               	/* epilogue end (size=1) */
+ 921               	/* function OS_InitRdyList size 19 (18) */
+ 922               		.size	OS_InitRdyList, .-OS_InitRdyList
+ 923               		.type	OS_InitTaskIdle, @function
+ 924               	OS_InitTaskIdle:
+ 925               	/* prologue: frame size=0 */
+ 926               	/* prologue end (size=0) */
+ 927 04ac 2CE0      		ldi r18,lo8(12)
+ 928 04ae 40E0      		ldi r20,lo8(OSTaskIdleStk+127)
+ 929 04b0 50E0      		ldi r21,hi8(OSTaskIdleStk+127)
+ 930 04b2 60E0      		ldi r22,lo8(0)
+ 931 04b4 70E0      		ldi r23,hi8(0)
+ 932 04b6 80E0      		ldi r24,lo8(pm(OS_TaskIdle))
+ 933 04b8 90E0      		ldi r25,hi8(pm(OS_TaskIdle))
+ 934 04ba 0E94 0000 		call OSTaskCreate
+ 935               	/* epilogue: frame size=0 */
+ 936 04be 0895      		ret
+ 937               	/* epilogue end (size=1) */
+ 938               	/* function OS_InitTaskIdle size 10 (9) */
+ 939               		.size	OS_InitTaskIdle, .-OS_InitTaskIdle
+ 940               		.type	OS_InitTaskStat, @function
+ 941               	OS_InitTaskStat:
+ 942               	/* prologue: frame size=0 */
+ 943               	/* prologue end (size=0) */
+ 944 04c0 2BE0      		ldi r18,lo8(11)
+ 945 04c2 40E0      		ldi r20,lo8(OSTaskStatStk+127)
+ 946 04c4 50E0      		ldi r21,hi8(OSTaskStatStk+127)
+ 947 04c6 60E0      		ldi r22,lo8(0)
+ 948 04c8 70E0      		ldi r23,hi8(0)
+ 949 04ca 80E0      		ldi r24,lo8(pm(OS_TaskStat))
+ 950 04cc 90E0      		ldi r25,hi8(pm(OS_TaskStat))
+ 951 04ce 0E94 0000 		call OSTaskCreate
+ 952               	/* epilogue: frame size=0 */
+ 953 04d2 0895      		ret
+ 954               	/* epilogue end (size=1) */
+ 955               	/* function OS_InitTaskStat size 10 (9) */
+ 956               		.size	OS_InitTaskStat, .-OS_InitTaskStat
+ 957               		.type	OS_InitTCBList, @function
+ 958               	OS_InitTCBList:
+ 959               	/* prologue: frame size=0 */
+ 960               	/* prologue end (size=0) */
+ 961 04d4 1092 0000 		sts (OSTCBList)+1,__zero_reg__
+ 962 04d8 1092 0000 		sts OSTCBList,__zero_reg__
+ 963 04dc 20E0      		ldi r18,lo8(0)
+ 964 04de E0E0      		ldi r30,lo8(OSTCBPrioTbl)
+ 965 04e0 F0E0      		ldi r31,hi8(OSTCBPrioTbl)
+ 966               	.L68:
+ 967 04e2 1192      		st Z+,__zero_reg__
+ 968 04e4 1192      		st Z+,__zero_reg__
+ 969 04e6 2F5F      		subi r18,lo8(-(1))
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 18
+
+
+ 970 04e8 2D30      		cpi r18,lo8(13)
+ 971 04ea D8F3      		brlo .L68
+ 972 04ec 40E0      		ldi r20,lo8(OSTCBTbl)
+ 973 04ee 50E0      		ldi r21,hi8(OSTCBTbl)
+ 974 04f0 FA01      		movw r30,r20
+ 975 04f2 CA01      		movw r24,r20
+ 976 04f4 4296      		adiw r24,18
+ 977 04f6 20E0      		ldi r18,lo8(0)
+ 978               	.L73:
+ 979 04f8 8283      		std Z+2,r24
+ 980 04fa 9383      		std Z+3,r25
+ 981 04fc 7296      		adiw r30,18
+ 982 04fe 4296      		adiw r24,18
+ 983 0500 2F5F      		subi r18,lo8(-(1))
+ 984 0502 2C30      		cpi r18,lo8(12)
+ 985 0504 C8F3      		brlo .L73
+ 986 0506 1092 0000 		sts (OSTCBTbl+218)+1,__zero_reg__
+ 987 050a 1092 0000 		sts OSTCBTbl+218,__zero_reg__
+ 988 050e 5093 0000 		sts (OSTCBFreeList)+1,r21
+ 989 0512 4093 0000 		sts OSTCBFreeList,r20
+ 990               	/* epilogue: frame size=0 */
+ 991 0516 0895      		ret
+ 992               	/* epilogue end (size=1) */
+ 993               	/* function OS_InitTCBList size 34 (33) */
+ 994               		.size	OS_InitTCBList, .-OS_InitTCBList
+ 995               	.global	OS_Sched
+ 996               		.type	OS_Sched, @function
+ 997               	OS_Sched:
+ 998               	/* prologue: frame size=0 */
+ 999               	/* prologue end (size=0) */
+ 1000               	/* #APP */
+ 1001 0518 F894      		cli
+ 1002               	/* #NOAPP */
+ 1003 051a 8091 0000 		lds r24,OSIntNesting
+ 1004 051e 8823      		tst r24
+ 1005 0520 09F0      		breq .+2
+ 1006 0522 42C0      		rjmp .L79
+ 1007 0524 8091 0000 		lds r24,OSLockNesting
+ 1008 0528 8823      		tst r24
+ 1009 052a F1F5      		brne .L79
+ 1010 052c 8091 0000 		lds r24,OSRdyGrp
+ 1011 0530 E82F      		mov r30,r24
+ 1012 0532 FF27      		clr r31
+ 1013 0534 E050      		subi r30,lo8(-(OSUnMapTbl))
+ 1014 0536 F040      		sbci r31,hi8(-(OSUnMapTbl))
+ 1015 0538 8081      		ld r24,Z
+ 1016 053a 9927      		clr r25
+ 1017 053c FC01      		movw r30,r24
+ 1018 053e E050      		subi r30,lo8(-(OSRdyTbl))
+ 1019 0540 F040      		sbci r31,hi8(-(OSRdyTbl))
+ 1020 0542 2081      		ld r18,Z
+ 1021 0544 E22F      		mov r30,r18
+ 1022 0546 FF27      		clr r31
+ 1023 0548 E050      		subi r30,lo8(-(OSUnMapTbl))
+ 1024 054a F040      		sbci r31,hi8(-(OSUnMapTbl))
+ 1025 054c E081      		ld r30,Z
+ 1026 054e 880F      		lsl r24
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 19
+
+
+ 1027 0550 991F      		rol r25
+ 1028 0552 880F      		lsl r24
+ 1029 0554 991F      		rol r25
+ 1030 0556 880F      		lsl r24
+ 1031 0558 991F      		rol r25
+ 1032 055a E80F      		add r30,r24
+ 1033 055c E093 0000 		sts OSPrioHighRdy,r30
+ 1034 0560 8091 0000 		lds r24,OSPrioCur
+ 1035 0564 E817      		cp r30,r24
+ 1036 0566 01F1      		breq .L79
+ 1037 0568 FF27      		clr r31
+ 1038 056a EE0F      		add r30,r30
+ 1039 056c FF1F      		adc r31,r31
+ 1040 056e E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 1041 0570 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 1042 0572 8081      		ld r24,Z
+ 1043 0574 9181      		ldd r25,Z+1
+ 1044 0576 9093 0000 		sts (OSTCBHighRdy)+1,r25
+ 1045 057a 8093 0000 		sts OSTCBHighRdy,r24
+ 1046 057e 8091 0000 		lds r24,OSCtxSwCtr
+ 1047 0582 9091 0000 		lds r25,(OSCtxSwCtr)+1
+ 1048 0586 A091 0000 		lds r26,(OSCtxSwCtr)+2
+ 1049 058a B091 0000 		lds r27,(OSCtxSwCtr)+3
+ 1050 058e 0196      		adiw r24,1
+ 1051 0590 A11D      		adc r26,__zero_reg__
+ 1052 0592 B11D      		adc r27,__zero_reg__
+ 1053 0594 8093 0000 		sts OSCtxSwCtr,r24
+ 1054 0598 9093 0000 		sts (OSCtxSwCtr)+1,r25
+ 1055 059c A093 0000 		sts (OSCtxSwCtr)+2,r26
+ 1056 05a0 B093 0000 		sts (OSCtxSwCtr)+3,r27
+ 1057 05a4 0E94 0000 		call OSCtxSw
+ 1058               	.L79:
+ 1059               	/* #APP */
+ 1060 05a8 7894      		sei
+ 1061               	/* #NOAPP */
+ 1062               	/* epilogue: frame size=0 */
+ 1063 05aa 0895      		ret
+ 1064               	/* epilogue end (size=1) */
+ 1065               	/* function OS_Sched size 76 (75) */
+ 1066               		.size	OS_Sched, .-OS_Sched
+ 1067               	.global	OS_TaskIdle
+ 1068               		.type	OS_TaskIdle, @function
+ 1069               	OS_TaskIdle:
+ 1070               	/* prologue: frame size=0 */
+ 1071               	/* prologue end (size=0) */
+ 1072               	.L82:
+ 1073               	/* #APP */
+ 1074 05ac F894      		cli
+ 1075               	/* #NOAPP */
+ 1076 05ae 8091 0000 		lds r24,OSIdleCtr
+ 1077 05b2 9091 0000 		lds r25,(OSIdleCtr)+1
+ 1078 05b6 A091 0000 		lds r26,(OSIdleCtr)+2
+ 1079 05ba B091 0000 		lds r27,(OSIdleCtr)+3
+ 1080 05be 0196      		adiw r24,1
+ 1081 05c0 A11D      		adc r26,__zero_reg__
+ 1082 05c2 B11D      		adc r27,__zero_reg__
+ 1083 05c4 8093 0000 		sts OSIdleCtr,r24
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 20
+
+
+ 1084 05c8 9093 0000 		sts (OSIdleCtr)+1,r25
+ 1085 05cc A093 0000 		sts (OSIdleCtr)+2,r26
+ 1086 05d0 B093 0000 		sts (OSIdleCtr)+3,r27
+ 1087               	/* #APP */
+ 1088 05d4 7894      		sei
+ 1089               	/* #NOAPP */
+ 1090 05d6 0E94 0000 		call OSTaskIdleHook
+ 1091 05da E8CF      		rjmp .L82
+ 1092               	/* epilogue: frame size=0 */
+ 1093               	/* epilogue: noreturn */
+ 1094               	/* epilogue end (size=0) */
+ 1095               	/* function OS_TaskIdle size 26 (26) */
+ 1096               		.size	OS_TaskIdle, .-OS_TaskIdle
+ 1097               	.global	OS_TaskStat
+ 1098               		.type	OS_TaskStat, @function
+ 1099               	OS_TaskStat:
+ 1100               	/* prologue: frame size=0 */
+ 1101 05dc EF92      		push r14
+ 1102 05de FF92      		push r15
+ 1103 05e0 0F93      		push r16
+ 1104 05e2 1F93      		push r17
+ 1105 05e4 CF93      		push r28
+ 1106               	/* prologue end (size=5) */
+ 1107 05e6 8091 0000 		lds r24,OSStatRdy
+ 1108 05ea 8823      		tst r24
+ 1109 05ec 09F4      		brne .+2
+ 1110 05ee 65C0      		rjmp .L89
+ 1111               	.L98:
+ 1112 05f0 8091 0000 		lds r24,OSIdleCtrMax
+ 1113 05f4 9091 0000 		lds r25,(OSIdleCtrMax)+1
+ 1114 05f8 A091 0000 		lds r26,(OSIdleCtrMax)+2
+ 1115 05fc B091 0000 		lds r27,(OSIdleCtrMax)+3
+ 1116 0600 BC01      		movw r22,r24
+ 1117 0602 CD01      		movw r24,r26
+ 1118 0604 24E6      		ldi r18,lo8(100)
+ 1119 0606 30E0      		ldi r19,hi8(100)
+ 1120 0608 40E0      		ldi r20,hlo8(100)
+ 1121 060a 50E0      		ldi r21,hhi8(100)
+ 1122 060c 0E94 0000 		call __udivmodsi4
+ 1123 0610 7901      		movw r14,r18
+ 1124 0612 8A01      		movw r16,r20
+ 1125 0614 C4E6      		ldi r28,lo8(100)
+ 1126               	.L90:
+ 1127               	/* #APP */
+ 1128 0616 F894      		cli
+ 1129               	/* #NOAPP */
+ 1130 0618 8091 0000 		lds r24,OSIdleCtr
+ 1131 061c 9091 0000 		lds r25,(OSIdleCtr)+1
+ 1132 0620 A091 0000 		lds r26,(OSIdleCtr)+2
+ 1133 0624 B091 0000 		lds r27,(OSIdleCtr)+3
+ 1134 0628 8093 0000 		sts OSIdleCtrRun,r24
+ 1135 062c 9093 0000 		sts (OSIdleCtrRun)+1,r25
+ 1136 0630 A093 0000 		sts (OSIdleCtrRun)+2,r26
+ 1137 0634 B093 0000 		sts (OSIdleCtrRun)+3,r27
+ 1138 0638 6091 0000 		lds r22,OSIdleCtr
+ 1139 063c 7091 0000 		lds r23,(OSIdleCtr)+1
+ 1140 0640 8091 0000 		lds r24,(OSIdleCtr)+2
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 21
+
+
+ 1141 0644 9091 0000 		lds r25,(OSIdleCtr)+3
+ 1142 0648 1092 0000 		sts OSIdleCtr,__zero_reg__
+ 1143 064c 1092 0000 		sts (OSIdleCtr)+1,__zero_reg__
+ 1144 0650 1092 0000 		sts (OSIdleCtr)+2,__zero_reg__
+ 1145 0654 1092 0000 		sts (OSIdleCtr)+3,__zero_reg__
+ 1146               	/* #APP */
+ 1147 0658 7894      		sei
+ 1148               	/* #NOAPP */
+ 1149 065a E114      		cp r14,__zero_reg__
+ 1150 065c F104      		cpc r15,__zero_reg__
+ 1151 065e 0105      		cpc r16,__zero_reg__
+ 1152 0660 1105      		cpc r17,__zero_reg__
+ 1153 0662 B1F0      		breq .L93
+ 1154 0664 A801      		movw r20,r16
+ 1155 0666 9701      		movw r18,r14
+ 1156 0668 0E94 0000 		call __udivmodsi4
+ 1157 066c DA01      		movw r26,r20
+ 1158 066e C901      		movw r24,r18
+ 1159 0670 2C2F      		mov r18,r28
+ 1160 0672 281B      		sub r18,r24
+ 1161 0674 27FD      		sbrc r18,7
+ 1162 0676 09C0      		rjmp .L94
+ 1163 0678 2093 0000 		sts OSCPUUsage,r18
+ 1164               	.L96:
+ 1165 067c 0E94 0000 		call OSTaskStatHook
+ 1166 0680 8DE7      		ldi r24,lo8(125)
+ 1167 0682 90E0      		ldi r25,hi8(125)
+ 1168 0684 0E94 0000 		call OSTimeDly
+ 1169 0688 C6CF      		rjmp .L90
+ 1170               	.L94:
+ 1171 068a 1092 0000 		sts OSCPUUsage,__zero_reg__
+ 1172 068e F6CF      		rjmp .L96
+ 1173               	.L93:
+ 1174 0690 1092 0000 		sts OSCPUUsage,__zero_reg__
+ 1175 0694 8091 0000 		lds r24,OSIdleCtrMax
+ 1176 0698 9091 0000 		lds r25,(OSIdleCtrMax)+1
+ 1177 069c A091 0000 		lds r26,(OSIdleCtrMax)+2
+ 1178 06a0 B091 0000 		lds r27,(OSIdleCtrMax)+3
+ 1179 06a4 BC01      		movw r22,r24
+ 1180 06a6 CD01      		movw r24,r26
+ 1181 06a8 24E6      		ldi r18,lo8(100)
+ 1182 06aa 30E0      		ldi r19,hi8(100)
+ 1183 06ac 40E0      		ldi r20,hlo8(100)
+ 1184 06ae 50E0      		ldi r21,hhi8(100)
+ 1185 06b0 0E94 0000 		call __udivmodsi4
+ 1186 06b4 7901      		movw r14,r18
+ 1187 06b6 8A01      		movw r16,r20
+ 1188 06b8 E1CF      		rjmp .L96
+ 1189               	.L89:
+ 1190 06ba 8AEF      		ldi r24,lo8(250)
+ 1191 06bc 90E0      		ldi r25,hi8(250)
+ 1192 06be 0E94 0000 		call OSTimeDly
+ 1193 06c2 8091 0000 		lds r24,OSStatRdy
+ 1194 06c6 8823      		tst r24
+ 1195 06c8 C1F3      		breq .L89
+ 1196 06ca 92CF      		rjmp .L98
+ 1197               	/* epilogue: frame size=0 */
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 22
+
+
+ 1198               	/* epilogue: noreturn */
+ 1199               	/* epilogue end (size=0) */
+ 1200               	/* function OS_TaskStat size 122 (117) */
+ 1201               		.size	OS_TaskStat, .-OS_TaskStat
+ 1202               	.global	OS_TCBInit
+ 1203               		.type	OS_TCBInit, @function
+ 1204               	OS_TCBInit:
+ 1205               	/* prologue: frame size=0 */
+ 1206 06cc 1F93      		push r17
+ 1207 06ce CF93      		push r28
+ 1208 06d0 DF93      		push r29
+ 1209               	/* prologue end (size=3) */
+ 1210 06d2 182F      		mov r17,r24
+ 1211               	/* #APP */
+ 1212 06d4 F894      		cli
+ 1213               	/* #NOAPP */
+ 1214 06d6 C091 0000 		lds r28,OSTCBFreeList
+ 1215 06da D091 0000 		lds r29,(OSTCBFreeList)+1
+ 1216 06de 2097      		sbiw r28,0
+ 1217 06e0 09F4      		brne .+2
+ 1218 06e2 57C0      		rjmp .L100
+ 1219 06e4 8A81      		ldd r24,Y+2
+ 1220 06e6 9B81      		ldd r25,Y+3
+ 1221 06e8 9093 0000 		sts (OSTCBFreeList)+1,r25
+ 1222 06ec 8093 0000 		sts OSTCBFreeList,r24
+ 1223               	/* #APP */
+ 1224 06f0 7894      		sei
+ 1225               	/* #NOAPP */
+ 1226 06f2 6883      		st Y,r22
+ 1227 06f4 7983      		std Y+1,r23
+ 1228 06f6 1D87      		std Y+13,r17
+ 1229 06f8 1C86      		std Y+12,__zero_reg__
+ 1230 06fa 1A86      		std Y+10,__zero_reg__
+ 1231 06fc 1B86      		std Y+11,__zero_reg__
+ 1232 06fe 812F      		mov r24,r17
+ 1233 0700 8695      		lsr r24
+ 1234 0702 8695      		lsr r24
+ 1235 0704 8695      		lsr r24
+ 1236 0706 8F87      		std Y+15,r24
+ 1237 0708 E82F      		mov r30,r24
+ 1238 070a FF27      		clr r31
+ 1239 070c E050      		subi r30,lo8(-(OSMapTbl))
+ 1240 070e F040      		sbci r31,hi8(-(OSMapTbl))
+ 1241 0710 8081      		ld r24,Z
+ 1242 0712 898B      		std Y+17,r24
+ 1243 0714 812F      		mov r24,r17
+ 1244 0716 8770      		andi r24,lo8(7)
+ 1245 0718 8E87      		std Y+14,r24
+ 1246 071a E82F      		mov r30,r24
+ 1247 071c FF27      		clr r31
+ 1248 071e E050      		subi r30,lo8(-(OSMapTbl))
+ 1249 0720 F040      		sbci r31,hi8(-(OSMapTbl))
+ 1250 0722 8081      		ld r24,Z
+ 1251 0724 888B      		std Y+16,r24
+ 1252 0726 1E82      		std Y+6,__zero_reg__
+ 1253 0728 1F82      		std Y+7,__zero_reg__
+ 1254 072a 1886      		std Y+8,__zero_reg__
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 23
+
+
+ 1255 072c 1986      		std Y+9,__zero_reg__
+ 1256 072e CE01      		movw r24,r28
+ 1257 0730 0E94 0000 		call OSTCBInitHook
+ 1258 0734 CE01      		movw r24,r28
+ 1259 0736 0E94 0000 		call OSTaskCreateHook
+ 1260               	/* #APP */
+ 1261 073a F894      		cli
+ 1262               	/* #NOAPP */
+ 1263 073c E12F      		mov r30,r17
+ 1264 073e FF27      		clr r31
+ 1265 0740 EE0F      		add r30,r30
+ 1266 0742 FF1F      		adc r31,r31
+ 1267 0744 E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 1268 0746 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 1269 0748 C083      		st Z,r28
+ 1270 074a D183      		std Z+1,r29
+ 1271 074c E091 0000 		lds r30,OSTCBList
+ 1272 0750 F091 0000 		lds r31,(OSTCBList)+1
+ 1273 0754 EA83      		std Y+2,r30
+ 1274 0756 FB83      		std Y+3,r31
+ 1275 0758 1C82      		std Y+4,__zero_reg__
+ 1276 075a 1D82      		std Y+5,__zero_reg__
+ 1277 075c 3097      		sbiw r30,0
+ 1278 075e 11F0      		breq .L101
+ 1279 0760 C483      		std Z+4,r28
+ 1280 0762 D583      		std Z+5,r29
+ 1281               	.L101:
+ 1282 0764 D093 0000 		sts (OSTCBList)+1,r29
+ 1283 0768 C093 0000 		sts OSTCBList,r28
+ 1284 076c 8091 0000 		lds r24,OSRdyGrp
+ 1285 0770 9989      		ldd r25,Y+17
+ 1286 0772 892B      		or r24,r25
+ 1287 0774 8093 0000 		sts OSRdyGrp,r24
+ 1288 0778 8F85      		ldd r24,Y+15
+ 1289 077a E82F      		mov r30,r24
+ 1290 077c FF27      		clr r31
+ 1291 077e E050      		subi r30,lo8(-(OSRdyTbl))
+ 1292 0780 F040      		sbci r31,hi8(-(OSRdyTbl))
+ 1293 0782 8081      		ld r24,Z
+ 1294 0784 9889      		ldd r25,Y+16
+ 1295 0786 892B      		or r24,r25
+ 1296 0788 8083      		st Z,r24
+ 1297               	/* #APP */
+ 1298 078a 7894      		sei
+ 1299               	/* #NOAPP */
+ 1300 078c 80E0      		ldi r24,lo8(0)
+ 1301 078e 90E0      		ldi r25,hi8(0)
+ 1302 0790 03C0      		rjmp .L99
+ 1303               	.L100:
+ 1304               	/* #APP */
+ 1305 0792 7894      		sei
+ 1306               	/* #NOAPP */
+ 1307 0794 86E4      		ldi r24,lo8(70)
+ 1308 0796 90E0      		ldi r25,hi8(70)
+ 1309               	.L99:
+ 1310               	/* epilogue: frame size=0 */
+ 1311 0798 DF91      		pop r29
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 24
+
+
+ 1312 079a CF91      		pop r28
+ 1313 079c 1F91      		pop r17
+ 1314 079e 0895      		ret
+ 1315               	/* epilogue end (size=4) */
+ 1316               	/* function OS_TCBInit size 111 (104) */
+ 1317               		.size	OS_TCBInit, .-OS_TCBInit
+ 1318               	.global	OSMboxCreate
+ 1319               		.type	OSMboxCreate, @function
+ 1320               	OSMboxCreate:
+ 1321               	/* prologue: frame size=0 */
+ 1322 07a0 CF93      		push r28
+ 1323 07a2 DF93      		push r29
+ 1324               	/* prologue end (size=2) */
+ 1325 07a4 9C01      		movw r18,r24
+ 1326 07a6 8091 0000 		lds r24,OSIntNesting
+ 1327 07aa 8823      		tst r24
+ 1328 07ac D9F4      		brne .L106
+ 1329               	/* #APP */
+ 1330 07ae F894      		cli
+ 1331               	/* #NOAPP */
+ 1332 07b0 C091 0000 		lds r28,OSEventFreeList
+ 1333 07b4 D091 0000 		lds r29,(OSEventFreeList)+1
+ 1334 07b8 2097      		sbiw r28,0
+ 1335 07ba 31F0      		breq .L104
+ 1336 07bc 8C81      		ldd r24,Y+4
+ 1337 07be 9D81      		ldd r25,Y+5
+ 1338 07c0 9093 0000 		sts (OSEventFreeList)+1,r25
+ 1339 07c4 8093 0000 		sts OSEventFreeList,r24
+ 1340               	.L104:
+ 1341               	/* #APP */
+ 1342 07c8 7894      		sei
+ 1343               	/* #NOAPP */
+ 1344 07ca 2097      		sbiw r28,0
+ 1345 07cc 49F0      		breq .L105
+ 1346 07ce 81E0      		ldi r24,lo8(1)
+ 1347 07d0 8883      		st Y,r24
+ 1348 07d2 1A82      		std Y+2,__zero_reg__
+ 1349 07d4 1B82      		std Y+3,__zero_reg__
+ 1350 07d6 2C83      		std Y+4,r18
+ 1351 07d8 3D83      		std Y+5,r19
+ 1352 07da CE01      		movw r24,r28
+ 1353 07dc 0E94 0000 		call OS_EventWaitListInit
+ 1354               	.L105:
+ 1355 07e0 CE01      		movw r24,r28
+ 1356 07e2 02C0      		rjmp .L102
+ 1357               	.L106:
+ 1358 07e4 80E0      		ldi r24,lo8(0)
+ 1359 07e6 90E0      		ldi r25,hi8(0)
+ 1360               	.L102:
+ 1361               	/* epilogue: frame size=0 */
+ 1362 07e8 DF91      		pop r29
+ 1363 07ea CF91      		pop r28
+ 1364 07ec 0895      		ret
+ 1365               	/* epilogue end (size=3) */
+ 1366               	/* function OSMboxCreate size 41 (36) */
+ 1367               		.size	OSMboxCreate, .-OSMboxCreate
+ 1368               	.global	OSMboxPend
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 25
+
+
+ 1369               		.type	OSMboxPend, @function
+ 1370               	OSMboxPend:
+ 1371               	/* prologue: frame size=0 */
+ 1372 07ee DF92      		push r13
+ 1373 07f0 EF92      		push r14
+ 1374 07f2 FF92      		push r15
+ 1375 07f4 0F93      		push r16
+ 1376 07f6 1F93      		push r17
+ 1377 07f8 CF93      		push r28
+ 1378 07fa DF93      		push r29
+ 1379               	/* prologue end (size=7) */
+ 1380 07fc 8C01      		movw r16,r24
+ 1381 07fe 7A01      		movw r14,r20
+ 1382 0800 D090 0000 		lds r13,OSIntNesting
+ 1383 0804 DD20      		tst r13
+ 1384 0806 09F0      		breq .+2
+ 1385 0808 3BC0      		rjmp .L113
+ 1386               	/* #APP */
+ 1387 080a F894      		cli
+ 1388               	/* #NOAPP */
+ 1389 080c FC01      		movw r30,r24
+ 1390 080e C481      		ldd r28,Z+4
+ 1391 0810 D581      		ldd r29,Z+5
+ 1392 0812 2097      		sbiw r28,0
+ 1393 0814 39F0      		breq .L109
+ 1394 0816 1482      		std Z+4,__zero_reg__
+ 1395 0818 1582      		std Z+5,__zero_reg__
+ 1396               	.L112:
+ 1397               	/* #APP */
+ 1398 081a 7894      		sei
+ 1399               	/* #NOAPP */
+ 1400 081c F701      		movw r30,r14
+ 1401 081e D082      		st Z,r13
+ 1402               	.L111:
+ 1403 0820 CE01      		movw r24,r28
+ 1404 0822 33C0      		rjmp .L107
+ 1405               	.L109:
+ 1406 0824 E091 0000 		lds r30,OSTCBCur
+ 1407 0828 F091 0000 		lds r31,(OSTCBCur)+1
+ 1408 082c 8485      		ldd r24,Z+12
+ 1409 082e 8260      		ori r24,lo8(2)
+ 1410 0830 8487      		std Z+12,r24
+ 1411 0832 E091 0000 		lds r30,OSTCBCur
+ 1412 0836 F091 0000 		lds r31,(OSTCBCur)+1
+ 1413 083a 6287      		std Z+10,r22
+ 1414 083c 7387      		std Z+11,r23
+ 1415 083e C801      		movw r24,r16
+ 1416 0840 0E94 0000 		call OS_EventTaskWait
+ 1417               	/* #APP */
+ 1418 0844 7894      		sei
+ 1419               	/* #NOAPP */
+ 1420 0846 0E94 0000 		call OS_Sched
+ 1421               	/* #APP */
+ 1422 084a F894      		cli
+ 1423               	/* #NOAPP */
+ 1424 084c E091 0000 		lds r30,OSTCBCur
+ 1425 0850 F091 0000 		lds r31,(OSTCBCur)+1
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 26
+
+
+ 1426 0854 C085      		ldd r28,Z+8
+ 1427 0856 D185      		ldd r29,Z+9
+ 1428 0858 2097      		sbiw r28,0
+ 1429 085a 51F0      		breq .L110
+ 1430 085c 1086      		std Z+8,__zero_reg__
+ 1431 085e 1186      		std Z+9,__zero_reg__
+ 1432 0860 D486      		std Z+12,r13
+ 1433 0862 E091 0000 		lds r30,OSTCBCur
+ 1434 0866 F091 0000 		lds r31,(OSTCBCur)+1
+ 1435 086a 1682      		std Z+6,__zero_reg__
+ 1436 086c 1782      		std Z+7,__zero_reg__
+ 1437 086e D5CF      		rjmp .L112
+ 1438               	.L110:
+ 1439 0870 C801      		movw r24,r16
+ 1440 0872 0E94 0000 		call OS_EventTO
+ 1441               	/* #APP */
+ 1442 0876 7894      		sei
+ 1443               	/* #NOAPP */
+ 1444 0878 8AE0      		ldi r24,lo8(10)
+ 1445 087a F701      		movw r30,r14
+ 1446 087c 8083      		st Z,r24
+ 1447 087e D0CF      		rjmp .L111
+ 1448               	.L113:
+ 1449 0880 82E0      		ldi r24,lo8(2)
+ 1450 0882 FA01      		movw r30,r20
+ 1451 0884 8083      		st Z,r24
+ 1452 0886 80E0      		ldi r24,lo8(0)
+ 1453 0888 90E0      		ldi r25,hi8(0)
+ 1454               	.L107:
+ 1455               	/* epilogue: frame size=0 */
+ 1456 088a DF91      		pop r29
+ 1457 088c CF91      		pop r28
+ 1458 088e 1F91      		pop r17
+ 1459 0890 0F91      		pop r16
+ 1460 0892 FF90      		pop r15
+ 1461 0894 EF90      		pop r14
+ 1462 0896 DF90      		pop r13
+ 1463 0898 0895      		ret
+ 1464               	/* epilogue end (size=8) */
+ 1465               	/* function OSMboxPend size 91 (76) */
+ 1466               		.size	OSMboxPend, .-OSMboxPend
+ 1467               	.global	OSMboxPost
+ 1468               		.type	OSMboxPost, @function
+ 1469               	OSMboxPost:
+ 1470               	/* prologue: frame size=0 */
+ 1471               	/* prologue end (size=0) */
+ 1472 089a FC01      		movw r30,r24
+ 1473               	/* #APP */
+ 1474 089c F894      		cli
+ 1475               	/* #NOAPP */
+ 1476 089e 8181      		ldd r24,Z+1
+ 1477 08a0 8823      		tst r24
+ 1478 08a2 61F4      		brne .L117
+ 1479 08a4 8481      		ldd r24,Z+4
+ 1480 08a6 9581      		ldd r25,Z+5
+ 1481 08a8 0097      		sbiw r24,0
+ 1482 08aa 21F4      		brne .L118
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 27
+
+
+ 1483 08ac 6483      		std Z+4,r22
+ 1484 08ae 7583      		std Z+5,r23
+ 1485               	/* #APP */
+ 1486 08b0 7894      		sei
+ 1487               	/* #NOAPP */
+ 1488 08b2 0895      		ret
+ 1489               	.L118:
+ 1490               	/* #APP */
+ 1491 08b4 7894      		sei
+ 1492               	/* #NOAPP */
+ 1493 08b6 84E1      		ldi r24,lo8(20)
+ 1494 08b8 90E0      		ldi r25,hi8(20)
+ 1495 08ba 0895      		ret
+ 1496               	.L117:
+ 1497 08bc 42E0      		ldi r20,lo8(2)
+ 1498 08be CF01      		movw r24,r30
+ 1499 08c0 0E94 0000 		call OS_EventTaskRdy
+ 1500               	/* #APP */
+ 1501 08c4 7894      		sei
+ 1502               	/* #NOAPP */
+ 1503 08c6 0E94 0000 		call OS_Sched
+ 1504 08ca 80E0      		ldi r24,lo8(0)
+ 1505 08cc 90E0      		ldi r25,hi8(0)
+ 1506 08ce 0895      		ret
+ 1507               	/* epilogue: frame size=0 */
+ 1508               	/* epilogue: noreturn */
+ 1509               	/* epilogue end (size=0) */
+ 1510               	/* function OSMboxPost size 31 (31) */
+ 1511               		.size	OSMboxPost, .-OSMboxPost
+ 1512               	.global	OSMutexAccept
+ 1513               		.type	OSMutexAccept, @function
+ 1514               	OSMutexAccept:
+ 1515               	/* prologue: frame size=0 */
+ 1516 08d0 CF93      		push r28
+ 1517 08d2 DF93      		push r29
+ 1518               	/* prologue end (size=2) */
+ 1519 08d4 DC01      		movw r26,r24
+ 1520 08d6 EB01      		movw r28,r22
+ 1521 08d8 4091 0000 		lds r20,OSIntNesting
+ 1522 08dc 4423      		tst r20
+ 1523 08de 29F0      		breq .L120
+ 1524 08e0 82E0      		ldi r24,lo8(2)
+ 1525 08e2 8883      		st Y,r24
+ 1526               	.L122:
+ 1527 08e4 80E0      		ldi r24,lo8(0)
+ 1528 08e6 90E0      		ldi r25,hi8(0)
+ 1529 08e8 24C0      		rjmp .L119
+ 1530               	.L120:
+ 1531               	/* #APP */
+ 1532 08ea F894      		cli
+ 1533               	/* #NOAPP */
+ 1534 08ec 1296      		adiw r26,2
+ 1535 08ee 2D91      		ld r18,X+
+ 1536 08f0 3C91      		ld r19,X
+ 1537 08f2 1397      		sbiw r26,2+1
+ 1538 08f4 2F3F      		cpi r18,lo8(-1)
+ 1539 08f6 19F0      		breq .L123
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 28
+
+
+ 1540               	/* #APP */
+ 1541 08f8 7894      		sei
+ 1542               	/* #NOAPP */
+ 1543 08fa 4883      		st Y,r20
+ 1544 08fc F3CF      		rjmp .L122
+ 1545               	.L123:
+ 1546 08fe 2070      		andi r18,lo8(-256)
+ 1547 0900 1296      		adiw r26,2
+ 1548 0902 2D93      		st X+,r18
+ 1549 0904 3C93      		st X,r19
+ 1550 0906 1397      		sbiw r26,2+1
+ 1551 0908 6091 0000 		lds r22,OSTCBCur
+ 1552 090c 7091 0000 		lds r23,(OSTCBCur)+1
+ 1553 0910 FB01      		movw r30,r22
+ 1554 0912 8585      		ldd r24,Z+13
+ 1555 0914 9927      		clr r25
+ 1556 0916 282B      		or r18,r24
+ 1557 0918 392B      		or r19,r25
+ 1558 091a 1296      		adiw r26,2
+ 1559 091c 2D93      		st X+,r18
+ 1560 091e 3C93      		st X,r19
+ 1561 0920 1397      		sbiw r26,2+1
+ 1562 0922 1496      		adiw r26,4
+ 1563 0924 6D93      		st X+,r22
+ 1564 0926 7C93      		st X,r23
+ 1565 0928 1597      		sbiw r26,4+1
+ 1566               	/* #APP */
+ 1567 092a 7894      		sei
+ 1568               	/* #NOAPP */
+ 1569 092c 4883      		st Y,r20
+ 1570 092e 81E0      		ldi r24,lo8(1)
+ 1571 0930 90E0      		ldi r25,hi8(1)
+ 1572               	.L119:
+ 1573               	/* epilogue: frame size=0 */
+ 1574 0932 DF91      		pop r29
+ 1575 0934 CF91      		pop r28
+ 1576 0936 0895      		ret
+ 1577               	/* epilogue end (size=3) */
+ 1578               	/* function OSMutexAccept size 56 (51) */
+ 1579               		.size	OSMutexAccept, .-OSMutexAccept
+ 1580               	.global	OSMutexCreate
+ 1581               		.type	OSMutexCreate, @function
+ 1582               	OSMutexCreate:
+ 1583               	/* prologue: frame size=0 */
+ 1584 0938 FF92      		push r15
+ 1585 093a 0F93      		push r16
+ 1586 093c 1F93      		push r17
+ 1587 093e CF93      		push r28
+ 1588 0940 DF93      		push r29
+ 1589               	/* prologue end (size=5) */
+ 1590 0942 8B01      		movw r16,r22
+ 1591 0944 F090 0000 		lds r15,OSIntNesting
+ 1592 0948 FF20      		tst r15
+ 1593 094a 09F0      		breq .+2
+ 1594 094c 3CC0      		rjmp .L130
+ 1595               	/* #APP */
+ 1596 094e F894      		cli
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 29
+
+
+ 1597               	/* #NOAPP */
+ 1598 0950 282F      		mov r18,r24
+ 1599 0952 3327      		clr r19
+ 1600 0954 F901      		movw r30,r18
+ 1601 0956 E20F      		add r30,r18
+ 1602 0958 F31F      		adc r31,r19
+ 1603 095a E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 1604 095c F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 1605 095e 4081      		ld r20,Z
+ 1606 0960 5181      		ldd r21,Z+1
+ 1607 0962 4115      		cp r20,__zero_reg__
+ 1608 0964 5105      		cpc r21,__zero_reg__
+ 1609 0966 41F5      		brne .L131
+ 1610 0968 81E0      		ldi r24,lo8(1)
+ 1611 096a 90E0      		ldi r25,hi8(1)
+ 1612 096c 8083      		st Z,r24
+ 1613 096e 9183      		std Z+1,r25
+ 1614 0970 C091 0000 		lds r28,OSEventFreeList
+ 1615 0974 D091 0000 		lds r29,(OSEventFreeList)+1
+ 1616 0978 2097      		sbiw r28,0
+ 1617 097a B9F0      		breq .L132
+ 1618 097c 8C81      		ldd r24,Y+4
+ 1619 097e 9D81      		ldd r25,Y+5
+ 1620 0980 9093 0000 		sts (OSEventFreeList)+1,r25
+ 1621 0984 8093 0000 		sts OSEventFreeList,r24
+ 1622               	/* #APP */
+ 1623 0988 7894      		sei
+ 1624               	/* #NOAPP */
+ 1625 098a 84E0      		ldi r24,lo8(4)
+ 1626 098c 8883      		st Y,r24
+ 1627 098e 922F      		mov r25,r18
+ 1628 0990 8827      		clr r24
+ 1629 0992 8F6F      		ori r24,lo8(255)
+ 1630 0994 8A83      		std Y+2,r24
+ 1631 0996 9B83      		std Y+3,r25
+ 1632 0998 4C83      		std Y+4,r20
+ 1633 099a 5D83      		std Y+5,r21
+ 1634 099c CE01      		movw r24,r28
+ 1635 099e 0E94 0000 		call OS_EventWaitListInit
+ 1636 09a2 F801      		movw r30,r16
+ 1637 09a4 F082      		st Z,r15
+ 1638               	.L128:
+ 1639 09a6 CE01      		movw r24,r28
+ 1640 09a8 10C0      		rjmp .L124
+ 1641               	.L132:
+ 1642 09aa C083      		st Z,r28
+ 1643 09ac D183      		std Z+1,r29
+ 1644               	/* #APP */
+ 1645 09ae 7894      		sei
+ 1646               	/* #NOAPP */
+ 1647 09b0 84E0      		ldi r24,lo8(4)
+ 1648 09b2 FB01      		movw r30,r22
+ 1649 09b4 8083      		st Z,r24
+ 1650 09b6 F7CF      		rjmp .L128
+ 1651               	.L131:
+ 1652               	/* #APP */
+ 1653 09b8 7894      		sei
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 30
+
+
+ 1654               	/* #NOAPP */
+ 1655 09ba 88E2      		ldi r24,lo8(40)
+ 1656               	.L129:
+ 1657 09bc F801      		movw r30,r16
+ 1658 09be 8083      		st Z,r24
+ 1659 09c0 80E0      		ldi r24,lo8(0)
+ 1660 09c2 90E0      		ldi r25,hi8(0)
+ 1661 09c4 02C0      		rjmp .L124
+ 1662               	.L130:
+ 1663 09c6 8DE8      		ldi r24,lo8(-115)
+ 1664 09c8 F9CF      		rjmp .L129
+ 1665               	.L124:
+ 1666               	/* epilogue: frame size=0 */
+ 1667 09ca DF91      		pop r29
+ 1668 09cc CF91      		pop r28
+ 1669 09ce 1F91      		pop r17
+ 1670 09d0 0F91      		pop r16
+ 1671 09d2 FF90      		pop r15
+ 1672 09d4 0895      		ret
+ 1673               	/* epilogue end (size=6) */
+ 1674               	/* function OSMutexCreate size 83 (72) */
+ 1675               		.size	OSMutexCreate, .-OSMutexCreate
+ 1676               	.global	OSMutexDel
+ 1677               		.type	OSMutexDel, @function
+ 1678               	OSMutexDel:
+ 1679               	/* prologue: frame size=0 */
+ 1680 09d6 FF92      		push r15
+ 1681 09d8 0F93      		push r16
+ 1682 09da 1F93      		push r17
+ 1683 09dc CF93      		push r28
+ 1684 09de DF93      		push r29
+ 1685               	/* prologue end (size=5) */
+ 1686 09e0 EC01      		movw r28,r24
+ 1687 09e2 8A01      		movw r16,r20
+ 1688 09e4 8091 0000 		lds r24,OSIntNesting
+ 1689 09e8 8823      		tst r24
+ 1690 09ea 29F0      		breq .L134
+ 1691 09ec 8CE8      		ldi r24,lo8(-116)
+ 1692               	.L151:
+ 1693 09ee F801      		movw r30,r16
+ 1694 09f0 8083      		st Z,r24
+ 1695 09f2 CE01      		movw r24,r28
+ 1696 09f4 5AC0      		rjmp .L133
+ 1697               	.L134:
+ 1698               	/* #APP */
+ 1699 09f6 F894      		cli
+ 1700               	/* #NOAPP */
+ 1701 09f8 8981      		ldd r24,Y+1
+ 1702 09fa 8823      		tst r24
+ 1703 09fc 09F4      		brne .+2
+ 1704 09fe 53C0      		rjmp .L135
+ 1705 0a00 B1E0      		ldi r27,lo8(1)
+ 1706 0a02 FB2E      		mov r15,r27
+ 1707               	.L136:
+ 1708 0a04 7727      		clr r23
+ 1709 0a06 6115      		cp r22,__zero_reg__
+ 1710 0a08 7105      		cpc r23,__zero_reg__
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 31
+
+
+ 1711 0a0a 89F1      		breq .L138
+ 1712 0a0c 6130      		cpi r22,1
+ 1713 0a0e 7105      		cpc r23,__zero_reg__
+ 1714 0a10 19F0      		breq .L141
+ 1715               	/* #APP */
+ 1716 0a12 7894      		sei
+ 1717               	/* #NOAPP */
+ 1718 0a14 87E0      		ldi r24,lo8(7)
+ 1719 0a16 EBCF      		rjmp .L151
+ 1720               	.L141:
+ 1721 0a18 8823      		tst r24
+ 1722 0a1a F9F4      		brne .L145
+ 1723               	.L150:
+ 1724 0a1c EB81      		ldd r30,Y+3
+ 1725 0a1e FF27      		clr r31
+ 1726 0a20 EE0F      		add r30,r30
+ 1727 0a22 FF1F      		adc r31,r31
+ 1728 0a24 E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 1729 0a26 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 1730 0a28 1082      		st Z,__zero_reg__
+ 1731 0a2a 1182      		std Z+1,__zero_reg__
+ 1732 0a2c 1882      		st Y,__zero_reg__
+ 1733 0a2e 8091 0000 		lds r24,OSEventFreeList
+ 1734 0a32 9091 0000 		lds r25,(OSEventFreeList)+1
+ 1735 0a36 8C83      		std Y+4,r24
+ 1736 0a38 9D83      		std Y+5,r25
+ 1737 0a3a D093 0000 		sts (OSEventFreeList)+1,r29
+ 1738 0a3e C093 0000 		sts OSEventFreeList,r28
+ 1739               	/* #APP */
+ 1740 0a42 7894      		sei
+ 1741               	/* #NOAPP */
+ 1742 0a44 F1E0      		ldi r31,lo8(1)
+ 1743 0a46 FF16      		cp r15,r31
+ 1744 0a48 29F0      		breq .L153
+ 1745               	.L146:
+ 1746 0a4a F801      		movw r30,r16
+ 1747 0a4c 1082      		st Z,__zero_reg__
+ 1748               	.L152:
+ 1749 0a4e 80E0      		ldi r24,lo8(0)
+ 1750 0a50 90E0      		ldi r25,hi8(0)
+ 1751 0a52 2BC0      		rjmp .L133
+ 1752               	.L153:
+ 1753 0a54 0E94 0000 		call OS_Sched
+ 1754 0a58 F8CF      		rjmp .L146
+ 1755               	.L145:
+ 1756 0a5a 40E1      		ldi r20,lo8(16)
+ 1757 0a5c 60E0      		ldi r22,lo8(0)
+ 1758 0a5e 70E0      		ldi r23,hi8(0)
+ 1759 0a60 CE01      		movw r24,r28
+ 1760 0a62 0E94 0000 		call OS_EventTaskRdy
+ 1761 0a66 8981      		ldd r24,Y+1
+ 1762 0a68 8823      		tst r24
+ 1763 0a6a B9F7      		brne .L145
+ 1764 0a6c D7CF      		rjmp .L150
+ 1765               	.L138:
+ 1766 0a6e FF20      		tst r15
+ 1767 0a70 19F0      		breq .L154
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 32
+
+
+ 1768               	/* #APP */
+ 1769 0a72 7894      		sei
+ 1770               	/* #NOAPP */
+ 1771 0a74 88E0      		ldi r24,lo8(8)
+ 1772 0a76 BBCF      		rjmp .L151
+ 1773               	.L154:
+ 1774 0a78 EB81      		ldd r30,Y+3
+ 1775 0a7a FF27      		clr r31
+ 1776 0a7c EE0F      		add r30,r30
+ 1777 0a7e FF1F      		adc r31,r31
+ 1778 0a80 E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 1779 0a82 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 1780 0a84 6083      		st Z,r22
+ 1781 0a86 7183      		std Z+1,r23
+ 1782 0a88 F882      		st Y,r15
+ 1783 0a8a 8091 0000 		lds r24,OSEventFreeList
+ 1784 0a8e 9091 0000 		lds r25,(OSEventFreeList)+1
+ 1785 0a92 8C83      		std Y+4,r24
+ 1786 0a94 9D83      		std Y+5,r25
+ 1787 0a96 D093 0000 		sts (OSEventFreeList)+1,r29
+ 1788 0a9a C093 0000 		sts OSEventFreeList,r28
+ 1789               	/* #APP */
+ 1790 0a9e 7894      		sei
+ 1791               	/* #NOAPP */
+ 1792 0aa0 F801      		movw r30,r16
+ 1793 0aa2 F082      		st Z,r15
+ 1794 0aa4 D4CF      		rjmp .L152
+ 1795               	.L135:
+ 1796 0aa6 F82E      		mov r15,r24
+ 1797 0aa8 ADCF      		rjmp .L136
+ 1798               	.L133:
+ 1799               	/* epilogue: frame size=0 */
+ 1800 0aaa DF91      		pop r29
+ 1801 0aac CF91      		pop r28
+ 1802 0aae 1F91      		pop r17
+ 1803 0ab0 0F91      		pop r16
+ 1804 0ab2 FF90      		pop r15
+ 1805 0ab4 0895      		ret
+ 1806               	/* epilogue end (size=6) */
+ 1807               	/* function OSMutexDel size 117 (106) */
+ 1808               		.size	OSMutexDel, .-OSMutexDel
+ 1809               	.global	OSMutexPend
+ 1810               		.type	OSMutexPend, @function
+ 1811               	OSMutexPend:
+ 1812               	/* prologue: frame size=0 */
+ 1813 0ab6 0F93      		push r16
+ 1814 0ab8 1F93      		push r17
+ 1815 0aba CF93      		push r28
+ 1816 0abc DF93      		push r29
+ 1817               	/* prologue end (size=4) */
+ 1818 0abe EC01      		movw r28,r24
+ 1819 0ac0 8A01      		movw r16,r20
+ 1820 0ac2 4091 0000 		lds r20,OSIntNesting
+ 1821 0ac6 4423      		tst r20
+ 1822 0ac8 21F0      		breq .L156
+ 1823 0aca 82E0      		ldi r24,lo8(2)
+ 1824               	.L165:
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 33
+
+
+ 1825 0acc F801      		movw r30,r16
+ 1826 0ace 8083      		st Z,r24
+ 1827 0ad0 B5C0      		rjmp .L155
+ 1828               	.L156:
+ 1829               	/* #APP */
+ 1830 0ad2 F894      		cli
+ 1831               	/* #NOAPP */
+ 1832 0ad4 9A81      		ldd r25,Y+2
+ 1833 0ad6 9F3F      		cpi r25,lo8(-1)
+ 1834 0ad8 09F4      		brne .+2
+ 1835 0ada 9CC0      		rjmp .L166
+ 1836 0adc 3B81      		ldd r19,Y+3
+ 1837 0ade AC81      		ldd r26,Y+4
+ 1838 0ae0 BD81      		ldd r27,Y+5
+ 1839 0ae2 1D96      		adiw r26,13
+ 1840 0ae4 8C91      		ld r24,X
+ 1841 0ae6 1D97      		sbiw r26,13
+ 1842 0ae8 8317      		cp r24,r19
+ 1843 0aea 09F4      		brne .+2
+ 1844 0aec 51C0      		rjmp .L164
+ 1845 0aee E091 0000 		lds r30,OSTCBCur
+ 1846 0af2 F091 0000 		lds r31,(OSTCBCur)+1
+ 1847 0af6 8585      		ldd r24,Z+13
+ 1848 0af8 8917      		cp r24,r25
+ 1849 0afa 08F0      		brlo .+2
+ 1850 0afc 4DC0      		rjmp .L158
+ 1851 0afe 1F96      		adiw r26,15
+ 1852 0b00 8C91      		ld r24,X
+ 1853 0b02 1F97      		sbiw r26,15
+ 1854 0b04 482F      		mov r20,r24
+ 1855 0b06 5527      		clr r21
+ 1856 0b08 4050      		subi r20,lo8(-(OSRdyTbl))
+ 1857 0b0a 5040      		sbci r21,hi8(-(OSRdyTbl))
+ 1858 0b0c FA01      		movw r30,r20
+ 1859 0b0e 2081      		ld r18,Z
+ 1860 0b10 5096      		adiw r26,16
+ 1861 0b12 8C91      		ld r24,X
+ 1862 0b14 5097      		sbiw r26,16
+ 1863 0b16 922F      		mov r25,r18
+ 1864 0b18 9823      		and r25,r24
+ 1865 0b1a 09F4      		brne .+2
+ 1866 0b1c 79C0      		rjmp .L159
+ 1867 0b1e 8095      		com r24
+ 1868 0b20 8223      		and r24,r18
+ 1869 0b22 FA01      		movw r30,r20
+ 1870 0b24 8083      		st Z,r24
+ 1871 0b26 8823      		tst r24
+ 1872 0b28 49F4      		brne .L160
+ 1873 0b2a 5196      		adiw r26,17
+ 1874 0b2c 9C91      		ld r25,X
+ 1875 0b2e 5197      		sbiw r26,17
+ 1876 0b30 9095      		com r25
+ 1877 0b32 8091 0000 		lds r24,OSRdyGrp
+ 1878 0b36 8923      		and r24,r25
+ 1879 0b38 8093 0000 		sts OSRdyGrp,r24
+ 1880               	.L160:
+ 1881 0b3c 21E0      		ldi r18,lo8(1)
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 34
+
+
+ 1882               	.L161:
+ 1883 0b3e 1D96      		adiw r26,13
+ 1884 0b40 3C93      		st X,r19
+ 1885 0b42 1D97      		sbiw r26,13
+ 1886 0b44 832F      		mov r24,r19
+ 1887 0b46 8695      		lsr r24
+ 1888 0b48 8695      		lsr r24
+ 1889 0b4a 8695      		lsr r24
+ 1890 0b4c 1F96      		adiw r26,15
+ 1891 0b4e 8C93      		st X,r24
+ 1892 0b50 1F97      		sbiw r26,15
+ 1893 0b52 E82F      		mov r30,r24
+ 1894 0b54 FF27      		clr r31
+ 1895 0b56 E050      		subi r30,lo8(-(OSMapTbl))
+ 1896 0b58 F040      		sbci r31,hi8(-(OSMapTbl))
+ 1897 0b5a 9081      		ld r25,Z
+ 1898 0b5c 5196      		adiw r26,17
+ 1899 0b5e 9C93      		st X,r25
+ 1900 0b60 5197      		sbiw r26,17
+ 1901 0b62 832F      		mov r24,r19
+ 1902 0b64 8770      		andi r24,lo8(7)
+ 1903 0b66 1E96      		adiw r26,14
+ 1904 0b68 8C93      		st X,r24
+ 1905 0b6a 1E97      		sbiw r26,14
+ 1906 0b6c E82F      		mov r30,r24
+ 1907 0b6e FF27      		clr r31
+ 1908 0b70 E050      		subi r30,lo8(-(OSMapTbl))
+ 1909 0b72 F040      		sbci r31,hi8(-(OSMapTbl))
+ 1910 0b74 8081      		ld r24,Z
+ 1911 0b76 5096      		adiw r26,16
+ 1912 0b78 8C93      		st X,r24
+ 1913 0b7a 5097      		sbiw r26,16
+ 1914 0b7c 2130      		cpi r18,lo8(1)
+ 1915 0b7e 99F1      		breq .L167
+ 1916               	.L162:
+ 1917 0b80 E32F      		mov r30,r19
+ 1918 0b82 FF27      		clr r31
+ 1919 0b84 EE0F      		add r30,r30
+ 1920 0b86 FF1F      		adc r31,r31
+ 1921 0b88 E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 1922 0b8a F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 1923 0b8c A083      		st Z,r26
+ 1924 0b8e B183      		std Z+1,r27
+ 1925               	.L164:
+ 1926 0b90 E091 0000 		lds r30,OSTCBCur
+ 1927 0b94 F091 0000 		lds r31,(OSTCBCur)+1
+ 1928               	.L158:
+ 1929 0b98 8485      		ldd r24,Z+12
+ 1930 0b9a 8061      		ori r24,lo8(16)
+ 1931 0b9c 8487      		std Z+12,r24
+ 1932 0b9e E091 0000 		lds r30,OSTCBCur
+ 1933 0ba2 F091 0000 		lds r31,(OSTCBCur)+1
+ 1934 0ba6 6287      		std Z+10,r22
+ 1935 0ba8 7387      		std Z+11,r23
+ 1936 0baa CE01      		movw r24,r28
+ 1937 0bac 0E94 0000 		call OS_EventTaskWait
+ 1938               	/* #APP */
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 35
+
+
+ 1939 0bb0 7894      		sei
+ 1940               	/* #NOAPP */
+ 1941 0bb2 0E94 0000 		call OS_Sched
+ 1942               	/* #APP */
+ 1943 0bb6 F894      		cli
+ 1944               	/* #NOAPP */
+ 1945 0bb8 E091 0000 		lds r30,OSTCBCur
+ 1946 0bbc F091 0000 		lds r31,(OSTCBCur)+1
+ 1947 0bc0 8485      		ldd r24,Z+12
+ 1948 0bc2 9927      		clr r25
+ 1949 0bc4 9C01      		movw r18,r24
+ 1950 0bc6 2071      		andi r18,lo8(16)
+ 1951 0bc8 3070      		andi r19,hi8(16)
+ 1952 0bca 84FD      		sbrc r24,4
+ 1953 0bcc 06C0      		rjmp .L168
+ 1954 0bce 2683      		std Z+6,r18
+ 1955 0bd0 3783      		std Z+7,r19
+ 1956               	/* #APP */
+ 1957 0bd2 7894      		sei
+ 1958               	/* #NOAPP */
+ 1959 0bd4 F801      		movw r30,r16
+ 1960 0bd6 1082      		st Z,__zero_reg__
+ 1961 0bd8 31C0      		rjmp .L155
+ 1962               	.L168:
+ 1963 0bda CE01      		movw r24,r28
+ 1964 0bdc 0E94 0000 		call OS_EventTO
+ 1965               	/* #APP */
+ 1966 0be0 7894      		sei
+ 1967               	/* #NOAPP */
+ 1968 0be2 8AE0      		ldi r24,lo8(10)
+ 1969 0be4 73CF      		rjmp .L165
+ 1970               	.L167:
+ 1971 0be6 8091 0000 		lds r24,OSRdyGrp
+ 1972 0bea 892B      		or r24,r25
+ 1973 0bec 8093 0000 		sts OSRdyGrp,r24
+ 1974 0bf0 1F96      		adiw r26,15
+ 1975 0bf2 8C91      		ld r24,X
+ 1976 0bf4 1F97      		sbiw r26,15
+ 1977 0bf6 482F      		mov r20,r24
+ 1978 0bf8 5527      		clr r21
+ 1979 0bfa 4050      		subi r20,lo8(-(OSRdyTbl))
+ 1980 0bfc 5040      		sbci r21,hi8(-(OSRdyTbl))
+ 1981 0bfe FA01      		movw r30,r20
+ 1982 0c00 8081      		ld r24,Z
+ 1983 0c02 5096      		adiw r26,16
+ 1984 0c04 9C91      		ld r25,X
+ 1985 0c06 5097      		sbiw r26,16
+ 1986 0c08 892B      		or r24,r25
+ 1987 0c0a FA01      		movw r30,r20
+ 1988 0c0c 8083      		st Z,r24
+ 1989 0c0e B8CF      		rjmp .L162
+ 1990               	.L159:
+ 1991 0c10 292F      		mov r18,r25
+ 1992 0c12 95CF      		rjmp .L161
+ 1993               	.L166:
+ 1994 0c14 2A81      		ldd r18,Y+2
+ 1995 0c16 3B81      		ldd r19,Y+3
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 36
+
+
+ 1996 0c18 2070      		andi r18,lo8(-256)
+ 1997 0c1a 2A83      		std Y+2,r18
+ 1998 0c1c 3B83      		std Y+3,r19
+ 1999 0c1e E091 0000 		lds r30,OSTCBCur
+ 2000 0c22 F091 0000 		lds r31,(OSTCBCur)+1
+ 2001 0c26 8585      		ldd r24,Z+13
+ 2002 0c28 9927      		clr r25
+ 2003 0c2a 282B      		or r18,r24
+ 2004 0c2c 392B      		or r19,r25
+ 2005 0c2e 2A83      		std Y+2,r18
+ 2006 0c30 3B83      		std Y+3,r19
+ 2007 0c32 EC83      		std Y+4,r30
+ 2008 0c34 FD83      		std Y+5,r31
+ 2009               	/* #APP */
+ 2010 0c36 7894      		sei
+ 2011               	/* #NOAPP */
+ 2012 0c38 F801      		movw r30,r16
+ 2013 0c3a 4083      		st Z,r20
+ 2014               	.L155:
+ 2015               	/* epilogue: frame size=0 */
+ 2016 0c3c DF91      		pop r29
+ 2017 0c3e CF91      		pop r28
+ 2018 0c40 1F91      		pop r17
+ 2019 0c42 0F91      		pop r16
+ 2020 0c44 0895      		ret
+ 2021               	/* epilogue end (size=5) */
+ 2022               	/* function OSMutexPend size 208 (199) */
+ 2023               		.size	OSMutexPend, .-OSMutexPend
+ 2024               	.global	OSMutexPost
+ 2025               		.type	OSMutexPost, @function
+ 2026               	OSMutexPost:
+ 2027               	/* prologue: frame size=0 */
+ 2028 0c46 CF93      		push r28
+ 2029 0c48 DF93      		push r29
+ 2030               	/* prologue end (size=2) */
+ 2031 0c4a EC01      		movw r28,r24
+ 2032 0c4c 8091 0000 		lds r24,OSIntNesting
+ 2033 0c50 8823      		tst r24
+ 2034 0c52 09F0      		breq .+2
+ 2035 0c54 B8C0      		rjmp .L177
+ 2036               	/* #APP */
+ 2037 0c56 F894      		cli
+ 2038               	/* #NOAPP */
+ 2039 0c58 3B81      		ldd r19,Y+3
+ 2040 0c5a 2A81      		ldd r18,Y+2
+ 2041 0c5c A091 0000 		lds r26,OSTCBCur
+ 2042 0c60 B091 0000 		lds r27,(OSTCBCur)+1
+ 2043 0c64 1D96      		adiw r26,13
+ 2044 0c66 8C91      		ld r24,X
+ 2045 0c68 1D97      		sbiw r26,13
+ 2046 0c6a 8317      		cp r24,r19
+ 2047 0c6c 19F0      		breq .L171
+ 2048 0c6e 8217      		cp r24,r18
+ 2049 0c70 09F0      		breq .+2
+ 2050 0c72 A5C0      		rjmp .L178
+ 2051               	.L171:
+ 2052 0c74 1D96      		adiw r26,13
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 37
+
+
+ 2053 0c76 8C91      		ld r24,X
+ 2054 0c78 1D97      		sbiw r26,13
+ 2055 0c7a 8317      		cp r24,r19
+ 2056 0c7c A1F1      		breq .L179
+ 2057               	.L172:
+ 2058 0c7e E32F      		mov r30,r19
+ 2059 0c80 FF27      		clr r31
+ 2060 0c82 EE0F      		add r30,r30
+ 2061 0c84 FF1F      		adc r31,r31
+ 2062 0c86 E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 2063 0c88 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 2064 0c8a 81E0      		ldi r24,lo8(1)
+ 2065 0c8c 90E0      		ldi r25,hi8(1)
+ 2066 0c8e 8083      		st Z,r24
+ 2067 0c90 9183      		std Z+1,r25
+ 2068 0c92 8981      		ldd r24,Y+1
+ 2069 0c94 8823      		tst r24
+ 2070 0c96 59F4      		brne .L180
+ 2071 0c98 8A81      		ldd r24,Y+2
+ 2072 0c9a 9B81      		ldd r25,Y+3
+ 2073 0c9c 8F6F      		ori r24,lo8(255)
+ 2074 0c9e 8A83      		std Y+2,r24
+ 2075 0ca0 9B83      		std Y+3,r25
+ 2076 0ca2 1C82      		std Y+4,__zero_reg__
+ 2077 0ca4 1D82      		std Y+5,__zero_reg__
+ 2078               	/* #APP */
+ 2079 0ca6 7894      		sei
+ 2080               	/* #NOAPP */
+ 2081               	.L176:
+ 2082 0ca8 80E0      		ldi r24,lo8(0)
+ 2083 0caa 90E0      		ldi r25,hi8(0)
+ 2084 0cac 8EC0      		rjmp .L169
+ 2085               	.L180:
+ 2086 0cae 40E1      		ldi r20,lo8(16)
+ 2087 0cb0 60E0      		ldi r22,lo8(0)
+ 2088 0cb2 70E0      		ldi r23,hi8(0)
+ 2089 0cb4 CE01      		movw r24,r28
+ 2090 0cb6 0E94 0000 		call OS_EventTaskRdy
+ 2091 0cba 282F      		mov r18,r24
+ 2092 0cbc 8A81      		ldd r24,Y+2
+ 2093 0cbe 9B81      		ldd r25,Y+3
+ 2094 0cc0 8070      		andi r24,lo8(-256)
+ 2095 0cc2 E22F      		mov r30,r18
+ 2096 0cc4 FF27      		clr r31
+ 2097 0cc6 8E2B      		or r24,r30
+ 2098 0cc8 9F2B      		or r25,r31
+ 2099 0cca 8A83      		std Y+2,r24
+ 2100 0ccc 9B83      		std Y+3,r25
+ 2101 0cce EE0F      		add r30,r30
+ 2102 0cd0 FF1F      		adc r31,r31
+ 2103 0cd2 E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 2104 0cd4 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 2105 0cd6 8081      		ld r24,Z
+ 2106 0cd8 9181      		ldd r25,Z+1
+ 2107 0cda 8C83      		std Y+4,r24
+ 2108 0cdc 9D83      		std Y+5,r25
+ 2109               	/* #APP */
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 38
+
+
+ 2110 0cde 7894      		sei
+ 2111               	/* #NOAPP */
+ 2112 0ce0 0E94 0000 		call OS_Sched
+ 2113 0ce4 E1CF      		rjmp .L176
+ 2114               	.L179:
+ 2115 0ce6 1F96      		adiw r26,15
+ 2116 0ce8 8C91      		ld r24,X
+ 2117 0cea 1F97      		sbiw r26,15
+ 2118 0cec 482F      		mov r20,r24
+ 2119 0cee 5527      		clr r21
+ 2120 0cf0 4050      		subi r20,lo8(-(OSRdyTbl))
+ 2121 0cf2 5040      		sbci r21,hi8(-(OSRdyTbl))
+ 2122 0cf4 5096      		adiw r26,16
+ 2123 0cf6 9C91      		ld r25,X
+ 2124 0cf8 5097      		sbiw r26,16
+ 2125 0cfa 9095      		com r25
+ 2126 0cfc FA01      		movw r30,r20
+ 2127 0cfe 8081      		ld r24,Z
+ 2128 0d00 8923      		and r24,r25
+ 2129 0d02 8083      		st Z,r24
+ 2130 0d04 8823      		tst r24
+ 2131 0d06 49F4      		brne .L173
+ 2132 0d08 5196      		adiw r26,17
+ 2133 0d0a 9C91      		ld r25,X
+ 2134 0d0c 5197      		sbiw r26,17
+ 2135 0d0e 9095      		com r25
+ 2136 0d10 8091 0000 		lds r24,OSRdyGrp
+ 2137 0d14 8923      		and r24,r25
+ 2138 0d16 8093 0000 		sts OSRdyGrp,r24
+ 2139               	.L173:
+ 2140 0d1a 1D96      		adiw r26,13
+ 2141 0d1c 2C93      		st X,r18
+ 2142 0d1e E091 0000 		lds r30,OSTCBCur
+ 2143 0d22 F091 0000 		lds r31,(OSTCBCur)+1
+ 2144 0d26 822F      		mov r24,r18
+ 2145 0d28 8695      		lsr r24
+ 2146 0d2a 8695      		lsr r24
+ 2147 0d2c 8695      		lsr r24
+ 2148 0d2e 8787      		std Z+15,r24
+ 2149 0d30 A091 0000 		lds r26,OSTCBCur
+ 2150 0d34 B091 0000 		lds r27,(OSTCBCur)+1
+ 2151 0d38 1F96      		adiw r26,15
+ 2152 0d3a 8C91      		ld r24,X
+ 2153 0d3c 1F97      		sbiw r26,15
+ 2154 0d3e E82F      		mov r30,r24
+ 2155 0d40 FF27      		clr r31
+ 2156 0d42 E050      		subi r30,lo8(-(OSMapTbl))
+ 2157 0d44 F040      		sbci r31,hi8(-(OSMapTbl))
+ 2158 0d46 8081      		ld r24,Z
+ 2159 0d48 5196      		adiw r26,17
+ 2160 0d4a 8C93      		st X,r24
+ 2161 0d4c E091 0000 		lds r30,OSTCBCur
+ 2162 0d50 F091 0000 		lds r31,(OSTCBCur)+1
+ 2163 0d54 822F      		mov r24,r18
+ 2164 0d56 8770      		andi r24,lo8(7)
+ 2165 0d58 8687      		std Z+14,r24
+ 2166 0d5a A091 0000 		lds r26,OSTCBCur
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 39
+
+
+ 2167 0d5e B091 0000 		lds r27,(OSTCBCur)+1
+ 2168 0d62 1E96      		adiw r26,14
+ 2169 0d64 8C91      		ld r24,X
+ 2170 0d66 1E97      		sbiw r26,14
+ 2171 0d68 E82F      		mov r30,r24
+ 2172 0d6a FF27      		clr r31
+ 2173 0d6c E050      		subi r30,lo8(-(OSMapTbl))
+ 2174 0d6e F040      		sbci r31,hi8(-(OSMapTbl))
+ 2175 0d70 8081      		ld r24,Z
+ 2176 0d72 5096      		adiw r26,16
+ 2177 0d74 8C93      		st X,r24
+ 2178 0d76 A091 0000 		lds r26,OSTCBCur
+ 2179 0d7a B091 0000 		lds r27,(OSTCBCur)+1
+ 2180 0d7e 8091 0000 		lds r24,OSRdyGrp
+ 2181 0d82 5196      		adiw r26,17
+ 2182 0d84 9C91      		ld r25,X
+ 2183 0d86 5197      		sbiw r26,17
+ 2184 0d88 892B      		or r24,r25
+ 2185 0d8a 8093 0000 		sts OSRdyGrp,r24
+ 2186 0d8e 1F96      		adiw r26,15
+ 2187 0d90 8C91      		ld r24,X
+ 2188 0d92 1F97      		sbiw r26,15
+ 2189 0d94 482F      		mov r20,r24
+ 2190 0d96 5527      		clr r21
+ 2191 0d98 4050      		subi r20,lo8(-(OSRdyTbl))
+ 2192 0d9a 5040      		sbci r21,hi8(-(OSRdyTbl))
+ 2193 0d9c FA01      		movw r30,r20
+ 2194 0d9e 8081      		ld r24,Z
+ 2195 0da0 5096      		adiw r26,16
+ 2196 0da2 9C91      		ld r25,X
+ 2197 0da4 5097      		sbiw r26,16
+ 2198 0da6 892B      		or r24,r25
+ 2199 0da8 FA01      		movw r30,r20
+ 2200 0daa 8083      		st Z,r24
+ 2201 0dac E22F      		mov r30,r18
+ 2202 0dae FF27      		clr r31
+ 2203 0db0 EE0F      		add r30,r30
+ 2204 0db2 FF1F      		adc r31,r31
+ 2205 0db4 E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 2206 0db6 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 2207 0db8 A083      		st Z,r26
+ 2208 0dba B183      		std Z+1,r27
+ 2209 0dbc 60CF      		rjmp .L172
+ 2210               	.L178:
+ 2211               	/* #APP */
+ 2212 0dbe 7894      		sei
+ 2213               	/* #NOAPP */
+ 2214 0dc0 88E7      		ldi r24,lo8(120)
+ 2215 0dc2 90E0      		ldi r25,hi8(120)
+ 2216 0dc4 02C0      		rjmp .L169
+ 2217               	.L177:
+ 2218 0dc6 85E0      		ldi r24,lo8(5)
+ 2219 0dc8 90E0      		ldi r25,hi8(5)
+ 2220               	.L169:
+ 2221               	/* epilogue: frame size=0 */
+ 2222 0dca DF91      		pop r29
+ 2223 0dcc CF91      		pop r28
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 40
+
+
+ 2224 0dce 0895      		ret
+ 2225               	/* epilogue end (size=3) */
+ 2226               	/* function OSMutexPost size 202 (197) */
+ 2227               		.size	OSMutexPost, .-OSMutexPost
+ 2228               	.global	OSMutexQuery
+ 2229               		.type	OSMutexQuery, @function
+ 2230               	OSMutexQuery:
+ 2231               	/* prologue: frame size=0 */
+ 2232 0dd0 CF93      		push r28
+ 2233 0dd2 DF93      		push r29
+ 2234               	/* prologue end (size=2) */
+ 2235 0dd4 DC01      		movw r26,r24
+ 2236 0dd6 FB01      		movw r30,r22
+ 2237 0dd8 2091 0000 		lds r18,OSIntNesting
+ 2238 0ddc 2223      		tst r18
+ 2239 0dde 09F5      		brne .L185
+ 2240               	/* #APP */
+ 2241 0de0 F894      		cli
+ 2242               	/* #NOAPP */
+ 2243 0de2 1296      		adiw r26,2
+ 2244 0de4 8D91      		ld r24,X+
+ 2245 0de6 9C91      		ld r25,X
+ 2246 0de8 1397      		sbiw r26,2+1
+ 2247 0dea 892F      		mov r24,r25
+ 2248 0dec 9927      		clr r25
+ 2249 0dee 8583      		std Z+5,r24
+ 2250 0df0 1296      		adiw r26,2
+ 2251 0df2 8C91      		ld r24,X
+ 2252 0df4 1297      		sbiw r26,2
+ 2253 0df6 8483      		std Z+4,r24
+ 2254 0df8 8F3F      		cpi r24,lo8(-1)
+ 2255 0dfa 81F0      		breq .L186
+ 2256 0dfc 2383      		std Z+3,r18
+ 2257               	.L184:
+ 2258 0dfe 1196      		adiw r26,1
+ 2259 0e00 8C91      		ld r24,X
+ 2260 0e02 1197      		sbiw r26,1
+ 2261 0e04 8283      		std Z+2,r24
+ 2262 0e06 1696      		adiw r26,6
+ 2263 0e08 8C91      		ld r24,X
+ 2264 0e0a 1697      		sbiw r26,6
+ 2265 0e0c 8083      		st Z,r24
+ 2266 0e0e 1796      		adiw r26,7
+ 2267 0e10 8C91      		ld r24,X
+ 2268 0e12 8183      		std Z+1,r24
+ 2269               	/* #APP */
+ 2270 0e14 7894      		sei
+ 2271               	/* #NOAPP */
+ 2272 0e16 80E0      		ldi r24,lo8(0)
+ 2273 0e18 90E0      		ldi r25,hi8(0)
+ 2274 0e1a 05C0      		rjmp .L181
+ 2275               	.L186:
+ 2276 0e1c 81E0      		ldi r24,lo8(1)
+ 2277 0e1e 8383      		std Z+3,r24
+ 2278 0e20 EECF      		rjmp .L184
+ 2279               	.L185:
+ 2280 0e22 86E0      		ldi r24,lo8(6)
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 41
+
+
+ 2281 0e24 90E0      		ldi r25,hi8(6)
+ 2282               	.L181:
+ 2283               	/* epilogue: frame size=0 */
+ 2284 0e26 DF91      		pop r29
+ 2285 0e28 CF91      		pop r28
+ 2286 0e2a 0895      		ret
+ 2287               	/* epilogue end (size=3) */
+ 2288               	/* function OSMutexQuery size 48 (43) */
+ 2289               		.size	OSMutexQuery, .-OSMutexQuery
+ 2290               	.global	OSQCreate
+ 2291               		.type	OSQCreate, @function
+ 2292               	OSQCreate:
+ 2293               	/* prologue: frame size=0 */
+ 2294 0e2c CF93      		push r28
+ 2295 0e2e DF93      		push r29
+ 2296               	/* prologue end (size=2) */
+ 2297 0e30 9C01      		movw r18,r24
+ 2298 0e32 8091 0000 		lds r24,OSIntNesting
+ 2299 0e36 8823      		tst r24
+ 2300 0e38 09F0      		breq .+2
+ 2301 0e3a 47C0      		rjmp .L193
+ 2302               	/* #APP */
+ 2303 0e3c F894      		cli
+ 2304               	/* #NOAPP */
+ 2305 0e3e C091 0000 		lds r28,OSEventFreeList
+ 2306 0e42 D091 0000 		lds r29,(OSEventFreeList)+1
+ 2307 0e46 2097      		sbiw r28,0
+ 2308 0e48 31F0      		breq .L189
+ 2309 0e4a 8C81      		ldd r24,Y+4
+ 2310 0e4c 9D81      		ldd r25,Y+5
+ 2311 0e4e 9093 0000 		sts (OSEventFreeList)+1,r25
+ 2312 0e52 8093 0000 		sts OSEventFreeList,r24
+ 2313               	.L189:
+ 2314               	/* #APP */
+ 2315 0e56 7894      		sei
+ 2316               	/* #NOAPP */
+ 2317 0e58 2097      		sbiw r28,0
+ 2318 0e5a 41F1      		breq .L190
+ 2319               	/* #APP */
+ 2320 0e5c F894      		cli
+ 2321               	/* #NOAPP */
+ 2322 0e5e E091 0000 		lds r30,OSQFreeList
+ 2323 0e62 F091 0000 		lds r31,(OSQFreeList)+1
+ 2324 0e66 3097      		sbiw r30,0
+ 2325 0e68 19F1      		breq .L191
+ 2326 0e6a 8081      		ld r24,Z
+ 2327 0e6c 9181      		ldd r25,Z+1
+ 2328 0e6e 9093 0000 		sts (OSQFreeList)+1,r25
+ 2329 0e72 8093 0000 		sts OSQFreeList,r24
+ 2330               	/* #APP */
+ 2331 0e76 7894      		sei
+ 2332               	/* #NOAPP */
+ 2333 0e78 2283      		std Z+2,r18
+ 2334 0e7a 3383      		std Z+3,r19
+ 2335 0e7c CB01      		movw r24,r22
+ 2336 0e7e 860F      		add r24,r22
+ 2337 0e80 971F      		adc r25,r23
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 42
+
+
+ 2338 0e82 820F      		add r24,r18
+ 2339 0e84 931F      		adc r25,r19
+ 2340 0e86 8483      		std Z+4,r24
+ 2341 0e88 9583      		std Z+5,r25
+ 2342 0e8a 2683      		std Z+6,r18
+ 2343 0e8c 3783      		std Z+7,r19
+ 2344 0e8e 2087      		std Z+8,r18
+ 2345 0e90 3187      		std Z+9,r19
+ 2346 0e92 6287      		std Z+10,r22
+ 2347 0e94 7387      		std Z+11,r23
+ 2348 0e96 1486      		std Z+12,__zero_reg__
+ 2349 0e98 1586      		std Z+13,__zero_reg__
+ 2350 0e9a 82E0      		ldi r24,lo8(2)
+ 2351 0e9c 8883      		st Y,r24
+ 2352 0e9e 1A82      		std Y+2,__zero_reg__
+ 2353 0ea0 1B82      		std Y+3,__zero_reg__
+ 2354 0ea2 EC83      		std Y+4,r30
+ 2355 0ea4 FD83      		std Y+5,r31
+ 2356 0ea6 CE01      		movw r24,r28
+ 2357 0ea8 0E94 0000 		call OS_EventWaitListInit
+ 2358               	.L190:
+ 2359 0eac CE01      		movw r24,r28
+ 2360 0eae 0FC0      		rjmp .L187
+ 2361               	.L191:
+ 2362 0eb0 8091 0000 		lds r24,OSEventFreeList
+ 2363 0eb4 9091 0000 		lds r25,(OSEventFreeList)+1
+ 2364 0eb8 8C83      		std Y+4,r24
+ 2365 0eba 9D83      		std Y+5,r25
+ 2366 0ebc D093 0000 		sts (OSEventFreeList)+1,r29
+ 2367 0ec0 C093 0000 		sts OSEventFreeList,r28
+ 2368               	/* #APP */
+ 2369 0ec4 7894      		sei
+ 2370               	/* #NOAPP */
+ 2371 0ec6 EF01      		movw r28,r30
+ 2372 0ec8 F1CF      		rjmp .L190
+ 2373               	.L193:
+ 2374 0eca 80E0      		ldi r24,lo8(0)
+ 2375 0ecc 90E0      		ldi r25,hi8(0)
+ 2376               	.L187:
+ 2377               	/* epilogue: frame size=0 */
+ 2378 0ece DF91      		pop r29
+ 2379 0ed0 CF91      		pop r28
+ 2380 0ed2 0895      		ret
+ 2381               	/* epilogue end (size=3) */
+ 2382               	/* function OSQCreate size 89 (84) */
+ 2383               		.size	OSQCreate, .-OSQCreate
+ 2384               	.global	OSQPend
+ 2385               		.type	OSQPend, @function
+ 2386               	OSQPend:
+ 2387               	/* prologue: frame size=0 */
+ 2388 0ed4 8F92      		push r8
+ 2389 0ed6 9F92      		push r9
+ 2390 0ed8 BF92      		push r11
+ 2391 0eda CF92      		push r12
+ 2392 0edc DF92      		push r13
+ 2393 0ede EF92      		push r14
+ 2394 0ee0 FF92      		push r15
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 43
+
+
+ 2395 0ee2 0F93      		push r16
+ 2396 0ee4 1F93      		push r17
+ 2397 0ee6 CF93      		push r28
+ 2398 0ee8 DF93      		push r29
+ 2399               	/* prologue end (size=11) */
+ 2400 0eea 8C01      		movw r16,r24
+ 2401 0eec 6A01      		movw r12,r20
+ 2402 0eee B090 0000 		lds r11,OSIntNesting
+ 2403 0ef2 BB20      		tst r11
+ 2404 0ef4 09F0      		breq .+2
+ 2405 0ef6 63C0      		rjmp .L200
+ 2406               	/* #APP */
+ 2407 0ef8 F894      		cli
+ 2408               	/* #NOAPP */
+ 2409 0efa FC01      		movw r30,r24
+ 2410 0efc A481      		ldd r26,Z+4
+ 2411 0efe B581      		ldd r27,Z+5
+ 2412 0f00 1C96      		adiw r26,12
+ 2413 0f02 8D90      		ld r8,X+
+ 2414 0f04 9C90      		ld r9,X
+ 2415 0f06 1D97      		sbiw r26,12+1
+ 2416 0f08 8114      		cp r8,__zero_reg__
+ 2417 0f0a 9104      		cpc r9,__zero_reg__
+ 2418 0f0c 31F1      		breq .L196
+ 2419 0f0e 1896      		adiw r26,8
+ 2420 0f10 ED91      		ld r30,X+
+ 2421 0f12 FC91      		ld r31,X
+ 2422 0f14 1997      		sbiw r26,8+1
+ 2423 0f16 E190      		ld r14,Z+
+ 2424 0f18 F190      		ld r15,Z+
+ 2425 0f1a 1896      		adiw r26,8
+ 2426 0f1c ED93      		st X+,r30
+ 2427 0f1e FC93      		st X,r31
+ 2428 0f20 1997      		sbiw r26,8+1
+ 2429 0f22 0894      		sec
+ 2430 0f24 8108      		sbc r8,__zero_reg__
+ 2431 0f26 9108      		sbc r9,__zero_reg__
+ 2432 0f28 1C96      		adiw r26,12
+ 2433 0f2a 8D92      		st X+,r8
+ 2434 0f2c 9C92      		st X,r9
+ 2435 0f2e 1D97      		sbiw r26,12+1
+ 2436 0f30 1496      		adiw r26,4
+ 2437 0f32 8D91      		ld r24,X+
+ 2438 0f34 9C91      		ld r25,X
+ 2439 0f36 1597      		sbiw r26,4+1
+ 2440 0f38 E817      		cp r30,r24
+ 2441 0f3a F907      		cpc r31,r25
+ 2442 0f3c 29F0      		breq .L201
+ 2443               	.L197:
+ 2444               	/* #APP */
+ 2445 0f3e 7894      		sei
+ 2446               	/* #NOAPP */
+ 2447 0f40 F601      		movw r30,r12
+ 2448 0f42 B082      		st Z,r11
+ 2449               	.L199:
+ 2450 0f44 C701      		movw r24,r14
+ 2451 0f46 40C0      		rjmp .L194
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 44
+
+
+ 2452               	.L201:
+ 2453 0f48 1296      		adiw r26,2
+ 2454 0f4a 8D91      		ld r24,X+
+ 2455 0f4c 9C91      		ld r25,X
+ 2456 0f4e 1397      		sbiw r26,2+1
+ 2457 0f50 1896      		adiw r26,8
+ 2458 0f52 8D93      		st X+,r24
+ 2459 0f54 9C93      		st X,r25
+ 2460 0f56 1997      		sbiw r26,8+1
+ 2461 0f58 F2CF      		rjmp .L197
+ 2462               	.L196:
+ 2463 0f5a E091 0000 		lds r30,OSTCBCur
+ 2464 0f5e F091 0000 		lds r31,(OSTCBCur)+1
+ 2465 0f62 8485      		ldd r24,Z+12
+ 2466 0f64 8460      		ori r24,lo8(4)
+ 2467 0f66 8487      		std Z+12,r24
+ 2468 0f68 E091 0000 		lds r30,OSTCBCur
+ 2469 0f6c F091 0000 		lds r31,(OSTCBCur)+1
+ 2470 0f70 6287      		std Z+10,r22
+ 2471 0f72 7387      		std Z+11,r23
+ 2472 0f74 C801      		movw r24,r16
+ 2473 0f76 0E94 0000 		call OS_EventTaskWait
+ 2474               	/* #APP */
+ 2475 0f7a 7894      		sei
+ 2476               	/* #NOAPP */
+ 2477 0f7c 0E94 0000 		call OS_Sched
+ 2478               	/* #APP */
+ 2479 0f80 F894      		cli
+ 2480               	/* #NOAPP */
+ 2481 0f82 E091 0000 		lds r30,OSTCBCur
+ 2482 0f86 F091 0000 		lds r31,(OSTCBCur)+1
+ 2483 0f8a E084      		ldd r14,Z+8
+ 2484 0f8c F184      		ldd r15,Z+9
+ 2485 0f8e E114      		cp r14,__zero_reg__
+ 2486 0f90 F104      		cpc r15,__zero_reg__
+ 2487 0f92 69F0      		breq .L198
+ 2488 0f94 8086      		std Z+8,r8
+ 2489 0f96 9186      		std Z+9,r9
+ 2490 0f98 B486      		std Z+12,r11
+ 2491 0f9a E091 0000 		lds r30,OSTCBCur
+ 2492 0f9e F091 0000 		lds r31,(OSTCBCur)+1
+ 2493 0fa2 8682      		std Z+6,r8
+ 2494 0fa4 9782      		std Z+7,r9
+ 2495               	/* #APP */
+ 2496 0fa6 7894      		sei
+ 2497               	/* #NOAPP */
+ 2498 0fa8 E601      		movw r28,r12
+ 2499 0faa B882      		st Y,r11
+ 2500 0fac CBCF      		rjmp .L199
+ 2501               	.L198:
+ 2502 0fae C801      		movw r24,r16
+ 2503 0fb0 0E94 0000 		call OS_EventTO
+ 2504               	/* #APP */
+ 2505 0fb4 7894      		sei
+ 2506               	/* #NOAPP */
+ 2507 0fb6 8AE0      		ldi r24,lo8(10)
+ 2508 0fb8 F601      		movw r30,r12
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 45
+
+
+ 2509 0fba 8083      		st Z,r24
+ 2510 0fbc C3CF      		rjmp .L199
+ 2511               	.L200:
+ 2512 0fbe 82E0      		ldi r24,lo8(2)
+ 2513 0fc0 EA01      		movw r28,r20
+ 2514 0fc2 8883      		st Y,r24
+ 2515 0fc4 80E0      		ldi r24,lo8(0)
+ 2516 0fc6 90E0      		ldi r25,hi8(0)
+ 2517               	.L194:
+ 2518               	/* epilogue: frame size=0 */
+ 2519 0fc8 DF91      		pop r29
+ 2520 0fca CF91      		pop r28
+ 2521 0fcc 1F91      		pop r17
+ 2522 0fce 0F91      		pop r16
+ 2523 0fd0 FF90      		pop r15
+ 2524 0fd2 EF90      		pop r14
+ 2525 0fd4 DF90      		pop r13
+ 2526 0fd6 CF90      		pop r12
+ 2527 0fd8 BF90      		pop r11
+ 2528 0fda 9F90      		pop r9
+ 2529 0fdc 8F90      		pop r8
+ 2530 0fde 0895      		ret
+ 2531               	/* epilogue end (size=12) */
+ 2532               	/* function OSQPend size 140 (117) */
+ 2533               		.size	OSQPend, .-OSQPend
+ 2534               	.global	OSQPost
+ 2535               		.type	OSQPost, @function
+ 2536               	OSQPost:
+ 2537               	/* prologue: frame size=0 */
+ 2538 0fe0 CF93      		push r28
+ 2539 0fe2 DF93      		push r29
+ 2540               	/* prologue end (size=2) */
+ 2541 0fe4 FC01      		movw r30,r24
+ 2542               	/* #APP */
+ 2543 0fe6 F894      		cli
+ 2544               	/* #NOAPP */
+ 2545 0fe8 8181      		ldd r24,Z+1
+ 2546 0fea 8823      		tst r24
+ 2547 0fec A9F5      		brne .L207
+ 2548 0fee A481      		ldd r26,Z+4
+ 2549 0ff0 B581      		ldd r27,Z+5
+ 2550 0ff2 1C96      		adiw r26,12
+ 2551 0ff4 2D91      		ld r18,X+
+ 2552 0ff6 3C91      		ld r19,X
+ 2553 0ff8 1D97      		sbiw r26,12+1
+ 2554 0ffa 1A96      		adiw r26,10
+ 2555 0ffc 8D91      		ld r24,X+
+ 2556 0ffe 9C91      		ld r25,X
+ 2557 1000 1B97      		sbiw r26,10+1
+ 2558 1002 2817      		cp r18,r24
+ 2559 1004 3907      		cpc r19,r25
+ 2560 1006 20F5      		brsh .L208
+ 2561 1008 1696      		adiw r26,6
+ 2562 100a ED91      		ld r30,X+
+ 2563 100c FC91      		ld r31,X
+ 2564 100e 1797      		sbiw r26,6+1
+ 2565 1010 6193      		st Z+,r22
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 46
+
+
+ 2566 1012 7193      		st Z+,r23
+ 2567 1014 1696      		adiw r26,6
+ 2568 1016 ED93      		st X+,r30
+ 2569 1018 FC93      		st X,r31
+ 2570 101a 1797      		sbiw r26,6+1
+ 2571 101c 2F5F      		subi r18,lo8(-(1))
+ 2572 101e 3F4F      		sbci r19,hi8(-(1))
+ 2573 1020 1C96      		adiw r26,12
+ 2574 1022 2D93      		st X+,r18
+ 2575 1024 3C93      		st X,r19
+ 2576 1026 1D97      		sbiw r26,12+1
+ 2577 1028 1496      		adiw r26,4
+ 2578 102a 8D91      		ld r24,X+
+ 2579 102c 9C91      		ld r25,X
+ 2580 102e 1597      		sbiw r26,4+1
+ 2581 1030 E817      		cp r30,r24
+ 2582 1032 F907      		cpc r31,r25
+ 2583 1034 21F0      		breq .L209
+ 2584               	.L205:
+ 2585               	/* #APP */
+ 2586 1036 7894      		sei
+ 2587               	/* #NOAPP */
+ 2588               	.L206:
+ 2589 1038 80E0      		ldi r24,lo8(0)
+ 2590 103a 90E0      		ldi r25,hi8(0)
+ 2591 103c 15C0      		rjmp .L202
+ 2592               	.L209:
+ 2593 103e 1296      		adiw r26,2
+ 2594 1040 8D91      		ld r24,X+
+ 2595 1042 9C91      		ld r25,X
+ 2596 1044 1397      		sbiw r26,2+1
+ 2597 1046 1696      		adiw r26,6
+ 2598 1048 8D93      		st X+,r24
+ 2599 104a 9C93      		st X,r25
+ 2600 104c 1797      		sbiw r26,6+1
+ 2601 104e F3CF      		rjmp .L205
+ 2602               	.L208:
+ 2603               	/* #APP */
+ 2604 1050 7894      		sei
+ 2605               	/* #NOAPP */
+ 2606 1052 8EE1      		ldi r24,lo8(30)
+ 2607 1054 90E0      		ldi r25,hi8(30)
+ 2608 1056 08C0      		rjmp .L202
+ 2609               	.L207:
+ 2610 1058 44E0      		ldi r20,lo8(4)
+ 2611 105a CF01      		movw r24,r30
+ 2612 105c 0E94 0000 		call OS_EventTaskRdy
+ 2613               	/* #APP */
+ 2614 1060 7894      		sei
+ 2615               	/* #NOAPP */
+ 2616 1062 0E94 0000 		call OS_Sched
+ 2617 1066 E8CF      		rjmp .L206
+ 2618               	.L202:
+ 2619               	/* epilogue: frame size=0 */
+ 2620 1068 DF91      		pop r29
+ 2621 106a CF91      		pop r28
+ 2622 106c 0895      		ret
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 47
+
+
+ 2623               	/* epilogue end (size=3) */
+ 2624               	/* function OSQPost size 75 (70) */
+ 2625               		.size	OSQPost, .-OSQPost
+ 2626               	.global	OS_QInit
+ 2627               		.type	OS_QInit, @function
+ 2628               	OS_QInit:
+ 2629               	/* prologue: frame size=0 */
+ 2630               	/* prologue end (size=0) */
+ 2631 106e 80E0      		ldi r24,lo8(OSQTbl+14)
+ 2632 1070 90E0      		ldi r25,hi8(OSQTbl+14)
+ 2633 1072 9093 0000 		sts (OSQTbl)+1,r25
+ 2634 1076 8093 0000 		sts OSQTbl,r24
+ 2635 107a 0E97      		sbiw r24,14
+ 2636 107c 1092 0000 		sts (OSQTbl+14)+1,__zero_reg__
+ 2637 1080 1092 0000 		sts OSQTbl+14,__zero_reg__
+ 2638 1084 9093 0000 		sts (OSQFreeList)+1,r25
+ 2639 1088 8093 0000 		sts OSQFreeList,r24
+ 2640               	/* epilogue: frame size=0 */
+ 2641 108c 0895      		ret
+ 2642               	/* epilogue end (size=1) */
+ 2643               	/* function OS_QInit size 16 (15) */
+ 2644               		.size	OS_QInit, .-OS_QInit
+ 2645               	.global	OSSemCreate
+ 2646               		.type	OSSemCreate, @function
+ 2647               	OSSemCreate:
+ 2648               	/* prologue: frame size=0 */
+ 2649 108e CF93      		push r28
+ 2650 1090 DF93      		push r29
+ 2651               	/* prologue end (size=2) */
+ 2652 1092 9C01      		movw r18,r24
+ 2653 1094 8091 0000 		lds r24,OSIntNesting
+ 2654 1098 8823      		tst r24
+ 2655 109a D9F4      		brne .L224
+ 2656               	/* #APP */
+ 2657 109c F894      		cli
+ 2658               	/* #NOAPP */
+ 2659 109e C091 0000 		lds r28,OSEventFreeList
+ 2660 10a2 D091 0000 		lds r29,(OSEventFreeList)+1
+ 2661 10a6 2097      		sbiw r28,0
+ 2662 10a8 31F0      		breq .L222
+ 2663 10aa 8C81      		ldd r24,Y+4
+ 2664 10ac 9D81      		ldd r25,Y+5
+ 2665 10ae 9093 0000 		sts (OSEventFreeList)+1,r25
+ 2666 10b2 8093 0000 		sts OSEventFreeList,r24
+ 2667               	.L222:
+ 2668               	/* #APP */
+ 2669 10b6 7894      		sei
+ 2670               	/* #NOAPP */
+ 2671 10b8 2097      		sbiw r28,0
+ 2672 10ba 49F0      		breq .L223
+ 2673 10bc 83E0      		ldi r24,lo8(3)
+ 2674 10be 8883      		st Y,r24
+ 2675 10c0 2A83      		std Y+2,r18
+ 2676 10c2 3B83      		std Y+3,r19
+ 2677 10c4 1C82      		std Y+4,__zero_reg__
+ 2678 10c6 1D82      		std Y+5,__zero_reg__
+ 2679 10c8 CE01      		movw r24,r28
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 48
+
+
+ 2680 10ca 0E94 0000 		call OS_EventWaitListInit
+ 2681               	.L223:
+ 2682 10ce CE01      		movw r24,r28
+ 2683 10d0 02C0      		rjmp .L220
+ 2684               	.L224:
+ 2685 10d2 80E0      		ldi r24,lo8(0)
+ 2686 10d4 90E0      		ldi r25,hi8(0)
+ 2687               	.L220:
+ 2688               	/* epilogue: frame size=0 */
+ 2689 10d6 DF91      		pop r29
+ 2690 10d8 CF91      		pop r28
+ 2691 10da 0895      		ret
+ 2692               	/* epilogue end (size=3) */
+ 2693               	/* function OSSemCreate size 41 (36) */
+ 2694               		.size	OSSemCreate, .-OSSemCreate
+ 2695               	.global	OSSemPend
+ 2696               		.type	OSSemPend, @function
+ 2697               	OSSemPend:
+ 2698               	/* prologue: frame size=0 */
+ 2699 10dc FF92      		push r15
+ 2700 10de 0F93      		push r16
+ 2701 10e0 1F93      		push r17
+ 2702 10e2 CF93      		push r28
+ 2703 10e4 DF93      		push r29
+ 2704               	/* prologue end (size=5) */
+ 2705 10e6 EC01      		movw r28,r24
+ 2706 10e8 8A01      		movw r16,r20
+ 2707 10ea F090 0000 		lds r15,OSIntNesting
+ 2708 10ee FF20      		tst r15
+ 2709 10f0 21F0      		breq .L226
+ 2710 10f2 82E0      		ldi r24,lo8(2)
+ 2711               	.L230:
+ 2712 10f4 F801      		movw r30,r16
+ 2713 10f6 8083      		st Z,r24
+ 2714 10f8 34C0      		rjmp .L225
+ 2715               	.L226:
+ 2716               	/* #APP */
+ 2717 10fa F894      		cli
+ 2718               	/* #NOAPP */
+ 2719 10fc 8A81      		ldd r24,Y+2
+ 2720 10fe 9B81      		ldd r25,Y+3
+ 2721 1100 0097      		sbiw r24,0
+ 2722 1102 39F0      		breq .L227
+ 2723 1104 0197      		sbiw r24,1
+ 2724 1106 8A83      		std Y+2,r24
+ 2725 1108 9B83      		std Y+3,r25
+ 2726               	.L229:
+ 2727               	/* #APP */
+ 2728 110a 7894      		sei
+ 2729               	/* #NOAPP */
+ 2730 110c F801      		movw r30,r16
+ 2731 110e F082      		st Z,r15
+ 2732 1110 28C0      		rjmp .L225
+ 2733               	.L227:
+ 2734 1112 E091 0000 		lds r30,OSTCBCur
+ 2735 1116 F091 0000 		lds r31,(OSTCBCur)+1
+ 2736 111a 8485      		ldd r24,Z+12
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 49
+
+
+ 2737 111c 8160      		ori r24,lo8(1)
+ 2738 111e 8487      		std Z+12,r24
+ 2739 1120 E091 0000 		lds r30,OSTCBCur
+ 2740 1124 F091 0000 		lds r31,(OSTCBCur)+1
+ 2741 1128 6287      		std Z+10,r22
+ 2742 112a 7387      		std Z+11,r23
+ 2743 112c CE01      		movw r24,r28
+ 2744 112e 0E94 0000 		call OS_EventTaskWait
+ 2745               	/* #APP */
+ 2746 1132 7894      		sei
+ 2747               	/* #NOAPP */
+ 2748 1134 0E94 0000 		call OS_Sched
+ 2749               	/* #APP */
+ 2750 1138 F894      		cli
+ 2751               	/* #NOAPP */
+ 2752 113a E091 0000 		lds r30,OSTCBCur
+ 2753 113e F091 0000 		lds r31,(OSTCBCur)+1
+ 2754 1142 8485      		ldd r24,Z+12
+ 2755 1144 9927      		clr r25
+ 2756 1146 9C01      		movw r18,r24
+ 2757 1148 2170      		andi r18,lo8(1)
+ 2758 114a 3070      		andi r19,hi8(1)
+ 2759 114c 80FD      		sbrc r24,0
+ 2760 114e 03C0      		rjmp .L231
+ 2761 1150 2683      		std Z+6,r18
+ 2762 1152 3783      		std Z+7,r19
+ 2763 1154 DACF      		rjmp .L229
+ 2764               	.L231:
+ 2765 1156 CE01      		movw r24,r28
+ 2766 1158 0E94 0000 		call OS_EventTO
+ 2767               	/* #APP */
+ 2768 115c 7894      		sei
+ 2769               	/* #NOAPP */
+ 2770 115e 8AE0      		ldi r24,lo8(10)
+ 2771 1160 C9CF      		rjmp .L230
+ 2772               	.L225:
+ 2773               	/* epilogue: frame size=0 */
+ 2774 1162 DF91      		pop r29
+ 2775 1164 CF91      		pop r28
+ 2776 1166 1F91      		pop r17
+ 2777 1168 0F91      		pop r16
+ 2778 116a FF90      		pop r15
+ 2779 116c 0895      		ret
+ 2780               	/* epilogue end (size=6) */
+ 2781               	/* function OSSemPend size 78 (67) */
+ 2782               		.size	OSSemPend, .-OSSemPend
+ 2783               	.global	OSSemPost
+ 2784               		.type	OSSemPost, @function
+ 2785               	OSSemPost:
+ 2786               	/* prologue: frame size=0 */
+ 2787               	/* prologue end (size=0) */
+ 2788 116e FC01      		movw r30,r24
+ 2789               	/* #APP */
+ 2790 1170 F894      		cli
+ 2791               	/* #NOAPP */
+ 2792 1172 8181      		ldd r24,Z+1
+ 2793 1174 8823      		tst r24
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 50
+
+
+ 2794 1176 89F4      		brne .L236
+ 2795 1178 8281      		ldd r24,Z+2
+ 2796 117a 9381      		ldd r25,Z+3
+ 2797 117c 2FEF      		ldi r18,hi8(-1)
+ 2798 117e 8F3F      		cpi r24,lo8(-1)
+ 2799 1180 9207      		cpc r25,r18
+ 2800 1182 39F0      		breq .L234
+ 2801 1184 0196      		adiw r24,1
+ 2802 1186 8283      		std Z+2,r24
+ 2803 1188 9383      		std Z+3,r25
+ 2804               	/* #APP */
+ 2805 118a 7894      		sei
+ 2806               	/* #NOAPP */
+ 2807               	.L235:
+ 2808 118c 80E0      		ldi r24,lo8(0)
+ 2809 118e 90E0      		ldi r25,hi8(0)
+ 2810 1190 0895      		ret
+ 2811               	.L234:
+ 2812               	/* #APP */
+ 2813 1192 7894      		sei
+ 2814               	/* #NOAPP */
+ 2815 1194 82E3      		ldi r24,lo8(50)
+ 2816 1196 90E0      		ldi r25,hi8(50)
+ 2817 1198 0895      		ret
+ 2818               	.L236:
+ 2819 119a 41E0      		ldi r20,lo8(1)
+ 2820 119c 60E0      		ldi r22,lo8(0)
+ 2821 119e 70E0      		ldi r23,hi8(0)
+ 2822 11a0 CF01      		movw r24,r30
+ 2823 11a2 0E94 0000 		call OS_EventTaskRdy
+ 2824               	/* #APP */
+ 2825 11a6 7894      		sei
+ 2826               	/* #NOAPP */
+ 2827 11a8 0E94 0000 		call OS_Sched
+ 2828 11ac EFCF      		rjmp .L235
+ 2829               	/* epilogue: frame size=0 */
+ 2830               	/* epilogue: noreturn */
+ 2831               	/* epilogue end (size=0) */
+ 2832               	/* function OSSemPost size 36 (36) */
+ 2833               		.size	OSSemPost, .-OSSemPost
+ 2834               	.global	OSTaskCreate
+ 2835               		.type	OSTaskCreate, @function
+ 2836               	OSTaskCreate:
+ 2837               	/* prologue: frame size=0 */
+ 2838 11ae 7F92      		push r7
+ 2839 11b0 8F92      		push r8
+ 2840 11b2 9F92      		push r9
+ 2841 11b4 AF92      		push r10
+ 2842 11b6 BF92      		push r11
+ 2843 11b8 CF92      		push r12
+ 2844 11ba DF92      		push r13
+ 2845 11bc EF92      		push r14
+ 2846 11be FF92      		push r15
+ 2847 11c0 0F93      		push r16
+ 2848 11c2 1F93      		push r17
+ 2849 11c4 CF93      		push r28
+ 2850 11c6 DF93      		push r29
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 51
+
+
+ 2851               	/* prologue end (size=13) */
+ 2852 11c8 FC01      		movw r30,r24
+ 2853 11ca 722E      		mov r7,r18
+ 2854               	/* #APP */
+ 2855 11cc F894      		cli
+ 2856               	/* #NOAPP */
+ 2857 11ce 822E      		mov r8,r18
+ 2858 11d0 9924      		clr r9
+ 2859 11d2 880C      		add r8,r8
+ 2860 11d4 991C      		adc r9,r9
+ 2861 11d6 80E0      		ldi r24,lo8(OSTCBPrioTbl)
+ 2862 11d8 90E0      		ldi r25,hi8(OSTCBPrioTbl)
+ 2863 11da 880E      		add r8,r24
+ 2864 11dc 991E      		adc r9,r25
+ 2865 11de D401      		movw r26,r8
+ 2866 11e0 CD91      		ld r28,X+
+ 2867 11e2 DC91      		ld r29,X
+ 2868 11e4 1197      		sbiw r26,1
+ 2869 11e6 2097      		sbiw r28,0
+ 2870 11e8 71F5      		brne .L238
+ 2871 11ea 81E0      		ldi r24,lo8(1)
+ 2872 11ec 90E0      		ldi r25,hi8(1)
+ 2873 11ee 8D93      		st X+,r24
+ 2874 11f0 9C93      		st X,r25
+ 2875               	/* #APP */
+ 2876 11f2 7894      		sei
+ 2877               	/* #NOAPP */
+ 2878 11f4 9E01      		movw r18,r28
+ 2879 11f6 CF01      		movw r24,r30
+ 2880 11f8 0E94 0000 		call OSTaskStkInit
+ 2881 11fc 5E01      		movw r10,r28
+ 2882 11fe 6E01      		movw r12,r28
+ 2883 1200 EE24      		clr r14
+ 2884 1202 FF24      		clr r15
+ 2885 1204 8701      		movw r16,r14
+ 2886 1206 9E01      		movw r18,r28
+ 2887 1208 AE01      		movw r20,r28
+ 2888 120a BC01      		movw r22,r24
+ 2889 120c 872D      		mov r24,r7
+ 2890 120e 0E94 0000 		call OS_TCBInit
+ 2891 1212 182F      		mov r17,r24
+ 2892 1214 8823      		tst r24
+ 2893 1216 89F4      		brne .L239
+ 2894               	/* #APP */
+ 2895 1218 F894      		cli
+ 2896               	/* #NOAPP */
+ 2897 121a 8091 0000 		lds r24,OSTaskCtr
+ 2898 121e 8F5F      		subi r24,lo8(-(1))
+ 2899 1220 8093 0000 		sts OSTaskCtr,r24
+ 2900               	/* #APP */
+ 2901 1224 7894      		sei
+ 2902               	/* #NOAPP */
+ 2903 1226 8091 0000 		lds r24,OSRunning
+ 2904 122a 8130      		cpi r24,lo8(1)
+ 2905 122c 19F0      		breq .L242
+ 2906               	.L241:
+ 2907 122e 812F      		mov r24,r17
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 52
+
+
+ 2908 1230 9927      		clr r25
+ 2909 1232 0CC0      		rjmp .L237
+ 2910               	.L242:
+ 2911 1234 0E94 0000 		call OS_Sched
+ 2912 1238 FACF      		rjmp .L241
+ 2913               	.L239:
+ 2914               	/* #APP */
+ 2915 123a F894      		cli
+ 2916               	/* #NOAPP */
+ 2917 123c F401      		movw r30,r8
+ 2918 123e C083      		st Z,r28
+ 2919 1240 D183      		std Z+1,r29
+ 2920               	/* #APP */
+ 2921 1242 7894      		sei
+ 2922               	/* #NOAPP */
+ 2923 1244 F4CF      		rjmp .L241
+ 2924               	.L238:
+ 2925               	/* #APP */
+ 2926 1246 7894      		sei
+ 2927               	/* #NOAPP */
+ 2928 1248 88E2      		ldi r24,lo8(40)
+ 2929 124a 90E0      		ldi r25,hi8(40)
+ 2930               	.L237:
+ 2931               	/* epilogue: frame size=0 */
+ 2932 124c DF91      		pop r29
+ 2933 124e CF91      		pop r28
+ 2934 1250 1F91      		pop r17
+ 2935 1252 0F91      		pop r16
+ 2936 1254 FF90      		pop r15
+ 2937 1256 EF90      		pop r14
+ 2938 1258 DF90      		pop r13
+ 2939 125a CF90      		pop r12
+ 2940 125c BF90      		pop r11
+ 2941 125e AF90      		pop r10
+ 2942 1260 9F90      		pop r9
+ 2943 1262 8F90      		pop r8
+ 2944 1264 7F90      		pop r7
+ 2945 1266 0895      		ret
+ 2946               	/* epilogue end (size=14) */
+ 2947               	/* function OSTaskCreate size 100 (73) */
+ 2948               		.size	OSTaskCreate, .-OSTaskCreate
+ 2949               	.global	OSTaskResume
+ 2950               		.type	OSTaskResume, @function
+ 2951               	OSTaskResume:
+ 2952               	/* prologue: frame size=0 */
+ 2953 1268 CF93      		push r28
+ 2954 126a DF93      		push r29
+ 2955               	/* prologue end (size=2) */
+ 2956               	/* #APP */
+ 2957 126c F894      		cli
+ 2958               	/* #NOAPP */
+ 2959 126e E82F      		mov r30,r24
+ 2960 1270 FF27      		clr r31
+ 2961 1272 EE0F      		add r30,r30
+ 2962 1274 FF1F      		adc r31,r31
+ 2963 1276 E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 2964 1278 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 53
+
+
+ 2965 127a A081      		ld r26,Z
+ 2966 127c B181      		ldd r27,Z+1
+ 2967 127e 1097      		sbiw r26,0
+ 2968 1280 89F1      		breq .L248
+ 2969 1282 1C96      		adiw r26,12
+ 2970 1284 8C91      		ld r24,X
+ 2971 1286 1C97      		sbiw r26,12
+ 2972 1288 83FF      		sbrs r24,3
+ 2973 128a 28C0      		rjmp .L245
+ 2974 128c 877F      		andi r24,lo8(-9)
+ 2975 128e 1C96      		adiw r26,12
+ 2976 1290 8C93      		st X,r24
+ 2977 1292 1C97      		sbiw r26,12
+ 2978 1294 8823      		tst r24
+ 2979 1296 31F4      		brne .L246
+ 2980 1298 1A96      		adiw r26,10
+ 2981 129a 8D91      		ld r24,X+
+ 2982 129c 9C91      		ld r25,X
+ 2983 129e 1B97      		sbiw r26,10+1
+ 2984 12a0 892B      		or r24,r25
+ 2985 12a2 21F0      		breq .L249
+ 2986               	.L246:
+ 2987               	/* #APP */
+ 2988 12a4 7894      		sei
+ 2989               	/* #NOAPP */
+ 2990               	.L247:
+ 2991 12a6 80E0      		ldi r24,lo8(0)
+ 2992 12a8 90E0      		ldi r25,hi8(0)
+ 2993 12aa 1FC0      		rjmp .L243
+ 2994               	.L249:
+ 2995 12ac 8091 0000 		lds r24,OSRdyGrp
+ 2996 12b0 5196      		adiw r26,17
+ 2997 12b2 9C91      		ld r25,X
+ 2998 12b4 5197      		sbiw r26,17
+ 2999 12b6 892B      		or r24,r25
+ 3000 12b8 8093 0000 		sts OSRdyGrp,r24
+ 3001 12bc 1F96      		adiw r26,15
+ 3002 12be 8C91      		ld r24,X
+ 3003 12c0 1F97      		sbiw r26,15
+ 3004 12c2 E82F      		mov r30,r24
+ 3005 12c4 FF27      		clr r31
+ 3006 12c6 E050      		subi r30,lo8(-(OSRdyTbl))
+ 3007 12c8 F040      		sbci r31,hi8(-(OSRdyTbl))
+ 3008 12ca 8081      		ld r24,Z
+ 3009 12cc 5096      		adiw r26,16
+ 3010 12ce 9C91      		ld r25,X
+ 3011 12d0 892B      		or r24,r25
+ 3012 12d2 8083      		st Z,r24
+ 3013               	/* #APP */
+ 3014 12d4 7894      		sei
+ 3015               	/* #NOAPP */
+ 3016 12d6 0E94 0000 		call OS_Sched
+ 3017 12da E5CF      		rjmp .L247
+ 3018               	.L245:
+ 3019               	/* #APP */
+ 3020 12dc 7894      		sei
+ 3021               	/* #NOAPP */
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 54
+
+
+ 3022 12de 85E6      		ldi r24,lo8(101)
+ 3023 12e0 90E0      		ldi r25,hi8(101)
+ 3024 12e2 03C0      		rjmp .L243
+ 3025               	.L248:
+ 3026               	/* #APP */
+ 3027 12e4 7894      		sei
+ 3028               	/* #NOAPP */
+ 3029 12e6 84E6      		ldi r24,lo8(100)
+ 3030 12e8 90E0      		ldi r25,hi8(100)
+ 3031               	.L243:
+ 3032               	/* epilogue: frame size=0 */
+ 3033 12ea DF91      		pop r29
+ 3034 12ec CF91      		pop r28
+ 3035 12ee 0895      		ret
+ 3036               	/* epilogue end (size=3) */
+ 3037               	/* function OSTaskResume size 73 (68) */
+ 3038               		.size	OSTaskResume, .-OSTaskResume
+ 3039               	.global	OSTaskSuspend
+ 3040               		.type	OSTaskSuspend, @function
+ 3041               	OSTaskSuspend:
+ 3042               	/* prologue: frame size=0 */
+ 3043 12f0 CF93      		push r28
+ 3044 12f2 DF93      		push r29
+ 3045               	/* prologue end (size=2) */
+ 3046 12f4 982F      		mov r25,r24
+ 3047               	/* #APP */
+ 3048 12f6 F894      		cli
+ 3049               	/* #NOAPP */
+ 3050 12f8 8F3F      		cpi r24,lo8(-1)
+ 3051 12fa 09F4      		brne .+2
+ 3052 12fc 40C0      		rjmp .L259
+ 3053 12fe E091 0000 		lds r30,OSTCBCur
+ 3054 1302 F091 0000 		lds r31,(OSTCBCur)+1
+ 3055 1306 8585      		ldd r24,Z+13
+ 3056 1308 9817      		cp r25,r24
+ 3057 130a B9F1      		breq .L258
+ 3058 130c 20E0      		ldi r18,lo8(0)
+ 3059               	.L252:
+ 3060 130e E92F      		mov r30,r25
+ 3061 1310 FF27      		clr r31
+ 3062 1312 EE0F      		add r30,r30
+ 3063 1314 FF1F      		adc r31,r31
+ 3064 1316 E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 3065 1318 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 3066 131a A081      		ld r26,Z
+ 3067 131c B181      		ldd r27,Z+1
+ 3068 131e 1097      		sbiw r26,0
+ 3069 1320 41F1      		breq .L260
+ 3070 1322 1F96      		adiw r26,15
+ 3071 1324 8C91      		ld r24,X
+ 3072 1326 1F97      		sbiw r26,15
+ 3073 1328 E82F      		mov r30,r24
+ 3074 132a FF27      		clr r31
+ 3075 132c E050      		subi r30,lo8(-(OSRdyTbl))
+ 3076 132e F040      		sbci r31,hi8(-(OSRdyTbl))
+ 3077 1330 5096      		adiw r26,16
+ 3078 1332 9C91      		ld r25,X
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 55
+
+
+ 3079 1334 5097      		sbiw r26,16
+ 3080 1336 9095      		com r25
+ 3081 1338 8081      		ld r24,Z
+ 3082 133a 8923      		and r24,r25
+ 3083 133c 8083      		st Z,r24
+ 3084 133e 8823      		tst r24
+ 3085 1340 49F4      		brne .L256
+ 3086 1342 5196      		adiw r26,17
+ 3087 1344 9C91      		ld r25,X
+ 3088 1346 5197      		sbiw r26,17
+ 3089 1348 9095      		com r25
+ 3090 134a 8091 0000 		lds r24,OSRdyGrp
+ 3091 134e 8923      		and r24,r25
+ 3092 1350 8093 0000 		sts OSRdyGrp,r24
+ 3093               	.L256:
+ 3094 1354 1C96      		adiw r26,12
+ 3095 1356 8C91      		ld r24,X
+ 3096 1358 1C97      		sbiw r26,12
+ 3097 135a 8860      		ori r24,lo8(8)
+ 3098 135c 1C96      		adiw r26,12
+ 3099 135e 8C93      		st X,r24
+ 3100               	/* #APP */
+ 3101 1360 7894      		sei
+ 3102               	/* #NOAPP */
+ 3103 1362 2130      		cpi r18,lo8(1)
+ 3104 1364 19F0      		breq .L261
+ 3105               	.L257:
+ 3106 1366 80E0      		ldi r24,lo8(0)
+ 3107 1368 90E0      		ldi r25,hi8(0)
+ 3108 136a 0FC0      		rjmp .L250
+ 3109               	.L261:
+ 3110 136c 0E94 0000 		call OS_Sched
+ 3111 1370 FACF      		rjmp .L257
+ 3112               	.L260:
+ 3113               	/* #APP */
+ 3114 1372 7894      		sei
+ 3115               	/* #NOAPP */
+ 3116 1374 8AE5      		ldi r24,lo8(90)
+ 3117 1376 90E0      		ldi r25,hi8(90)
+ 3118 1378 08C0      		rjmp .L250
+ 3119               	.L258:
+ 3120 137a 21E0      		ldi r18,lo8(1)
+ 3121 137c C8CF      		rjmp .L252
+ 3122               	.L259:
+ 3123 137e E091 0000 		lds r30,OSTCBCur
+ 3124 1382 F091 0000 		lds r31,(OSTCBCur)+1
+ 3125 1386 9585      		ldd r25,Z+13
+ 3126 1388 F8CF      		rjmp .L258
+ 3127               	.L250:
+ 3128               	/* epilogue: frame size=0 */
+ 3129 138a DF91      		pop r29
+ 3130 138c CF91      		pop r28
+ 3131 138e 0895      		ret
+ 3132               	/* epilogue end (size=3) */
+ 3133               	/* function OSTaskSuspend size 83 (78) */
+ 3134               		.size	OSTaskSuspend, .-OSTaskSuspend
+ 3135               	.global	OSTaskQuery
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 56
+
+
+ 3136               		.type	OSTaskQuery, @function
+ 3137               	OSTaskQuery:
+ 3138               	/* prologue: frame size=0 */
+ 3139               	/* prologue end (size=0) */
+ 3140               	/* #APP */
+ 3141 1390 F894      		cli
+ 3142               	/* #NOAPP */
+ 3143 1392 8F3F      		cpi r24,lo8(-1)
+ 3144 1394 C9F0      		breq .L265
+ 3145               	.L263:
+ 3146 1396 E82F      		mov r30,r24
+ 3147 1398 FF27      		clr r31
+ 3148 139a EE0F      		add r30,r30
+ 3149 139c FF1F      		adc r31,r31
+ 3150 139e E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 3151 13a0 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 3152 13a2 8081      		ld r24,Z
+ 3153 13a4 9181      		ldd r25,Z+1
+ 3154 13a6 0097      		sbiw r24,0
+ 3155 13a8 59F0      		breq .L266
+ 3156 13aa 22E1      		ldi r18,lo8(18)
+ 3157 13ac DB01      		movw r26,r22
+ 3158 13ae FC01      		movw r30,r24
+ 3159 13b0 0190      		ld __tmp_reg__,Z+
+ 3160 13b2 0D92      		st X+,__tmp_reg__
+ 3161 13b4 2A95      		dec r18
+ 3162 13b6 E1F7      		brne .-8
+ 3163               	/* #APP */
+ 3164 13b8 7894      		sei
+ 3165               	/* #NOAPP */
+ 3166 13ba 80E0      		ldi r24,lo8(0)
+ 3167 13bc 90E0      		ldi r25,hi8(0)
+ 3168 13be 0895      		ret
+ 3169               	.L266:
+ 3170               	/* #APP */
+ 3171 13c0 7894      		sei
+ 3172               	/* #NOAPP */
+ 3173 13c2 89E2      		ldi r24,lo8(41)
+ 3174 13c4 90E0      		ldi r25,hi8(41)
+ 3175 13c6 0895      		ret
+ 3176               	.L265:
+ 3177 13c8 E091 0000 		lds r30,OSTCBCur
+ 3178 13cc F091 0000 		lds r31,(OSTCBCur)+1
+ 3179 13d0 8585      		ldd r24,Z+13
+ 3180 13d2 E1CF      		rjmp .L263
+ 3181               	/* epilogue: frame size=0 */
+ 3182               	/* epilogue: noreturn */
+ 3183               	/* epilogue end (size=0) */
+ 3184               	/* function OSTaskQuery size 37 (37) */
+ 3185               		.size	OSTaskQuery, .-OSTaskQuery
+ 3186               	.global	OSTimeDly
+ 3187               		.type	OSTimeDly, @function
+ 3188               	OSTimeDly:
+ 3189               	/* prologue: frame size=0 */
+ 3190 13d4 CF93      		push r28
+ 3191 13d6 DF93      		push r29
+ 3192               	/* prologue end (size=2) */
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 57
+
+
+ 3193 13d8 9C01      		movw r18,r24
+ 3194 13da 892B      		or r24,r25
+ 3195 13dc 29F1      		breq .L267
+ 3196               	/* #APP */
+ 3197 13de F894      		cli
+ 3198               	/* #NOAPP */
+ 3199 13e0 A091 0000 		lds r26,OSTCBCur
+ 3200 13e4 B091 0000 		lds r27,(OSTCBCur)+1
+ 3201 13e8 1F96      		adiw r26,15
+ 3202 13ea 8C91      		ld r24,X
+ 3203 13ec 1F97      		sbiw r26,15
+ 3204 13ee E82F      		mov r30,r24
+ 3205 13f0 FF27      		clr r31
+ 3206 13f2 E050      		subi r30,lo8(-(OSRdyTbl))
+ 3207 13f4 F040      		sbci r31,hi8(-(OSRdyTbl))
+ 3208 13f6 5096      		adiw r26,16
+ 3209 13f8 9C91      		ld r25,X
+ 3210 13fa 5097      		sbiw r26,16
+ 3211 13fc 9095      		com r25
+ 3212 13fe 8081      		ld r24,Z
+ 3213 1400 8923      		and r24,r25
+ 3214 1402 8083      		st Z,r24
+ 3215 1404 8823      		tst r24
+ 3216 1406 49F4      		brne .L269
+ 3217 1408 5196      		adiw r26,17
+ 3218 140a 9C91      		ld r25,X
+ 3219 140c 5197      		sbiw r26,17
+ 3220 140e 9095      		com r25
+ 3221 1410 8091 0000 		lds r24,OSRdyGrp
+ 3222 1414 8923      		and r24,r25
+ 3223 1416 8093 0000 		sts OSRdyGrp,r24
+ 3224               	.L269:
+ 3225 141a 1A96      		adiw r26,10
+ 3226 141c 2D93      		st X+,r18
+ 3227 141e 3C93      		st X,r19
+ 3228 1420 1B97      		sbiw r26,10+1
+ 3229               	/* #APP */
+ 3230 1422 7894      		sei
+ 3231               	/* #NOAPP */
+ 3232 1424 0E94 0000 		call OS_Sched
+ 3233               	.L267:
+ 3234               	/* epilogue: frame size=0 */
+ 3235 1428 DF91      		pop r29
+ 3236 142a CF91      		pop r28
+ 3237 142c 0895      		ret
+ 3238               	/* epilogue end (size=3) */
+ 3239               	/* function OSTimeDly size 47 (42) */
+ 3240               		.size	OSTimeDly, .-OSTimeDly
+ 3241               	.global	OSTimeDlyHMSM
+ 3242               		.type	OSTimeDlyHMSM, @function
+ 3243               	OSTimeDlyHMSM:
+ 3244               	/* prologue: frame size=0 */
+ 3245 142e AF92      		push r10
+ 3246 1430 BF92      		push r11
+ 3247 1432 CF92      		push r12
+ 3248 1434 DF92      		push r13
+ 3249 1436 EF92      		push r14
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 58
+
+
+ 3250 1438 FF92      		push r15
+ 3251 143a 0F93      		push r16
+ 3252 143c 1F93      		push r17
+ 3253 143e CF93      		push r28
+ 3254 1440 DF93      		push r29
+ 3255               	/* prologue end (size=10) */
+ 3256 1442 A62E      		mov r10,r22
+ 3257 1444 D42E      		mov r13,r20
+ 3258 1446 E901      		movw r28,r18
+ 3259 1448 8823      		tst r24
+ 3260 144a 39F4      		brne .L272
+ 3261 144c 6623      		tst r22
+ 3262 144e 29F4      		brne .L272
+ 3263 1450 4423      		tst r20
+ 3264 1452 19F4      		brne .L272
+ 3265 1454 232B      		or r18,r19
+ 3266 1456 09F4      		brne .+2
+ 3267 1458 7BC0      		rjmp .L271
+ 3268               	.L272:
+ 3269 145a 9BE3      		ldi r25,lo8(59)
+ 3270 145c 9A15      		cp r25,r10
+ 3271 145e 08F4      		brsh .+2
+ 3272 1460 74C0      		rjmp .L282
+ 3273 1462 ABE3      		ldi r26,lo8(59)
+ 3274 1464 AD15      		cp r26,r13
+ 3275 1466 08F4      		brsh .+2
+ 3276 1468 6DC0      		rjmp .L283
+ 3277 146a B3E0      		ldi r27,hi8(1000)
+ 3278 146c C83E      		cpi r28,lo8(1000)
+ 3279 146e DB07      		cpc r29,r27
+ 3280 1470 08F0      		brlo .+2
+ 3281 1472 65C0      		rjmp .L284
+ 3282 1474 9927      		clr r25
+ 3283 1476 AA27      		clr r26
+ 3284 1478 BB27      		clr r27
+ 3285 147a BC01      		movw r22,r24
+ 3286 147c CD01      		movw r24,r26
+ 3287 147e 20E1      		ldi r18,lo8(3600)
+ 3288 1480 3EE0      		ldi r19,hi8(3600)
+ 3289 1482 40E0      		ldi r20,hlo8(3600)
+ 3290 1484 50E0      		ldi r21,hhi8(3600)
+ 3291 1486 0E94 0000 		call __mulsi3
+ 3292 148a 7B01      		movw r14,r22
+ 3293 148c 8C01      		movw r16,r24
+ 3294 148e 8A2D      		mov r24,r10
+ 3295 1490 9927      		clr r25
+ 3296 1492 AA27      		clr r26
+ 3297 1494 BB27      		clr r27
+ 3298 1496 BC01      		movw r22,r24
+ 3299 1498 CD01      		movw r24,r26
+ 3300 149a 2CE3      		ldi r18,lo8(60)
+ 3301 149c 30E0      		ldi r19,hi8(60)
+ 3302 149e 40E0      		ldi r20,hlo8(60)
+ 3303 14a0 50E0      		ldi r21,hhi8(60)
+ 3304 14a2 0E94 0000 		call __mulsi3
+ 3305 14a6 DC01      		movw r26,r24
+ 3306 14a8 CB01      		movw r24,r22
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 59
+
+
+ 3307 14aa E80E      		add r14,r24
+ 3308 14ac F91E      		adc r15,r25
+ 3309 14ae 0A1F      		adc r16,r26
+ 3310 14b0 1B1F      		adc r17,r27
+ 3311 14b2 ED0C      		add r14,r13
+ 3312 14b4 F11C      		adc r15,__zero_reg__
+ 3313 14b6 011D      		adc r16,__zero_reg__
+ 3314 14b8 111D      		adc r17,__zero_reg__
+ 3315 14ba C801      		movw r24,r16
+ 3316 14bc B701      		movw r22,r14
+ 3317 14be 2DE7      		ldi r18,lo8(125)
+ 3318 14c0 30E0      		ldi r19,hi8(125)
+ 3319 14c2 40E0      		ldi r20,hlo8(125)
+ 3320 14c4 50E0      		ldi r21,hhi8(125)
+ 3321 14c6 0E94 0000 		call __mulsi3
+ 3322 14ca 7B01      		movw r14,r22
+ 3323 14cc 8C01      		movw r16,r24
+ 3324 14ce CE01      		movw r24,r28
+ 3325 14d0 AA27      		clr r26
+ 3326 14d2 BB27      		clr r27
+ 3327 14d4 BC01      		movw r22,r24
+ 3328 14d6 CD01      		movw r24,r26
+ 3329 14d8 0E94 0000 		call __mulsi3
+ 3330 14dc DC01      		movw r26,r24
+ 3331 14de CB01      		movw r24,r22
+ 3332 14e0 8C50      		subi r24,lo8(-(500))
+ 3333 14e2 9E4F      		sbci r25,hi8(-(500))
+ 3334 14e4 AF4F      		sbci r26,hlo8(-(500))
+ 3335 14e6 BF4F      		sbci r27,hhi8(-(500))
+ 3336 14e8 BC01      		movw r22,r24
+ 3337 14ea CD01      		movw r24,r26
+ 3338 14ec 28EE      		ldi r18,lo8(1000)
+ 3339 14ee 33E0      		ldi r19,hi8(1000)
+ 3340 14f0 40E0      		ldi r20,hlo8(1000)
+ 3341 14f2 50E0      		ldi r21,hhi8(1000)
+ 3342 14f4 0E94 0000 		call __udivmodsi4
+ 3343 14f8 E20E      		add r14,r18
+ 3344 14fa F31E      		adc r15,r19
+ 3345 14fc 041F      		adc r16,r20
+ 3346 14fe 151F      		adc r17,r21
+ 3347 1500 5801      		movw r10,r16
+ 3348 1502 CC24      		clr r12
+ 3349 1504 DD24      		clr r13
+ 3350 1506 E501      		movw r28,r10
+ 3351 1508 8FEF      		ldi r24,lo8(65535)
+ 3352 150a 9FEF      		ldi r25,hi8(65535)
+ 3353 150c A0E0      		ldi r26,hlo8(65535)
+ 3354 150e B0E0      		ldi r27,hhi8(65535)
+ 3355 1510 E822      		and r14,r24
+ 3356 1512 F922      		and r15,r25
+ 3357 1514 0A23      		and r16,r26
+ 3358 1516 1B23      		and r17,r27
+ 3359 1518 C701      		movw r24,r14
+ 3360 151a 0E94 0000 		call OSTimeDly
+ 3361 151e AB28      		or r10,r11
+ 3362 1520 19F4      		brne .L279
+ 3363               	.L281:
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 60
+
+
+ 3364 1522 80E0      		ldi r24,lo8(0)
+ 3365 1524 90E0      		ldi r25,hi8(0)
+ 3366 1526 16C0      		rjmp .L270
+ 3367               	.L279:
+ 3368 1528 80E0      		ldi r24,lo8(-32768)
+ 3369 152a 90E8      		ldi r25,hi8(-32768)
+ 3370 152c 0E94 0000 		call OSTimeDly
+ 3371 1530 80E0      		ldi r24,lo8(-32768)
+ 3372 1532 90E8      		ldi r25,hi8(-32768)
+ 3373 1534 0E94 0000 		call OSTimeDly
+ 3374 1538 2197      		sbiw r28,1
+ 3375 153a B1F7      		brne .L279
+ 3376 153c F2CF      		rjmp .L281
+ 3377               	.L284:
+ 3378 153e 83E5      		ldi r24,lo8(83)
+ 3379 1540 90E0      		ldi r25,hi8(83)
+ 3380 1542 08C0      		rjmp .L270
+ 3381               	.L283:
+ 3382 1544 82E5      		ldi r24,lo8(82)
+ 3383 1546 90E0      		ldi r25,hi8(82)
+ 3384 1548 05C0      		rjmp .L270
+ 3385               	.L282:
+ 3386 154a 81E5      		ldi r24,lo8(81)
+ 3387 154c 90E0      		ldi r25,hi8(81)
+ 3388 154e 02C0      		rjmp .L270
+ 3389               	.L271:
+ 3390 1550 84E5      		ldi r24,lo8(84)
+ 3391 1552 90E0      		ldi r25,hi8(84)
+ 3392               	.L270:
+ 3393               	/* epilogue: frame size=0 */
+ 3394 1554 DF91      		pop r29
+ 3395 1556 CF91      		pop r28
+ 3396 1558 1F91      		pop r17
+ 3397 155a 0F91      		pop r16
+ 3398 155c FF90      		pop r15
+ 3399 155e EF90      		pop r14
+ 3400 1560 DF90      		pop r13
+ 3401 1562 CF90      		pop r12
+ 3402 1564 BF90      		pop r11
+ 3403 1566 AF90      		pop r10
+ 3404 1568 0895      		ret
+ 3405               	/* epilogue end (size=11) */
+ 3406               	/* function OSTimeDlyHMSM size 159 (138) */
+ 3407               		.size	OSTimeDlyHMSM, .-OSTimeDlyHMSM
+ 3408               	.global	OSTimeDlyResume
+ 3409               		.type	OSTimeDlyResume, @function
+ 3410               	OSTimeDlyResume:
+ 3411               	/* prologue: frame size=0 */
+ 3412 156a CF93      		push r28
+ 3413 156c DF93      		push r29
+ 3414               	/* prologue end (size=2) */
+ 3415 156e 8C30      		cpi r24,lo8(12)
+ 3416 1570 08F0      		brlo .+2
+ 3417 1572 3EC0      		rjmp .L292
+ 3418               	/* #APP */
+ 3419 1574 F894      		cli
+ 3420               	/* #NOAPP */
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 61
+
+
+ 3421 1576 E82F      		mov r30,r24
+ 3422 1578 FF27      		clr r31
+ 3423 157a EE0F      		add r30,r30
+ 3424 157c FF1F      		adc r31,r31
+ 3425 157e E050      		subi r30,lo8(-(OSTCBPrioTbl))
+ 3426 1580 F040      		sbci r31,hi8(-(OSTCBPrioTbl))
+ 3427 1582 A081      		ld r26,Z
+ 3428 1584 B181      		ldd r27,Z+1
+ 3429 1586 1097      		sbiw r26,0
+ 3430 1588 79F1      		breq .L287
+ 3431 158a 1A96      		adiw r26,10
+ 3432 158c 8D91      		ld r24,X+
+ 3433 158e 9C91      		ld r25,X
+ 3434 1590 1B97      		sbiw r26,10+1
+ 3435 1592 892B      		or r24,r25
+ 3436 1594 29F1      		breq .L288
+ 3437 1596 1A96      		adiw r26,10
+ 3438 1598 1D92      		st X+,__zero_reg__
+ 3439 159a 1C92      		st X,__zero_reg__
+ 3440 159c 1B97      		sbiw r26,10+1
+ 3441 159e 1C96      		adiw r26,12
+ 3442 15a0 8C91      		ld r24,X
+ 3443 15a2 1C97      		sbiw r26,12
+ 3444 15a4 83FF      		sbrs r24,3
+ 3445 15a6 04C0      		rjmp .L293
+ 3446               	/* #APP */
+ 3447 15a8 7894      		sei
+ 3448               	/* #NOAPP */
+ 3449               	.L290:
+ 3450 15aa 80E0      		ldi r24,lo8(0)
+ 3451 15ac 90E0      		ldi r25,hi8(0)
+ 3452 15ae 22C0      		rjmp .L285
+ 3453               	.L293:
+ 3454 15b0 8091 0000 		lds r24,OSRdyGrp
+ 3455 15b4 5196      		adiw r26,17
+ 3456 15b6 9C91      		ld r25,X
+ 3457 15b8 5197      		sbiw r26,17
+ 3458 15ba 892B      		or r24,r25
+ 3459 15bc 8093 0000 		sts OSRdyGrp,r24
+ 3460 15c0 1F96      		adiw r26,15
+ 3461 15c2 8C91      		ld r24,X
+ 3462 15c4 1F97      		sbiw r26,15
+ 3463 15c6 E82F      		mov r30,r24
+ 3464 15c8 FF27      		clr r31
+ 3465 15ca E050      		subi r30,lo8(-(OSRdyTbl))
+ 3466 15cc F040      		sbci r31,hi8(-(OSRdyTbl))
+ 3467 15ce 8081      		ld r24,Z
+ 3468 15d0 5096      		adiw r26,16
+ 3469 15d2 9C91      		ld r25,X
+ 3470 15d4 892B      		or r24,r25
+ 3471 15d6 8083      		st Z,r24
+ 3472               	/* #APP */
+ 3473 15d8 7894      		sei
+ 3474               	/* #NOAPP */
+ 3475 15da 0E94 0000 		call OS_Sched
+ 3476 15de E5CF      		rjmp .L290
+ 3477               	.L288:
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 62
+
+
+ 3478               	/* #APP */
+ 3479 15e0 7894      		sei
+ 3480               	/* #NOAPP */
+ 3481 15e2 80E5      		ldi r24,lo8(80)
+ 3482 15e4 90E0      		ldi r25,hi8(80)
+ 3483 15e6 06C0      		rjmp .L285
+ 3484               	.L287:
+ 3485               	/* #APP */
+ 3486 15e8 7894      		sei
+ 3487               	/* #NOAPP */
+ 3488 15ea 8BE0      		ldi r24,lo8(11)
+ 3489 15ec 90E0      		ldi r25,hi8(11)
+ 3490 15ee 02C0      		rjmp .L285
+ 3491               	.L292:
+ 3492 15f0 8AE2      		ldi r24,lo8(42)
+ 3493 15f2 90E0      		ldi r25,hi8(42)
+ 3494               	.L285:
+ 3495               	/* epilogue: frame size=0 */
+ 3496 15f4 DF91      		pop r29
+ 3497 15f6 CF91      		pop r28
+ 3498 15f8 0895      		ret
+ 3499               	/* epilogue end (size=3) */
+ 3500               	/* function OSTimeDlyResume size 77 (72) */
+ 3501               		.size	OSTimeDlyResume, .-OSTimeDlyResume
+ 3502               	.global	OSTimeGet
+ 3503               		.type	OSTimeGet, @function
+ 3504               	OSTimeGet:
+ 3505               	/* prologue: frame size=0 */
+ 3506               	/* prologue end (size=0) */
+ 3507               	/* #APP */
+ 3508 15fa F894      		cli
+ 3509               	/* #NOAPP */
+ 3510 15fc 8091 0000 		lds r24,OSTime
+ 3511 1600 9091 0000 		lds r25,(OSTime)+1
+ 3512 1604 A091 0000 		lds r26,(OSTime)+2
+ 3513 1608 B091 0000 		lds r27,(OSTime)+3
+ 3514               	/* #APP */
+ 3515 160c 7894      		sei
+ 3516               	/* #NOAPP */
+ 3517 160e BC01      		movw r22,r24
+ 3518 1610 CD01      		movw r24,r26
+ 3519               	/* epilogue: frame size=0 */
+ 3520 1612 0895      		ret
+ 3521               	/* epilogue end (size=1) */
+ 3522               	/* function OSTimeGet size 15 (14) */
+ 3523               		.size	OSTimeGet, .-OSTimeGet
+ 3524               	.global	OSTimeSet
+ 3525               		.type	OSTimeSet, @function
+ 3526               	OSTimeSet:
+ 3527               	/* prologue: frame size=0 */
+ 3528               	/* prologue end (size=0) */
+ 3529 1614 DC01      		movw r26,r24
+ 3530 1616 CB01      		movw r24,r22
+ 3531               	/* #APP */
+ 3532 1618 F894      		cli
+ 3533               	/* #NOAPP */
+ 3534 161a 8093 0000 		sts OSTime,r24
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 63
+
+
+ 3535 161e 9093 0000 		sts (OSTime)+1,r25
+ 3536 1622 A093 0000 		sts (OSTime)+2,r26
+ 3537 1626 B093 0000 		sts (OSTime)+3,r27
+ 3538               	/* #APP */
+ 3539 162a 7894      		sei
+ 3540               	/* #NOAPP */
+ 3541               	/* epilogue: frame size=0 */
+ 3542 162c 0895      		ret
+ 3543               	/* epilogue end (size=1) */
+ 3544               	/* function OSTimeSet size 15 (14) */
+ 3545               		.size	OSTimeSet, .-OSTimeSet
+ 3546               		.comm OSCtxSwCtr,4,1
+ 3547               		.comm OSEventFreeList,2,1
+ 3548               		.comm OSEventTbl,24,1
+ 3549               		.comm OSCPUUsage,1,1
+ 3550               		.comm OSIdleCtrMax,4,1
+ 3551               		.comm OSIdleCtrRun,4,1
+ 3552               		.comm OSStatRdy,1,1
+ 3553               		.comm OSTaskStatStk,128,1
+ 3554               		.comm OSIntNesting,1,1
+ 3555               		.comm OSIntExitY,1,1
+ 3556               		.comm OSLockNesting,1,1
+ 3557               		.comm OSPrioCur,1,1
+ 3558               		.comm OSPrioHighRdy,1,1
+ 3559               		.comm OSRdyGrp,1,1
+ 3560               		.comm OSRdyTbl,2,1
+ 3561               		.comm OSRunning,1,1
+ 3562               		.comm OSTaskCtr,1,1
+ 3563               		.comm OSIdleCtr,4,1
+ 3564               		.comm OSTaskIdleStk,128,1
+ 3565               		.comm OSTCBCur,2,1
+ 3566               		.comm OSTCBFreeList,2,1
+ 3567               		.comm OSTCBHighRdy,2,1
+ 3568               		.comm OSTCBList,2,1
+ 3569               		.comm OSTCBPrioTbl,26,1
+ 3570               		.comm OSTCBTbl,234,1
+ 3571               		.comm OSQFreeList,2,1
+ 3572               		.comm OSQTbl,28,1
+ 3573               		.comm OSTime,4,1
+ 3574               	/* File "C:/Software/uCOS-II/Source/ucos_ii.c": code 2956 = 0x0b8c (2719), prologues 102, epilogues
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 64
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 ucos_ii.c
+                            *ABS*:0000003f __SREG__
+                            *ABS*:0000003e __SP_H__
+                            *ABS*:0000003d __SP_L__
+                            *ABS*:00000000 __tmp_reg__
+                            *ABS*:00000001 __zero_reg__
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:14     .data:00000000 OSMapTbl
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:26     .data:00000008 OSUnMapTbl
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:286    .text:00000000 OSInit
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:881    .text:00000444 OS_InitMisc
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:906    .text:00000486 OS_InitRdyList
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:958    .text:000004d4 OS_InitTCBList
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:856    .text:0000040c OS_InitEventList
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:2628   .text:0000106e OS_QInit
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:924    .text:000004ac OS_InitTaskIdle
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:941    .text:000004c0 OS_InitTaskStat
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:305    .text:00000026 OSIntEnter
+                            *COM*:00000001 OSRunning
+                            *COM*:00000001 OSIntNesting
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:327    .text:00000040 OSIntExit
+                            *COM*:00000001 OSLockNesting
+                            *COM*:00000001 OSRdyGrp
+                            *COM*:00000001 OSIntExitY
+                            *COM*:00000002 OSRdyTbl
+                            *COM*:00000001 OSPrioHighRdy
+                            *COM*:00000001 OSPrioCur
+                            *COM*:0000001a OSTCBPrioTbl
+                            *COM*:00000002 OSTCBHighRdy
+                            *COM*:00000004 OSCtxSwCtr
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:413    .text:000000ee OSStart
+                            *COM*:00000002 OSTCBCur
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:467    .text:00000154 OSStatInit
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:3188   .text:000013d4 OSTimeDly
+                            *COM*:00000004 OSIdleCtr
+                            *COM*:00000004 OSIdleCtrMax
+                            *COM*:00000001 OSStatRdy
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:509    .text:000001a4 OSTimeTick
+                            *COM*:00000004 OSTime
+                            *COM*:00000002 OSTCBList
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:616    .text:0000026c OSVersion
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:628    .text:00000272 OS_EventTaskRdy
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:733    .text:00000332 OS_EventTaskWait
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:797    .text:000003aa OS_EventTO
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:843    .text:00000402 OS_EventWaitListInit
+                            *COM*:00000018 OSEventTbl
+                            *COM*:00000002 OSEventFreeList
+                            *COM*:00000001 OSTaskCtr
+                            *COM*:00000080 OSTaskIdleStk
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:1069   .text:000005ac OS_TaskIdle
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:2836   .text:000011ae OSTaskCreate
+                            *COM*:00000080 OSTaskStatStk
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:1099   .text:000005dc OS_TaskStat
+                            *COM*:000000ea OSTCBTbl
+                            *COM*:00000002 OSTCBFreeList
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:997    .text:00000518 OS_Sched
+                            *COM*:00000004 OSIdleCtrRun
+GAS LISTING C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s 			page 65
+
+
+                            *COM*:00000001 OSCPUUsage
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:1204   .text:000006cc OS_TCBInit
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:1320   .text:000007a0 OSMboxCreate
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:1370   .text:000007ee OSMboxPend
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:1469   .text:0000089a OSMboxPost
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:1514   .text:000008d0 OSMutexAccept
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:1582   .text:00000938 OSMutexCreate
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:1678   .text:000009d6 OSMutexDel
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:1811   .text:00000ab6 OSMutexPend
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:2026   .text:00000c46 OSMutexPost
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:2230   .text:00000dd0 OSMutexQuery
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:2292   .text:00000e2c OSQCreate
+                            *COM*:00000002 OSQFreeList
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:2386   .text:00000ed4 OSQPend
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:2536   .text:00000fe0 OSQPost
+                            *COM*:0000001c OSQTbl
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:2647   .text:0000108e OSSemCreate
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:2697   .text:000010dc OSSemPend
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:2785   .text:0000116e OSSemPost
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:2951   .text:00001268 OSTaskResume
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:3041   .text:000012f0 OSTaskSuspend
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:3137   .text:00001390 OSTaskQuery
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:3243   .text:0000142e OSTimeDlyHMSM
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:3410   .text:0000156a OSTimeDlyResume
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:3504   .text:000015fa OSTimeGet
+C:\Users\Kwon\AppData\Local\Temp/ccAzaaaa.s:3526   .text:00001614 OSTimeSet
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+OSInitHookBegin
+OSInitHookEnd
+OSIntCtxSw
+OSStartHighRdy
+OSTimeTickHook
+OSCtxSw
+OSTaskIdleHook
+__udivmodsi4
+OSTaskStatHook
+OSTCBInitHook
+OSTaskCreateHook
+OSTaskStkInit
+__mulsi3
